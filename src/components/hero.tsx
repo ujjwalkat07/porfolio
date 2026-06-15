@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Mail, Phone } from "lucide-react"
+import { Mail, Phone, FileText } from "lucide-react"
 import { Github, Linkedin } from "@/components/icons"
 import { Badge } from "@/components/ui/badge"
 
@@ -66,6 +66,17 @@ export function Hero() {
           >
             <Phone className="h-3.5 w-3.5 text-muted-foreground/80" />
             <span>+91 73093 24025</span>
+          </a>
+
+          {/* Resume */}
+          <a
+            href="https://drive.google.com/file/d/1JHwzjg4xoSpIg-sDamj3-aeD8UqZlU2h/view"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-xs font-normal text-muted-foreground px-4 py-2 border border-border/50 rounded-lg bg-card/50 hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
+          >
+            <FileText className="h-3.5 w-3.5 text-muted-foreground/80" />
+            <span>Resume</span>
           </a>
 
           {/* LinkedIn */}

@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { FileText } from "lucide-react"
 
 export function Navbar() {
   const [activeSection, setActiveSection] = React.useState("")
@@ -72,7 +73,16 @@ export function Navbar() {
           ))}
         </ul>
       </div>
-      <div>
+      <div className="flex items-center gap-3">
+        <a
+          href="https://drive.google.com/file/d/1JHwzjg4xoSpIg-sDamj3-aeD8UqZlU2h/view"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex h-9 items-center justify-center rounded-md border border-border bg-card/50 px-3.5 text-xs font-normal text-muted-foreground hover:bg-muted hover:text-foreground hover:border-foreground/30 transition-all duration-200 cursor-pointer shadow-xs gap-1.5"
+        >
+          <FileText className="h-3.5 w-3.5" />
+          <span>Resume</span>
+        </a>
         <ThemeToggle />
       </div>
     </nav>
