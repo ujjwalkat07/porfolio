@@ -20,7 +20,7 @@ export default function Home() {
         <Experience />
         <Skills />
         <Projects />
-        
+
         {/* Footer */}
         <Footer />
       </main>

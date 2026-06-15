@@ -9,6 +9,7 @@ export function Hero() {
   const [mounted, setMounted] = React.useState(false)
 
   React.useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true)
   }, [])
 
@@ -38,7 +39,7 @@ export function Hero() {
 
         {/* Title */}
         <h1 className="text-3xl font-extrabold tracking-tight leading-[1.1] sm:text-4xl md:text-5xl lg:text-6xl text-foreground max-w-4xl">
-          Hi! I'm Ujjwal Katiyar,<br/> Full Stack Engineer
+          Hi! I&apos;m Ujjwal Katiyar,<br/> Full Stack Engineer
           from <span className="bg-gradient-to-r from-violet-600 via-indigo-500 to-emerald-500 bg-clip-text text-transparent dark:from-violet-400 dark:via-indigo-300 dark:to-emerald-400">India.</span>
         </h1>
 
@@ -80,7 +81,7 @@ export function Hero() {
 
           {/* GitHub */}
           <a
-            href="https://github.com/devxrithm"
+            href="https://github.com/ujjwalkat07"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-xs font-normal text-muted-foreground px-4 py-2 border border-border/50 rounded-lg bg-card/50 hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"

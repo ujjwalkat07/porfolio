@@ -6,12 +6,20 @@ import { Github } from "@/components/icons"
 export function Projects() {
   const projects = [
     {
+      title: "CRM-X",
+      tags: ["TypeScript", "Next.js", "Express", "Node.js", "Turborepo", "Tailwind CSS", "Framer Motion"],
+      description:
+        "A next-generation Customer Relationship Management platform engineered as a high-performance monorepo. Combines a premium glassmorphic growth dashboard, sales pipeline automation, lead tracking, and client-server decoupling.",
+      demo: "https://crm-x-crm-client.vercel.app/",
+      github: "https://github.com/ujjwalkat07/crm-x",
+    },
+    {
       title: "Coin Chain Exchange",
       tags: ["TypeScript", "Node.js", "Next.js", "Redis", "Kafka", "MongoDB", "WebSockets"],
       description:
         "A full-stack cryptocurrency exchange with a real-time order matching engine pairing buy/sell orders by price-priority. Live price updates via WebSockets, high-throughput processing with Kafka, and Redis caching for concurrent data access.",
       demo: "https://crypto-exchange-web.onrender.com/",
-      github: "https://github.com/devxrithm/crypto-exchange-web",
+      github: "https://github.com/ujjwalkat07/crypto-exchange-web",
     },
     {
       title: "QR Event Management System",
@@ -19,7 +27,7 @@ export function Projects() {
       description:
         "QR code-based participant verification system for large-scale events. Includes a JWT-secured evaluation platform for mentors and judges. Onboarded 2000+ participants with an 80% reduction in manual check-in time.",
       demo: "https://lamp-mih.vercel.app",
-      github: "https://github.com/devxrithm/lamp",
+      github: "https://github.com/ujjwalkat07/lamp",
     },
   ]
 
