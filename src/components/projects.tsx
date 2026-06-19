@@ -14,11 +14,11 @@ export function Projects() {
       github: "https://github.com/ujjwalkat07/crm-x",
     },
     {
-      title: "Coin Chain Exchange",
+      title: "Exchange-X",
       tags: ["TypeScript", "Node.js", "Next.js", "Redis", "Kafka", "MongoDB", "WebSockets"],
       description:
         "A full-stack cryptocurrency exchange with a real-time order matching engine pairing buy/sell orders by price-priority. Live price updates via WebSockets, high-throughput processing with Kafka, and Redis caching for concurrent data access.",
-      demo: "https://crypto-exchange-web.onrender.com/",
+      demo: "https://web-exchange-x.onrender.com/",
       github: "https://github.com/ujjwalkat07/crypto-exchange-web",
     },
     {
