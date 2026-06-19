@@ -75,7 +75,7 @@ export function Navbar() {
       </div>
       <div className="flex items-center gap-3">
         <a
-          href="https://drive.google.com/file/d/1JHwzjg4xoSpIg-sDamj3-aeD8UqZlU2h/view"
+          href="https://drive.google.com/file/d/1mDtWk32tuf95xEuszplHeGLOC7VcJlpz/view?usp=drive_link"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex h-9 items-center justify-center rounded-md border border-border bg-card/50 px-3.5 text-xs font-normal text-muted-foreground hover:bg-muted hover:text-foreground hover:border-foreground/30 transition-all duration-200 cursor-pointer shadow-xs gap-1.5"
