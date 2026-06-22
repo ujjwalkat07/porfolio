@@ -69,7 +69,7 @@ export function Hero() {
 
           {/* Resume */}
           <a
-            href="https://drive.google.com/file/d/1JHwzjg4xoSpIg-sDamj3-aeD8UqZlU2h/view"
+            href="https://drive.google.com/file/d/1ergvRMmacThRf3foygDb8fHFty12boqY/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-xs font-normal text-muted-foreground px-4 py-2 border border-border/50 rounded-lg bg-card/50 hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
