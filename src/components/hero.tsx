@@ -16,9 +16,8 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className={`pt-24 pb-16 border-b border-border/40 transition-all duration-700 ${
-        mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-      }`}
+      className={`pt-24 pb-16 border-b border-border/40 transition-all duration-700 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        }`}
     >
       <div className="flex flex-col gap-6">
         {/* Active Badge */}
@@ -39,7 +38,7 @@ export function Hero() {
 
         {/* Title */}
         <h1 className="text-3xl font-extrabold tracking-tight leading-[1.1] sm:text-4xl md:text-5xl lg:text-6xl text-foreground max-w-4xl">
-          Hi! I&apos;m Ujjwal Katiyar,<br/> Full Stack Engineer
+          Hi! I&apos;m Ujjwal Katiyar,<br /> Full Stack Engineer
           from <span className="bg-gradient-to-r from-violet-600 via-indigo-500 to-emerald-500 bg-clip-text text-transparent dark:from-violet-400 dark:via-indigo-300 dark:to-emerald-400">India.</span>
         </h1>
 
@@ -81,7 +80,7 @@ export function Hero() {
 
           {/* LinkedIn */}
           <a
-            href="https://www.linkedin.com/in/itsukcode/"
+            href="https://www.linkedin.com/in/ujjwalkatiyar07"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-xs font-normal text-muted-foreground px-4 py-2 border border-border/50 rounded-lg bg-card/50 hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
