@@ -4,6 +4,7 @@ import * as React from "react"
 import { Mail, Phone, FileText } from "lucide-react"
 import { Github, Linkedin } from "@/components/icons"
 import { Badge } from "@/components/ui/badge"
+import Link from "next/link"
 
 export function Hero() {
   const [mounted, setMounted] = React.useState(false)
@@ -50,36 +51,36 @@ export function Hero() {
         {/* Contacts */}
         <div className="flex flex-wrap gap-2.5 mt-2">
           {/* Email */}
-          <a
+          <Link
             href="mailto:ukcode07@gmail.com"
             className="inline-flex items-center gap-2 text-xs font-normal text-muted-foreground px-4 py-2 border border-border/50 rounded-lg bg-card/50 hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
           >
             <Mail className="h-3.5 w-3.5 text-muted-foreground/80" />
             <span>ukcode07@gmail.com</span>
-          </a>
+          </Link>
 
           {/* Phone */}
-          <a
+          <Link
             href="tel:+917309324025"
             className="inline-flex items-center gap-2 text-xs font-normal text-muted-foreground px-4 py-2 border border-border/50 rounded-lg bg-card/50 hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
           >
             <Phone className="h-3.5 w-3.5 text-muted-foreground/80" />
             <span>+91 73093 24025</span>
-          </a>
+          </Link>
 
           {/* Resume */}
-          <a
-            href="https://drive.google.com/file/d/1ergvRMmacThRf3foygDb8fHFty12boqY/view?usp=sharing"
+          <Link
+            href="/ujjwal-resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-xs font-normal text-muted-foreground px-4 py-2 border border-border/50 rounded-lg bg-card/50 hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
           >
             <FileText className="h-3.5 w-3.5 text-muted-foreground/80" />
             <span>Resume</span>
-          </a>
+          </Link>
 
           {/* LinkedIn */}
-          <a
+          <Link
             href="https://www.linkedin.com/in/ujjwalkatiyar07"
             target="_blank"
             rel="noopener noreferrer"
@@ -87,10 +88,10 @@ export function Hero() {
           >
             <Linkedin className="h-3.5 w-3.5 text-muted-foreground/80" />
             <span>LinkedIn</span>
-          </a>
+          </Link>
 
           {/* GitHub */}
-          <a
+          <Link
             href="https://github.com/ujjwalkat07"
             target="_blank"
             rel="noopener noreferrer"
@@ -98,7 +99,7 @@ export function Hero() {
           >
             <Github className="h-3.5 w-3.5 text-muted-foreground/80" />
             <span>GitHub</span>
-          </a>
+          </Link>
         </div>
       </div>
     </section>
