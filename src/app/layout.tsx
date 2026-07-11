@@ -68,7 +68,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               "name": "Ujjwal Katiyar",
-              "image": "https://ujjwalkatiyar.in/profile.jpg",
+              "image": "https://ujjwalkatiyar.in/profile_pic.png",
               "jobTitle": "Full Stack Engineer",
               "url": "https://ujjwalkatiyar.in",
               "sameAs": [
