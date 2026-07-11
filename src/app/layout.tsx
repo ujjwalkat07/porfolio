@@ -36,6 +36,15 @@ export const metadata: Metadata = {
     description: "Portfolio of Ujjwal Katiyar, a Full Stack Engineer building scalable real-time systems and responsive Next.js apps.",
     type: "website",
     locale: "en_US",
+    siteName: "Ujjwal Katiyar",
+    images: [
+      {
+        url: "/profile_pic.png",
+        width: 500,
+        height: 500,
+        alt: "Ujjwal Katiyar",
+      },
+    ],
   },
 };
 
@@ -59,6 +68,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               "name": "Ujjwal Katiyar",
+              "image": "https://ujjwalkatiyar.in/profile.jpg",
               "jobTitle": "Full Stack Engineer",
               "url": "https://ujjwalkatiyar.in",
               "sameAs": [
