@@ -13,14 +13,27 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#030712",
+};
+
 export const metadata: Metadata = {
-  title: "Ujjwal Katiyar — Full Stack Engineer",
-  description: "Portfolio website of Ujjwal Katiyar, Full Stack Engineer based in Noida, India. Specializing in real-time web applications, distributed systems, and high-performance backends.",
+  metadataBase: new URL("https://ujjwalkatiyar.in"),
+  title: "Ujjwal Katiyar — Full Stack Engineer & Web Systems Architect",
+  description: "Portfolio of Ujjwal Katiyar, a Full Stack Engineer specializing in real-time systems, Kafka pipelines, and responsive Next.js apps.",
   keywords: ["Ujjwal Katiyar", "Full Stack Engineer", "Noida", "India", "Software Engineer", "Next.js", "Shadcn UI", "Kafka", "Redis"],
   authors: [{ name: "Ujjwal Katiyar" }],
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-US": "/",
+    },
+  },
   openGraph: {
-    title: "Ujjwal Katiyar — Full Stack Engineer",
-    description: "Portfolio website of Ujjwal Katiyar, Full Stack Engineer based in Noida, India. Specializing in real-time web applications, distributed systems, and high-performance backends.",
+    title: "Ujjwal Katiyar — Full Stack Engineer & Web Systems Architect",
+    description: "Portfolio of Ujjwal Katiyar, a Full Stack Engineer specializing in real-time systems, Kafka pipelines, and responsive Next.js apps.",
     type: "website",
     locale: "en_US",
   },
