@@ -29,7 +29,7 @@ export function About() {
         {/* Education Box */}
         <div className="flex gap-3.5 items-start p-4 border border-border/50 bg-muted/20 rounded-xl transition-all duration-300 hover:border-foreground/20 self-start">
           <GraduationCap className="h-5 w-5 text-indigo-500 flex-shrink-0 mt-0.5" />
-          <div className="text-xs text-muted-foreground leading-relaxed font-light">
+          <div className="text-sm text-muted-foreground leading-relaxed font-light">
             <strong className="font-semibold text-foreground">
               IIMT College of Engineering
             </strong>{" "}

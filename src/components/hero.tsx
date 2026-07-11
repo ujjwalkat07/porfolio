@@ -57,7 +57,7 @@ export function Hero() {
             id="hero-email-link"
             href={email ? `mailto:${email}` : "#"}
             aria-label="Send email to Ujjwal Katiyar"
-            className="inline-flex items-center gap-2 text-xs font-normal text-muted-foreground px-4 py-2 border border-border/50 rounded-lg bg-card/50 hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
+            className="inline-flex items-center gap-2 text-sm font-normal text-muted-foreground px-4 py-2.5 border border-border/50 rounded-lg bg-card/50 hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
           >
             <Mail className="h-3.5 w-3.5 text-muted-foreground/80" />
             <span>{email || "ukcode07 [at] gmail.com"}</span>
@@ -68,7 +68,7 @@ export function Hero() {
             id="hero-phone-link"
             href="tel:+917309324025"
             aria-label="Call Ujjwal Katiyar"
-            className="inline-flex items-center gap-2 text-xs font-normal text-muted-foreground px-4 py-2 border border-border/50 rounded-lg bg-card/50 hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
+            className="inline-flex items-center gap-2 text-sm font-normal text-muted-foreground px-4 py-2.5 border border-border/50 rounded-lg bg-card/50 hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
           >
             <Phone className="h-3.5 w-3.5 text-muted-foreground/80" />
             <span>+91 73093 24025</span>
@@ -81,7 +81,7 @@ export function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Open Ujjwal Katiyar's Resume"
-            className="inline-flex items-center gap-2 text-xs font-normal text-muted-foreground px-4 py-2 border border-border/50 rounded-lg bg-card/50 hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
+            className="inline-flex items-center gap-2 text-sm font-normal text-muted-foreground px-4 py-2.5 border border-border/50 rounded-lg bg-card/50 hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
           >
             <FileText className="h-3.5 w-3.5 text-muted-foreground/80" />
             <span>Resume</span>
@@ -94,7 +94,7 @@ export function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit Ujjwal Katiyar's LinkedIn profile"
-            className="inline-flex items-center gap-2 text-xs font-normal text-muted-foreground px-4 py-2 border border-border/50 rounded-lg bg-card/50 hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
+            className="inline-flex items-center gap-2 text-sm font-normal text-muted-foreground px-4 py-2.5 border border-border/50 rounded-lg bg-card/50 hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
           >
             <Linkedin className="h-3.5 w-3.5 text-muted-foreground/80" />
             <span>LinkedIn</span>
@@ -107,7 +107,7 @@ export function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit Ujjwal Katiyar's GitHub profile"
-            className="inline-flex items-center gap-2 text-xs font-normal text-muted-foreground px-4 py-2 border border-border/50 rounded-lg bg-card/50 hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
+            className="inline-flex items-center gap-2 text-sm font-normal text-muted-foreground px-4 py-2.5 border border-border/50 rounded-lg bg-card/50 hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
           >
             <Github className="h-3.5 w-3.5 text-muted-foreground/80" />
             <span>GitHub</span>

@@ -22,7 +22,7 @@ export const viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://ujjwalkatiyar.in"),
   title: "Ujjwal Katiyar — Full Stack Engineer & Web Systems Architect",
-  description: "Portfolio of Ujjwal Katiyar, a Full Stack Engineer specializing in real-time systems, Kafka pipelines, and responsive Next.js apps.",
+  description: "Portfolio of Ujjwal Katiyar, a Full Stack Engineer building scalable real-time systems and responsive Next.js apps.",
   keywords: ["Ujjwal Katiyar", "Full Stack Engineer", "Noida", "India", "Software Engineer", "Next.js", "Shadcn UI", "Kafka", "Redis"],
   authors: [{ name: "Ujjwal Katiyar" }],
   alternates: {
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Ujjwal Katiyar — Full Stack Engineer & Web Systems Architect",
-    description: "Portfolio of Ujjwal Katiyar, a Full Stack Engineer specializing in real-time systems, Kafka pipelines, and responsive Next.js apps.",
+    description: "Portfolio of Ujjwal Katiyar, a Full Stack Engineer building scalable real-time systems and responsive Next.js apps.",
     type: "website",
     locale: "en_US",
   },
@@ -51,6 +51,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

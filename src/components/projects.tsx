@@ -61,7 +61,7 @@ export function Projects() {
                     <Badge
                       key={j}
                       variant="secondary"
-                      className="px-2 py-0.5 border border-border/40 text-[9px] text-muted-foreground/90 font-light tracking-wide uppercase bg-muted/65 rounded-md select-none"
+                      className="px-2 py-0.5 border border-border/40 text-[10px] text-muted-foreground/90 font-light tracking-wide uppercase bg-muted/65 rounded-md select-none"
                     >
                       {tag}
                     </Badge>
@@ -69,7 +69,7 @@ export function Projects() {
                 </div>
 
                 {/* Description */}
-                <p className="text-xs text-muted-foreground font-light leading-relaxed">
+                <p className="text-[13px] text-muted-foreground font-light leading-relaxed">
                   {project.description}
                 </p>
               </div>
@@ -82,7 +82,7 @@ export function Projects() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`View live demo of ${project.title}`}
-                  className="flex-1 inline-flex items-center justify-center gap-2 text-[11px] font-normal text-muted-foreground px-3 py-2 border border-border/50 rounded-lg bg-card hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
+                  className="flex-1 inline-flex items-center justify-center gap-2 text-xs font-normal text-muted-foreground px-3.5 py-2.5 border border-border/50 rounded-lg bg-card hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
                 >
                   <Globe className="h-3.5 w-3.5" />
                   <span>Live Demo</span>
@@ -93,7 +93,7 @@ export function Projects() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`View GitHub repository for ${project.title}`}
-                  className="flex-1 inline-flex items-center justify-center gap-2 text-[11px] font-normal text-muted-foreground px-3 py-2 border border-border/50 rounded-lg bg-card hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
+                  className="flex-1 inline-flex items-center justify-center gap-2 text-xs font-normal text-muted-foreground px-3.5 py-2.5 border border-border/50 rounded-lg bg-card hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
                 >
                   <Github className="h-3.5 w-3.5" />
                   <span>GitHub</span>
