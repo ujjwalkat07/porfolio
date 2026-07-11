@@ -17,7 +17,7 @@ export default function Home() {
         {/* Sections */}
         <Hero />
         <About />
-        <Skills />
+        {/* <Skills /> */}
         <Projects />
         <Blog />
 

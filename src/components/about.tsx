@@ -17,12 +17,9 @@ export function About() {
         <h3 className="text-lg font-semibold tracking-tight text-foreground">
           Ujjwal Katiyar
         </h3>
-        <div className="flex flex-col gap-4 text-sm text-muted-foreground font-light leading-relaxed">
+        <div className="text-sm text-muted-foreground font-light leading-relaxed">
           <p>
-            Full Stack Engineer with hands-on expertise in real-time architectures, distributed systems, and event-driven design. I build end-to-end products — from Kafka-powered pipelines to pixel-precise interfaces — designed for production from day one.
-          </p>
-          <p>
-            Passionate about crafting scalable, high-performance systems and working at the intersection of backend reliability and thoughtful frontend engineering.
+            Full Stack Engineer specializing in real-time web applications, scalable systems, and high-performance backend development, with hands-on experience across end-to-end product development. Currently pursuing a Bachelor’s in Computer Science with a specialization in Artificial Intelligence, combining academic grounding in data structures, algorithms, and systems design with shipped, real-world engineering work.
           </p>
         </div>
 

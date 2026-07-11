@@ -45,6 +45,8 @@ export function Navbar() {
         top: id === "hero" ? 0 : offsetPosition,
         behavior: "smooth",
       })
+    } else {
+      window.location.href = id === "hero" ? "/" : `/#${id}`
     }
   }
 
