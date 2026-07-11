@@ -6,9 +6,28 @@ import { Footer } from "@/components/footer"
 import { ShareButtons } from "@/components/share-buttons"
 import posts from "@/content/blog-posts.json"
 import { marked } from "marked"
+import type { Metadata } from "next"
 
 interface PageProps {
   params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params
+  const post = posts.find((p) => p.slug === slug)
+  if (!post) return {}
+  return {
+    title: `${post.title} — Ujjwal Katiyar`,
+    description: post.description,
+    keywords: [...(post.tags || []), "Ujjwal Katiyar", "Full Stack Engineer", "Blog", "System Design"],
+    authors: [{ name: "Ujjwal Katiyar" }],
+    openGraph: {
+      title: `${post.title} — Ujjwal Katiyar`,
+      description: post.description,
+      type: "article",
+      authors: ["Ujjwal Katiyar"],
+    },
+  }
 }
 
 export async function generateStaticParams() {

@@ -77,18 +77,22 @@ export function Projects() {
               {/* Action Buttons */}
               <div className="flex gap-2.5 pt-4 border-t border-border/40 mt-4">
                 <a
+                  id={`project-demo-${project.title.toLowerCase().replace(/\s+/g, "-")}`}
                   href={project.demo}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`View live demo of ${project.title}`}
                   className="flex-1 inline-flex items-center justify-center gap-2 text-[11px] font-normal text-muted-foreground px-3 py-2 border border-border/50 rounded-lg bg-card hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
                 >
                   <Globe className="h-3.5 w-3.5" />
                   <span>Live Demo</span>
                 </a>
                 <a
+                  id={`project-github-${project.title.toLowerCase().replace(/\s+/g, "-")}`}
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`View GitHub repository for ${project.title}`}
                   className="flex-1 inline-flex items-center justify-center gap-2 text-[11px] font-normal text-muted-foreground px-3 py-2 border border-border/50 rounded-lg bg-card hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
                 >
                   <Github className="h-3.5 w-3.5" />

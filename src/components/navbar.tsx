@@ -10,7 +10,7 @@ export function Navbar() {
 
   React.useEffect(() => {
     const handleScroll = () => {
-      const sections = ["about", "experience", "skills", "projects", "blog"]
+      const sections = ["about", "skills", "projects", "blog"]
       let currentSection = ""
 
       for (const section of sections) {
@@ -52,20 +52,25 @@ export function Navbar() {
     <nav className="sticky top-0 left-0 right-0 z-50 flex h-14 items-center justify-between border-b border-border/40 bg-background/80 px-6 backdrop-blur-md transition-colors duration-300 md:px-10">
       <div className="flex items-center gap-8">
         <button
+          id="navbar-logo-button"
           onClick={() => scrollTo("hero")}
+          aria-label="Scroll to home page"
           className="text-sm font-semibold tracking-tight cursor-pointer hover:text-foreground/80 transition-colors"
         >
           Ujjwal Katiyar
         </button>
         <ul className="hidden gap-1 md:flex">
-          {["about", "experience", "skills", "projects", "blog"].map((section) => (
+          {["about", "skills", "projects", "blog"].map((section) => (
             <li key={section}>
               <button
+                id={`navbar-link-${section}`}
                 onClick={() => scrollTo(section)}
-                className={`text-xs font-normal capitalize px-3 py-1.5 rounded-md cursor-pointer transition-all duration-200 ${activeSection === section
-                  ? "bg-muted text-foreground font-medium"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                  }`}
+                aria-label={`Scroll to ${section} section`}
+                className={`text-xs font-normal capitalize px-3 py-1.5 rounded-md cursor-pointer transition-all duration-200 ${
+                  activeSection === section
+                    ? "bg-muted text-foreground font-medium"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                }`}
               >
                 {section}
               </button>
@@ -75,9 +80,11 @@ export function Navbar() {
       </div>
       <div className="flex items-center gap-3">
         <Link
+          id="navbar-resume-link"
           href="/ujjwal-resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Open Ujjwal Katiyar's Resume"
           className="inline-flex h-9 items-center justify-center rounded-md border border-border bg-card/50 px-3.5 text-xs font-normal text-muted-foreground hover:bg-muted hover:text-foreground hover:border-foreground/30 transition-all duration-200 cursor-pointer shadow-xs gap-1.5"
         >
           <FileText className="h-3.5 w-3.5" />

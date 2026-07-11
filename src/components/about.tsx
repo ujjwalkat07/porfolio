@@ -2,13 +2,6 @@ import { Card, CardContent } from "@/components/ui/card"
 import { GraduationCap } from "lucide-react"
 
 export function About() {
-  const stats = [
-    { value: "2000+", label: "Participants onboarded" },
-    { value: "80%", label: "Check-in time reduced" },
-    { value: "3+", label: "Hackathons organized" },
-    { value: "2", label: "Production projects" },
-  ]
-
   return (
     <section id="about" className="py-8 border-b border-border/40 transition-colors duration-300">
       {/* Section Header */}
@@ -19,52 +12,31 @@ export function About() {
         <div className="h-[1px] flex-1 bg-border/40" />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-10 items-start">
+      <div className="flex flex-col gap-6 max-w-3xl">
         {/* Bio & Education */}
-        <div className="flex flex-col gap-6">
-          <h3 className="text-lg font-semibold tracking-tight text-foreground">
-            Ujjwal Katiyar
-          </h3>
-          <div className="flex flex-col gap-4 text-sm text-muted-foreground font-light leading-relaxed">
-            <p>
-              Full Stack Engineer with hands-on expertise in real-time architectures, distributed systems, and event-driven design. I build end-to-end products — from Kafka-powered pipelines to pixel-precise interfaces — designed for production from day one.
-            </p>
-            <p>
-              Passionate about crafting scalable, high-performance systems and working at the intersection of backend reliability and thoughtful frontend engineering.
-            </p>
-          </div>
-
-          {/* Education Box */}
-          <div className="flex gap-3.5 items-start p-4 border border-border/50 bg-muted/20 rounded-xl transition-all duration-300 hover:border-foreground/20">
-            <GraduationCap className="h-5 w-5 text-indigo-500 flex-shrink-0 mt-0.5" />
-            <div className="text-xs text-muted-foreground leading-relaxed font-light">
-              <strong className="font-semibold text-foreground">
-                IIMT College of Engineering
-              </strong>{" "}
-              · Greater Noida
-              <br />
-              B.Tech in Computer Science &amp; Engineering (AI Specialization) · Oct 2023 – Feb 2027
-            </div>
-          </div>
+        <h3 className="text-lg font-semibold tracking-tight text-foreground">
+          Ujjwal Katiyar
+        </h3>
+        <div className="flex flex-col gap-4 text-sm text-muted-foreground font-light leading-relaxed">
+          <p>
+            Full Stack Engineer with hands-on expertise in real-time architectures, distributed systems, and event-driven design. I build end-to-end products — from Kafka-powered pipelines to pixel-precise interfaces — designed for production from day one.
+          </p>
+          <p>
+            Passionate about crafting scalable, high-performance systems and working at the intersection of backend reliability and thoughtful frontend engineering.
+          </p>
         </div>
 
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-2 lg:grid-cols-2">
-          {stats.map((stat, i) => (
-            <Card
-              key={i}
-              className="border border-border/50 bg-muted/20 hover:bg-muted/40 transition-all duration-300 hover:-translate-y-0.5 hover:border-foreground/20 shadow-none overflow-hidden group"
-            >
-              <CardContent className="p-4 flex flex-col justify-center">
-                <span className="text-2xl font-bold tracking-tight text-foreground leading-none mb-1.5 transition-colors group-hover:text-indigo-500 dark:group-hover:text-indigo-400">
-                  {stat.value}
-                </span>
-                <span className="text-[10px] text-muted-foreground font-light leading-tight uppercase tracking-wider">
-                  {stat.label}
-                </span>
-              </CardContent>
-            </Card>
-          ))}
+        {/* Education Box */}
+        <div className="flex gap-3.5 items-start p-4 border border-border/50 bg-muted/20 rounded-xl transition-all duration-300 hover:border-foreground/20 self-start">
+          <GraduationCap className="h-5 w-5 text-indigo-500 flex-shrink-0 mt-0.5" />
+          <div className="text-xs text-muted-foreground leading-relaxed font-light">
+            <strong className="font-semibold text-foreground">
+              IIMT College of Engineering
+            </strong>{" "}
+            · Greater Noida
+            <br />
+            B.Tech in Computer Science &amp; Engineering (AI Specialization) · Oct 2023 – Feb 2027
+          </div>
         </div>
       </div>
     </section>
