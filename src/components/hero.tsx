@@ -17,7 +17,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className={`pt-24 pb-16 border-b border-border/40 transition-all duration-700 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+      className={`pt-16 pb-10 border-b border-border/40 transition-all duration-700 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         }`}
     >
       <div className="flex flex-col gap-6">

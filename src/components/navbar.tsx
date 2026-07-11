@@ -10,7 +10,7 @@ export function Navbar() {
 
   React.useEffect(() => {
     const handleScroll = () => {
-      const sections = ["about", "experience", "skills", "projects"]
+      const sections = ["about", "experience", "skills", "projects", "blog"]
       let currentSection = ""
 
       for (const section of sections) {
@@ -58,7 +58,7 @@ export function Navbar() {
           Ujjwal Katiyar
         </button>
         <ul className="hidden gap-1 md:flex">
-          {["about", "experience", "skills", "projects"].map((section) => (
+          {["about", "experience", "skills", "projects", "blog"].map((section) => (
             <li key={section}>
               <button
                 onClick={() => scrollTo(section)}
