@@ -1,0 +1,11 @@
+---
+title: "monolith vs microservices"
+category: "Engineering"
+description: "lets what is monolith vs microservices."
+date: "May 24, 2026"
+readTime: "4 min read"
+tags: ["TypeScript", "Next.js", "Turborepo"]
+link: "#"
+---
+
+# Monolith vs Microservices

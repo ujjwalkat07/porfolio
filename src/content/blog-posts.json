@@ -1,20 +1,5 @@
 [
   {
-    "slug": "event-driven-kafka-redis",
-    "title": "Architecting High-Throughput Event-Driven Systems with Kafka and Redis",
-    "category": "System Design",
-    "description": "Deep dive into building a resilient event-driven architecture using Apache Kafka and Redis. Exploring partition strategy, consumer groups, and backpressure management.",
-    "date": "Jul 10, 2026",
-    "readTime": "6 min read",
-    "tags": [
-      "Kafka",
-      "System Design",
-      "Backend"
-    ],
-    "link": "#",
-    "content": "# Architecting High-Throughput Event-Driven Systems with Kafka and Redis\n\nModern web applications demand high-throughput data processing that handles massive scale without blocking main thread interactions. Transitioning to event-driven system design allows teams to decouple long-running operations from synchronous request-response loops.\n\nIn this deep dive, we explore how Ujjwal Katiyar designed Exchange-X to process buy/sell orders in real time using a price-priority matching engine with Apache Kafka and Redis caching.\n\n## The Architecture\nBy routing events through a persistent message broker, we can absorb traffic spikes and guarantee that downstream microservices ingest data at their own pace:\n\n1. **Producer**: Captures REST or WebSocket request payloads.\n2. **Kafka Broker**: Organizes events into partitions for highly concurrent processing.\n3. **Consumer**: Subscribes to target partitions and persists transaction logs to databases.\n4. **Redis Cache**: Serves quick read requests for live analytics dashboards.\n\nThis structure reduces transaction failures and improves overall reliability under high-load situations."
-  },
-  {
     "slug": "decoupling-microservices-crm-x",
     "title": "Decoupling Microservices: Lessons from Building CRM-X Monorepo",
     "category": "Engineering",
@@ -30,18 +15,18 @@
     "content": "# Decoupling Microservices: Lessons from Building CRM-X Monorepo\n\nManaging separate repositories for backend and frontend code can slow down development due to mismatched types, redundant builds, and out-of-sync API contracts. Monorepos offer a powerful alternative to streamline the workflow.\n\nThis article details how CRM-X was structured to decouple client and server dependencies while maintaining single-command builds and robust linting configurations.\n\n## Benefits of Turborepo\n- **Cached Builds**: Rebuilds only the changed sub-packages, dramatically speeding up local runs and CI/CD pipelines.\n- **Shared Types**: Interface models defined in a shared library can be imported natively by both the Next.js client and Express server.\n- **Unified Linting**: Enforce clean code guidelines across the workspace with single config files."
   },
   {
-    "slug": "optimizing-websockets-realtime",
-    "title": "Optimizing WebSocket Connections for Real-Time Financial Apps",
-    "category": "Backend",
-    "description": "A technical guide to managing millions of concurrent WebSocket connections, heartbeats, and database write-backs in high-frequency trading platforms.",
-    "date": "Mar 12, 2026",
-    "readTime": "8 min read",
+    "slug": "monolith-vs-microservices",
+    "title": "monolith vs microservices",
+    "category": "Engineering",
+    "description": "lets what is monolith vs microservices.",
+    "date": "May 24, 2026",
+    "readTime": "4 min read",
     "tags": [
-      "WebSockets",
-      "Node.js",
-      "Redis"
+      "TypeScript",
+      "Next.js",
+      "Turborepo"
     ],
     "link": "#",
-    "content": "# Optimizing WebSocket Connections for Real-Time Financial Apps\n\nReal-time streaming apps like financial dashboards require persistent connections to feed prices instantaneously. Scaling standard WebSocket setups to millions of concurrent open streams presents challenges.\n\nThis post highlights best practices for heartbeat mechanisms, server CPU usage tuning, and Redis Pub/Sub broadcast distribution patterns.\n\n## Performance Considerations\n- **Heartbeat Interval**: Send ping/pong frames to proactively discover dead sockets and free up system memory.\n- **Connection Spikes**: Smooth out massive login spikes using client-side exponential backoff algorithms.\n- **Broadcasting**: Utilize Redis pub-sub channels to broadcast live market data across distributed app instances."
+    "content": "# Monolith vs Microservices"
   }
 ]
