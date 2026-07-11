@@ -81,13 +81,6 @@ export function Blog() {
             />
             <Search className="absolute right-2.5 top-2.5 h-3 w-3 text-muted-foreground/75" />
           </div>
-          <button
-            title="Subscribe to RSS Feed"
-            aria-label="Subscribe to RSS Feed"
-            className="flex items-center justify-center w-11 h-11 border border-border/50 rounded-lg bg-muted/20 hover:bg-muted/50 text-muted-foreground hover:text-foreground transition-all duration-200 cursor-pointer"
-          >
-            <Rss className="h-4 w-4" />
-          </button>
         </div>
       </div>
 
