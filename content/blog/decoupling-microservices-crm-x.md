@@ -1,5 +1,6 @@
 ---
 title: "Decoupling Microservices: Lessons from Building CRM-X Monorepo"
+category: "Engineering"
 description: "How we organized a Next.js client and Node.js server within a Turborepo. Strategies for sharing TypeScript types, configuring ESLint, and deploying to Vercel."
 date: "May 24, 2026"
 readTime: "4 min read"

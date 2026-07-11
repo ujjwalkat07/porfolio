@@ -83,17 +83,19 @@ export default async function BlogPostPage({ params }: PageProps) {
 
           {/* HTML rendered markdown body */}
           <div
-            className="text-foreground leading-relaxed font-light
-              [&>h1]:text-2xl [&>h1]:font-semibold [&>h1]:text-foreground [&>h1]:mt-8 [&>h1]:mb-4
-              [&>h2]:text-xl [&>h2]:font-semibold [&>h2]:text-foreground [&>h2]:mt-8 [&>h2]:mb-4
-              [&>h3]:text-lg [&>h3]:font-semibold [&>h3]:text-foreground [&>h3]:mt-6 [&>h3]:mb-3
-              [&>p]:text-sm [&>p]:text-muted-foreground [&>p]:mb-4 [&>p]:leading-relaxed
-              [&>ul]:list-disc [&>ul]:pl-5 [&>ul]:mb-6 [&>ul]:text-sm [&>ul]:text-muted-foreground [&>ul]:flex [&>ul]:flex-col [&>ul]:gap-2
-              [&>ol]:list-decimal [&>ol]:pl-5 [&>ol]:mb-6 [&>ol]:text-sm [&>ol]:text-muted-foreground [&>ol]:flex [&>ol]:flex-col [&>ol]:gap-2
-              [&>li]:leading-relaxed
-              [&>pre]:p-4 [&>pre]:bg-muted/30 [&>pre]:border [&>pre]:border-border/50 [&>pre]:rounded-xl [&>pre]:overflow-x-auto [&>pre]:my-6
-              [&>code]:text-xs [&>code]:font-mono [&>code]:bg-muted/50 [&>code]:px-1.5 [&>code]:py-0.5 [&>code]:rounded-md [&>code]:text-indigo-500
-              [&>pre>code]:bg-transparent [&>pre>code]:p-0 [&>pre>code]:text-foreground
+            className="text-foreground/85 leading-relaxed font-normal text-sm sm:text-base max-w-none
+              [&>h1]:text-2xl [&>h1]:font-bold [&>h1]:text-foreground [&>h1]:mt-10 [&>h1]:mb-4 [&>h1]:tracking-tight
+              [&>h2]:text-xl [&>h2]:font-bold [&>h2]:text-foreground [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:tracking-tight
+              [&>h3]:text-lg [&>h3]:font-semibold [&>h3]:text-foreground [&>h3]:mt-8 [&>h3]:mb-3
+              [&>p]:mb-6 [&>p]:leading-8 [&>p]:text-foreground/80 [&>p]:font-light [&>p]:tracking-wide
+              [&>p>strong]:font-semibold [&>p>strong]:text-foreground
+              [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-6 [&>ul]:text-foreground/80 [&>ul]:flex [&>ul]:flex-col [&>ul]:gap-2.5 [&>ul]:font-light [&>ul]:tracking-wide
+              [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-6 [&>ol]:text-foreground/80 [&>ol]:flex [&>ol]:flex-col [&>ol]:gap-2.5 [&>ol]:font-light [&>ol]:tracking-wide
+              [&>li]:leading-7
+              [&>blockquote]:border-l-4 [&>blockquote]:border-indigo-500 [&>blockquote]:pl-4 [&>blockquote]:italic [&>blockquote]:text-muted-foreground [&>blockquote]:my-8
+              [&>pre]:p-5 [&>pre]:bg-muted/20 [&>pre]:border [&>pre]:border-border/40 [&>pre]:rounded-2xl [&>pre]:overflow-x-auto [&>pre]:my-8 [&>pre]:shadow-xs
+              [&>code]:text-xs [&>code]:font-mono [&>code]:bg-indigo-500/10 [&>code]:px-2 [&>code]:py-0.5 [&>code]:rounded-md [&>code]:text-indigo-500 dark:[&>code]:text-indigo-400 [&>code]:font-medium
+              [&>pre>code]:bg-transparent [&>pre>code]:p-0 [&>pre>code]:text-foreground [&>pre>code]:font-normal [&>pre>code]:leading-normal
             "
             dangerouslySetInnerHTML={{ __html: contentHtml }}
           />

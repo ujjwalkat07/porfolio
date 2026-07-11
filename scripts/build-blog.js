@@ -57,6 +57,7 @@ function buildBlog() {
     posts.push({
       slug: file.replace(".md", ""),
       title: data.title || "Untitled",
+      category: data.category || "General",
       description: data.description || "",
       date: data.date || "",
       readTime: data.readTime || "",

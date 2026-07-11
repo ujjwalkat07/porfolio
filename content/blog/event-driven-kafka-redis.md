@@ -1,5 +1,6 @@
 ---
 title: "Architecting High-Throughput Event-Driven Systems with Kafka and Redis"
+category: "System Design"
 description: "Deep dive into building a resilient event-driven architecture using Apache Kafka and Redis. Exploring partition strategy, consumer groups, and backpressure management."
 date: "Jul 10, 2026"
 readTime: "6 min read"

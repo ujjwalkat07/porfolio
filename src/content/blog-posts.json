@@ -2,6 +2,7 @@
   {
     "slug": "event-driven-kafka-redis",
     "title": "Architecting High-Throughput Event-Driven Systems with Kafka and Redis",
+    "category": "System Design",
     "description": "Deep dive into building a resilient event-driven architecture using Apache Kafka and Redis. Exploring partition strategy, consumer groups, and backpressure management.",
     "date": "Jul 10, 2026",
     "readTime": "6 min read",
@@ -16,6 +17,7 @@
   {
     "slug": "decoupling-microservices-crm-x",
     "title": "Decoupling Microservices: Lessons from Building CRM-X Monorepo",
+    "category": "Engineering",
     "description": "How we organized a Next.js client and Node.js server within a Turborepo. Strategies for sharing TypeScript types, configuring ESLint, and deploying to Vercel.",
     "date": "May 24, 2026",
     "readTime": "4 min read",
@@ -30,6 +32,7 @@
   {
     "slug": "optimizing-websockets-realtime",
     "title": "Optimizing WebSocket Connections for Real-Time Financial Apps",
+    "category": "Backend",
     "description": "A technical guide to managing millions of concurrent WebSocket connections, heartbeats, and database write-backs in high-frequency trading platforms.",
     "date": "Mar 12, 2026",
     "readTime": "8 min read",

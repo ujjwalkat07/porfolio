@@ -1,5 +1,6 @@
 ---
 title: "Optimizing WebSocket Connections for Real-Time Financial Apps"
+category: "Backend"
 description: "A technical guide to managing millions of concurrent WebSocket connections, heartbeats, and database write-backs in high-frequency trading platforms."
 date: "Mar 12, 2026"
 readTime: "8 min read"
