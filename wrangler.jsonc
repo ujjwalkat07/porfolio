@@ -2,7 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "main": ".open-next/worker.js",
   "name": "portfolio",
-  "compatibility_date": "2026-07-11",
+  "compatibility_date": "2026-06-16",
   "compatibility_flags": [
     // Enable Node.js API
     // see https://developers.cloudflare.com/workers/configuration/compatibility-flags/#nodejs-compatibility-flag
