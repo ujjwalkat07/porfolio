@@ -8,10 +8,12 @@ import Link from "next/link"
 
 export function Hero() {
   const [mounted, setMounted] = React.useState(false)
+  const [email, setEmail] = React.useState("")
 
   React.useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true)
+    setEmail("ukcode07" + "@" + "gmail.com")
   }, [])
 
   return (
@@ -53,12 +55,12 @@ export function Hero() {
           {/* Email */}
           <Link
             id="hero-email-link"
-            href="mailto:ukcode07@gmail.com"
+            href={email ? `mailto:${email}` : "#"}
             aria-label="Send email to Ujjwal Katiyar"
             className="inline-flex items-center gap-2 text-xs font-normal text-muted-foreground px-4 py-2 border border-border/50 rounded-lg bg-card/50 hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
           >
             <Mail className="h-3.5 w-3.5 text-muted-foreground/80" />
-            <span>ukcode07@gmail.com</span>
+            <span>{email || "ukcode07 [at] gmail.com"}</span>
           </Link>
 
           {/* Phone */}
