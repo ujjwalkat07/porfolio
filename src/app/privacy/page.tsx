@@ -1,6 +1,8 @@
 import { Metadata } from "next"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
+import { marked } from "marked"
+import { privacyPolicyContent } from "@/content/privacy-policy"
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Ujjwal Katiyar",
@@ -10,7 +12,9 @@ export const metadata: Metadata = {
   },
 }
 
-export default function PrivacyPolicyPage() {
+export default async function PrivacyPolicyPage() {
+  const contentHtml = await marked.parse(privacyPolicyContent)
+
   return (
     <main className="min-h-screen bg-background py-16 px-6 antialiased selection:bg-indigo-500/10 selection:text-indigo-500">
       <div className="max-w-3xl mx-auto flex flex-col gap-10">
@@ -31,54 +35,33 @@ export default function PrivacyPolicyPage() {
             Privacy Policy
           </h1>
           <p className="text-xs font-light text-muted-foreground uppercase tracking-widest">
-            Last Updated: July 11, 2026
+            Last Updated: July 12, 2026
           </p>
         </div>
 
         {/* Policy Content */}
-        <div className="flex flex-col gap-6 text-[14px] text-muted-foreground font-light leading-relaxed pt-6 border-t border-border/20">
-          <section className="flex flex-col gap-3">
-            <h2 className="text-base font-bold text-foreground">1. Introduction</h2>
-            <p>
-              This website serves as a professional developer portfolio. I am committed to protecting your personal data and respecting your privacy. This document outlines how I collect, process, and protect any information gathered during your visit.
-            </p>
-          </section>
-
-          <section className="flex flex-col gap-3">
-            <h2 className="text-base font-bold text-foreground">2. Information Collection</h2>
-            <p>
-              I may collect personal information that you voluntarily provide when submitting a message via the Contact Form. This includes your name, email address, and message contents. I only use this data to respond to your queries.
-            </p>
-          </section>
-
-          <section className="flex flex-col gap-3">
-            <h2 className="text-base font-bold text-foreground">3. Cookies and Analytics</h2>
-            <p>
-              This website may use cookies to analyze web traffic, remember preferences, and serve relevant content. Third-party tools like Google Analytics or Google AdSense may place cookies on your device to gather metrics or serve advertisements based on past visits. You can disable cookies at any time through your browser settings.
-            </p>
-          </section>
-
-          <section className="flex flex-col gap-3">
-            <h2 className="text-base font-bold text-foreground">4. Third-Party Disclosures</h2>
-            <p>
-              I do not sell, trade, or transfer your personal data to outside parties. This does not include trusted third parties who assist in operating my website or conducting my business, so long as those parties agree to keep this information confidential.
-            </p>
-          </section>
-
-          <section className="flex flex-col gap-3">
-            <h2 className="text-base font-bold text-foreground">5. Security Standards</h2>
-            <p>
-              I implement reasonable administrative and technological security measures (including HTTPS encryption and Strict Transport Security policies) to protect your personal details against unauthorized access, loss, or disclosure.
-            </p>
-          </section>
-
-          <section className="flex flex-col gap-3">
-            <h2 className="text-base font-bold text-foreground">6. Contact Information</h2>
-            <p>
-              If you have any questions regarding this Privacy Policy or my handling of data, please feel free to reach out via the Contact Form or at <strong className="font-semibold text-foreground">ukcode07@gmail.com</strong>.
-            </p>
-          </section>
-        </div>
+        <div
+          className="text-foreground/85 leading-relaxed font-normal text-sm sm:text-base max-w-none pt-6 border-t border-border/20
+            [&>h1]:text-2xl [&>h1]:font-bold [&>h1]:text-foreground [&>h1]:mt-10 [&>h1]:mb-4 [&>h1]:tracking-tight
+            [&>h2]:text-xl [&>h2]:font-bold [&>h2]:text-foreground [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:tracking-tight
+            [&>h3]:text-lg [&>h3]:font-semibold [&>h3]:text-foreground [&>h3]:mt-8 [&>h3]:mb-3
+            [&>p]:mb-6 [&>p]:leading-8 [&>p]:text-foreground/80 [&>p]:font-light [&>p]:tracking-wide
+            [&>p>strong]:font-semibold [&>p>strong]:text-foreground
+            [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-6 [&>ul]:text-foreground/80 [&>ul]:flex [&>ul]:flex-col [&>ul]:gap-2.5 [&>ul]:font-light [&>ul]:tracking-wide
+            [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-6 [&>ol]:text-foreground/80 [&>ol]:flex [&>ol]:flex-col [&>ol]:gap-2.5 [&>ol]:font-light [&>ol]:tracking-wide
+            [&>li]:leading-7
+            [&>blockquote]:border-l-4 [&>blockquote]:border-indigo-500 [&>blockquote]:pl-4 [&>blockquote]:italic [&>blockquote]:text-muted-foreground [&>blockquote]:my-8
+            [&>pre]:p-5 [&>pre]:bg-muted/20 [&>pre]:border [&>pre]:border-border/40 [&>pre]:rounded-2xl [&>pre]:overflow-x-auto [&>pre]:my-8 [&>pre]:shadow-xs
+            [&>code]:text-xs [&>code]:font-mono [&>code]:bg-indigo-500/10 [&>code]:px-2 [&>code]:py-0.5 [&>code]:rounded-md [&>code]:text-indigo-500 dark:[&>code]:text-indigo-400 [&>code]:font-medium
+            [&>pre>code]:bg-transparent [&>pre>code]:p-0 [&>pre>code]:text-foreground [&>pre>code]:font-normal [&>pre>code]:leading-normal
+            [&_table]:block [&_table]:overflow-x-auto [&_table]:w-full [&_table]:my-8 [&_table]:border-collapse [&_table]:text-sm [&_table]:text-foreground/85
+            [&_th]:border [&_th]:border-border/40 [&_th]:bg-muted/20 [&_th]:px-4 [&_th]:py-2.5 [&_th]:text-left [&_th]:font-semibold [&_th]:text-foreground
+            [&_td]:border [&_td]:border-border/40 [&_td]:px-4 [&_td]:py-2.5 [&_td]:text-foreground/80 [&_td]:font-light
+            [&_tr:nth-child(even)]:bg-muted/5
+            [&_a]:text-indigo-500 [&_a]:hover:text-indigo-600 [&_a]:underline [&_a]:transition-colors
+          "
+          dangerouslySetInnerHTML={{ __html: contentHtml }}
+        />
 
       </div>
     </main>
