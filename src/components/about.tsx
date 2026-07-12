@@ -3,7 +3,7 @@ import { GraduationCap } from "lucide-react"
 
 export function About() {
   return (
-    <section id="about" className="py-8 border-b border-border/40 transition-colors duration-300">
+    <section id="about" className="transition-colors duration-300">
       {/* Section Header */}
       <div className="flex items-center gap-4 mb-8">
         <h2 className="text-xs font-semibold tracking-wider text-foreground uppercase select-none">
