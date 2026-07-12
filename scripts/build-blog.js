@@ -62,6 +62,7 @@ function buildBlog() {
       date: data.date || "",
       readTime: data.readTime || "",
       tags: data.tags || [],
+      keywords: data.keywords || [],
       link: data.link || "#",
       content: content.trim(),
     })

@@ -1,17 +1,29 @@
 [
   {
     "slug": "monolith-vs-microservices",
-    "title": "monolith vs microservices",
-    "category": "Engineering",
-    "description": "lets what is monolith vs microservices.",
-    "date": "May 24, 2026",
-    "readTime": "4 min read",
+    "title": "Monolith vs Microservices - A brief introduction",
+    "category": "System Design",
+    "description": "Monolith is an architectural style for building a web application in which all components of the application, such as the Auth ",
+    "date": "Jul 12, 2026",
+    "readTime": "5 min read",
     "tags": [
-      "TypeScript",
-      "Next.js",
-      "Turborepo"
+      "System Design",
+      "System Architecture",
+      "Engineering",
+      "Monolith vs Microservices"
     ],
-    "link": "#",
-    "content": "# Monolith vs Microservices"
+    "keywords": [
+      "Software Architecture",
+      "Scaling Systems",
+      "Distributed Systems",
+      "Web Performance",
+      "API Gateway",
+      "Monolith",
+      "Microservices",
+      "Monolith vs Microservices",
+      "System Design basics"
+    ],
+    "link": "https://ujjwalkatiyar.in/blog/monolith-vs-microservices",
+    "content": "# Monolith vs Microservices\r\n\r\nIn this blog, we will understand the difference between a monolith and microservices and what the use cases of a monolith and microservices are.\r\n\r\n## What is a Monolith?\r\nA Monolith is an architectural style for building a web application in which all components of the application, such as the Auth service, Payment service, product service, and other services, are part of a single codebase and deployed as a single unit.\r\n\r\nHere is a simple diagram representation of a monolith architecture :\r\n```\r\nmy-app/\r\n├── src/\r\n│   ├── controllers/      \r\n│   ├── services/         \r\n│   ├── models/           \r\n│   ├── routes/           \r\n│   ├── middleware/       \r\n│   ├── config/           \r\n│   ├── utils/           \r\n│   └── app.js                 \r\n└── package.json\r\n\r\n```\r\n## What are Microservices?\r\nMicroservices are an architectural style for building a web application in which all components of the application, such as the Auth service, Payment service, product service, and other services, are different applications that are connected to each other using API Gateways and can be deployed independently.\r\n\r\nIn simple words. Microservices are a collection of multiple small applications that work together to serve the same functionality as a monolith does. Where each service has its own database and can be developed independently.\r\n\r\nHere is a good example of a microservices architecture :\r\n```\r\nmicroservices/\r\n│\r\n├── api-gateway/\r\n│   ├── src/\r\n│   ├── package.json\r\n│\r\n├── auth-service/\r\n│   ├── src/\r\n│   │   ├── controllers/\r\n│   │   ├── services/\r\n│   │   ├── models/\r\n│   │   ├── routes/\r\n│   │   └── app.js\r\n│   ├── package.json\r\n│\r\n├── order-service/\r\n│   ├── src/\r\n│   ├── package.json\r\n│\r\n├── payment-service/\r\n│   ├── src/\r\n│   ├── package.json\r\n└── docker-compose.yml\r\n```\r\n#### So, the question arises, why do we need microservices when a monolith is doing the same job?\r\n<br/>\r\nLet us understand the problems with monoliths. As we know, monoliths have a thighly coupled architecture where all the components are connected to each other, and if one component fails, then the entire application will fail. Also, if we want to scale the service, we have to scale the entire application. Which is not efficient.\r\n\r\nLet's take an example of an e-commerce website. \r\n```\r\nusers -> 1000+ requests per minute\r\npayment -> 500+ requests per minute\r\nproduct -> 5000+ requests per minute\r\nauth -> 100+ requests per minute\r\n```\r\nHere we clearly see the stats that the product service is having more requests then other services, and the auth service is having less requests then other services. So if we want to scale the product service, we have to scale the entire application. Which is not efficient in terms of cost and time.\r\n\r\nSo here microservices come into the picture. In microservices, we can scale the service independently. So if we want to scale the product service, we can scale it independently, and if we want to scale the auth service, we can scale it independently. Which is efficient in terms of cost and time.\r\n\r\n## Quick differnces between monolith and microservices:\r\n\r\n| Feature | Monolith | Microservices |\r\n| --- | --- | --- |\r\n| Architecture | It has single codebase, where all the components are connected to each other | It has multiple codebases, where each service has its own codebase |\r\n| Deployment | Single codebase deployment | Multiple independent codebase deployment |\r\n| Scaling | Scale entire application | Scale independent services |\r\n| Technology | Single technology stack like Nodejs, FastApi, Springboot, etc | Multiple technologies allowed like Nodejs, FastApi, Springboot, etc. |\r\n| Database | It has a single database | It can have multiple databases |\r\n| Complexity | Low, due to single codebase and easy to debug | High, due to multiple codebases and complex to debug |\r\n\r\n\r\nIn next post, we will understand how to migrate from monolith to microservices, trade-offs, use cases, implementation, etc."
   }
 ]

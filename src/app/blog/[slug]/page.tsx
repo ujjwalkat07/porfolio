@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${post.title} — Ujjwal Katiyar`,
     description: post.description,
-    keywords: [...(post.tags || []), "Ujjwal Katiyar", "Full Stack Engineer", "Blog", "System Design"],
+    keywords: [...(post.tags || []), ...(post.keywords || []), "Ujjwal Katiyar", "Full Stack Engineer", "Blog", "System Design"],
     authors: [{ name: "Ujjwal Katiyar" }],
     alternates: {
       canonical: `/blog/${slug}`,
@@ -67,7 +67,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         </Link>
 
         {/* Article Header */}
-        <article className="flex flex-col gap-6">
+        <article className="flex flex-col gap-6 text-foreground">
           <div className="flex flex-col gap-4">
             {/* Meta details */}
             <div className="flex items-center gap-3 text-[10px] text-muted-foreground font-light uppercase tracking-wider">
@@ -101,11 +101,11 @@ export default async function BlogPostPage({ params }: PageProps) {
           </div>
 
           {/* Share Buttons */}
-          <ShareButtons title={post.title} />
+          <ShareButtons title={post.title}/>
 
           {/* HTML rendered markdown body */}
           <div
-            className="text-foreground/85 leading-relaxed font-normal text-sm sm:text-base max-w-none
+            className="-mt-16 text-foreground/85 leading-relaxed font-normal text-sm sm:text-base max-w-none
               [&>h1]:text-2xl [&>h1]:font-bold [&>h1]:text-foreground [&>h1]:mt-10 [&>h1]:mb-4 [&>h1]:tracking-tight
               [&>h2]:text-xl [&>h2]:font-bold [&>h2]:text-foreground [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:tracking-tight
               [&>h3]:text-lg [&>h3]:font-semibold [&>h3]:text-foreground [&>h3]:mt-8 [&>h3]:mb-3
@@ -118,9 +118,16 @@ export default async function BlogPostPage({ params }: PageProps) {
               [&>pre]:p-5 [&>pre]:bg-muted/20 [&>pre]:border [&>pre]:border-border/40 [&>pre]:rounded-2xl [&>pre]:overflow-x-auto [&>pre]:my-8 [&>pre]:shadow-xs
               [&>code]:text-xs [&>code]:font-mono [&>code]:bg-indigo-500/10 [&>code]:px-2 [&>code]:py-0.5 [&>code]:rounded-md [&>code]:text-indigo-500 dark:[&>code]:text-indigo-400 [&>code]:font-medium
               [&>pre>code]:bg-transparent [&>pre>code]:p-0 [&>pre>code]:text-foreground [&>pre>code]:font-normal [&>pre>code]:leading-normal
+              [&_table]:w-full [&_table]:my-8 [&_table]:border-collapse [&_table]:text-sm [&_table]:text-foreground/85
+              [&_th]:border [&_th]:border-border/40 [&_th]:bg-muted/20 [&_th]:px-4 [&_th]:py-2.5 [&_th]:text-left [&_th]:font-semibold [&_th]:text-foreground
+              [&_td]:border [&_td]:border-border/40 [&_td]:px-4 [&_td]:py-2.5 [&_td]:text-foreground/80 [&_td]:font-light
+              [&_tr:nth-child(even)]:bg-muted/5
             "
             dangerouslySetInnerHTML={{ __html: contentHtml }}
           />
+
+          {/* Share Buttons at the bottom */}
+          <ShareButtons title={post.title} />
         </article>
 
         {/* Footer */}
