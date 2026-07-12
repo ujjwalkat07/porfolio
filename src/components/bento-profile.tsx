@@ -32,12 +32,12 @@ export function BentoProfile() {
   return (
     <section className="w-full flex flex-col gap-6 pt-6 pb-4 border-b border-border/40">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
-        
+
         {/* CARD 1: Identity & Hero (Spans 2 columns on desktop) */}
         <div className="md:col-span-2 group relative overflow-hidden rounded-2xl border border-border/50 bg-card/40 dark:bg-zinc-900/40 dark:border-zinc-800/80 backdrop-blur-md p-6 md:p-8 flex flex-col justify-between gap-6 transition-all duration-300 hover:border-indigo-500/20 hover:bg-muted/30 dark:hover:bg-zinc-900/50 hover:shadow-lg dark:hover:shadow-indigo-500/2">
           {/* Decorative background glow */}
           <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-indigo-500/5 blur-3xl group-hover:bg-indigo-500/10 transition-all duration-500" />
-          
+
           <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
             {/* Avatar image */}
             <div className="relative h-20 w-20 flex-shrink-0 rounded-full overflow-hidden border-2 border-border/80 dark:border-zinc-800/80 shadow-md group-hover:scale-105 transition-transform duration-300">
@@ -50,7 +50,7 @@ export function BentoProfile() {
                 priority
               />
             </div>
-            
+
             <div className="flex flex-col gap-2">
               {/* Active Badge */}
               <div className="self-start">
@@ -73,7 +73,7 @@ export function BentoProfile() {
                 Hi! I&apos;m Ujjwal Katiyar
               </h1>
               <p className="text-sm font-medium bg-gradient-to-r from-violet-600 via-indigo-500 to-emerald-500 bg-clip-text text-transparent dark:from-violet-400 dark:via-indigo-300 dark:to-emerald-400">
-                Full Stack Engineer & Web Systems Architect
+                Software Developer & Systems Architect
               </p>
             </div>
           </div>
@@ -87,7 +87,7 @@ export function BentoProfile() {
         {/* CARD 2: Bio / About Column (Spans 1 col, but row-span-2 tall on desktop) */}
         <div className="md:row-span-2 group relative overflow-hidden rounded-2xl border border-border/50 bg-card/40 dark:bg-zinc-900/40 dark:border-zinc-800/80 backdrop-blur-md p-6 flex flex-col justify-between gap-6 transition-all duration-300 hover:border-indigo-500/20 hover:bg-muted/30 dark:hover:bg-zinc-900/50 hover:shadow-lg">
           <div className="absolute -left-20 -bottom-20 h-40 w-40 rounded-full bg-violet-500/5 blur-3xl group-hover:bg-violet-500/10 transition-all duration-500" />
-          
+
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between pb-3 border-b border-border/20">
               <span className="text-xs font-semibold text-foreground tracking-wider uppercase select-none">
@@ -95,18 +95,18 @@ export function BentoProfile() {
               </span>
               <ShieldCheck className="h-4 w-4 text-indigo-500" />
             </div>
-            
+
             <p className="text-xs sm:text-sm text-muted-foreground font-light leading-relaxed">
-              Full Stack Engineer specializing in real-time web applications, scalable systems, and high-performance backend development, with hands-on experience across end-to-end product development. 
+              Software Developer specializing in real-time web applications, scalable systems, and high-performance backend development, with hands-on experience across end-to-end product development.
             </p>
             <p className="text-xs sm:text-sm text-muted-foreground font-light leading-relaxed">
               Currently pursuing a Bachelor&apos;s in Computer Science (AI Specialization), combining academic grounding in systems design with shipped, real-world engineering work.
             </p>
           </div>
 
-          <div className="text-[11px] text-muted-foreground/60 italic font-light pt-2">
+          {/* <div className="text-[11px] text-muted-foreground/60 italic font-light pt-2">
             Based in Noida, India
-          </div>
+          </div> */}
         </div>
 
         {/* CARD 3: Connect / Socials (Spans 1 column) */}
@@ -175,7 +175,7 @@ export function BentoProfile() {
                 Education
               </span>
             </div>
-            
+
             <div className="text-xs leading-relaxed font-light text-muted-foreground">
               <strong className="font-semibold text-foreground">
                 IIMT College of Engineering
@@ -187,15 +187,15 @@ export function BentoProfile() {
             </div>
           </div>
 
-          <div className="flex items-center justify-between text-[11px] text-muted-foreground/80 hover:text-foreground transition-colors cursor-pointer select-none">
+          {/* <div className="flex items-center justify-between text-[11px] text-muted-foreground/80 hover:text-foreground transition-colors cursor-pointer select-none">
             <span>Verify Credentials</span>
             <ArrowUpRight className="h-3 w-3" />
-          </div>
+          </div> */}
         </div>
 
         {/* CARD 5: Tech Stack / Skills (Spans full width - 3 columns on desktop) */}
         {/* <div className="md:col-span-3 group relative overflow-hidden rounded-2xl border border-border/50 bg-card/40 dark:bg-zinc-900/40 dark:border-zinc-800/80 backdrop-blur-md p-6 flex flex-col gap-6 transition-all duration-300 hover:border-indigo-500/20 hover:bg-muted/30 dark:hover:bg-zinc-900/50 hover:shadow-lg"> */}
-          {/* <div className="flex items-center justify-between pb-3 border-b border-border/20">
+        {/* <div className="flex items-center justify-between pb-3 border-b border-border/20">
             <span className="text-xs font-semibold text-foreground tracking-wider uppercase select-none">
               Technical Skillset
             </span>
@@ -204,8 +204,8 @@ export function BentoProfile() {
             </Badge>
           </div> */}
 
-          {/* Skills Grid */}
-          {/* <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+        {/* Skills Grid */}
+        {/* <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             {skillCategories.map((category, i) => {
               const Icon = category.icon
               return (

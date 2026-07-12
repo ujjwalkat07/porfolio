@@ -62,7 +62,7 @@ export default function AboutPage() {
         {/* Bio Sections */}
         <div className="flex flex-col gap-6 text-[15px] text-muted-foreground font-light leading-relaxed">
           <p>
-            Hello! I&apos;m <strong className="font-semibold text-foreground">Ujjwal Katiyar</strong>, a software developer based in Noida, India. I specialize in backend efficiency, distributed caching, real-time message streams, and modern responsive frontend client layers.
+            Hello! I&apos;m <strong className="font-semibold text-foreground">Ujjwal Katiyar</strong>, a software developer based in India. I specialize in backend efficiency, distributed caching, real-time message streams, and modern responsive frontend client layers.
           </p>
           <p>
             My engineering philosophy centers around simplicity, modularity, and scalability. I enjoy diving into complex integration layers—designing Kafka topics to process streaming events, structuring transactional models with Prisma and MongoDB, and tailoring accessible Web UI interactions using Tailwind and Next.js.

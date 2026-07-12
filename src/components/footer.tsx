@@ -26,7 +26,7 @@ export function Footer() {
             Ujjwal Katiyar
           </span>
           <span className="text-xs text-muted-foreground font-light">
-            Full Stack Engineer &amp; Web Systems Architect
+            Software Developer &amp; Systems Architect
           </span>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
@@ -46,7 +46,7 @@ export function Footer() {
       {/* Bottom Row: Info and Socials */}
       <div className="flex flex-col gap-4 pt-4 border-t border-border/10 items-center justify-between sm:flex-row text-center sm:text-left">
         <span className="text-xs text-muted-foreground/80 font-light">
-          Noida, India · © {currentYear} Ujjwal Katiyar. All rights reserved.
+          © {currentYear} Ujjwal Katiyar. All rights reserved.
         </span>
         <div className="flex items-center gap-1.5 -mr-2">
           {socials.map((social) => {

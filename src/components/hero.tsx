@@ -41,7 +41,7 @@ export function Hero() {
 
         {/* Title */}
         <h1 className="text-3xl font-extrabold tracking-tight leading-[1.1] sm:text-4xl md:text-5xl lg:text-6xl text-foreground max-w-4xl">
-          Hi! I&apos;m Ujjwal Katiyar,<br /> Full Stack Engineer
+          Hi! I&apos;m Ujjwal Katiyar,<br /> Software Developer
           from <span className="bg-gradient-to-r from-violet-600 via-indigo-500 to-emerald-500 bg-clip-text text-transparent dark:from-violet-400 dark:via-indigo-300 dark:to-emerald-400">India.</span>
         </h1>
 
