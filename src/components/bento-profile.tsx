@@ -194,18 +194,18 @@ export function BentoProfile() {
         </div>
 
         {/* CARD 5: Tech Stack / Skills (Spans full width - 3 columns on desktop) */}
-        <div className="md:col-span-3 group relative overflow-hidden rounded-2xl border border-border/50 bg-card/40 dark:bg-zinc-900/40 dark:border-zinc-800/80 backdrop-blur-md p-6 flex flex-col gap-6 transition-all duration-300 hover:border-indigo-500/20 hover:bg-muted/30 dark:hover:bg-zinc-900/50 hover:shadow-lg">
-          <div className="flex items-center justify-between pb-3 border-b border-border/20">
+        {/* <div className="md:col-span-3 group relative overflow-hidden rounded-2xl border border-border/50 bg-card/40 dark:bg-zinc-900/40 dark:border-zinc-800/80 backdrop-blur-md p-6 flex flex-col gap-6 transition-all duration-300 hover:border-indigo-500/20 hover:bg-muted/30 dark:hover:bg-zinc-900/50 hover:shadow-lg"> */}
+          {/* <div className="flex items-center justify-between pb-3 border-b border-border/20">
             <span className="text-xs font-semibold text-foreground tracking-wider uppercase select-none">
               Technical Skillset
             </span>
             <Badge variant="secondary" className="text-[9px] uppercase tracking-wider font-light bg-indigo-500/10 border-indigo-500/20 text-indigo-600 dark:text-indigo-400">
               Core stack
             </Badge>
-          </div>
+          </div> */}
 
           {/* Skills Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          {/* <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             {skillCategories.map((category, i) => {
               const Icon = category.icon
               return (
@@ -232,8 +232,8 @@ export function BentoProfile() {
                 </div>
               )
             })}
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
 
       </div>
     </section>
