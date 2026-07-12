@@ -21,7 +21,7 @@ export const viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ujjwalkatiyar.in"),
-  title: "Ujjwal Katiyar — Full Stack Engineer & Systems Architect",
+  title: "Ujjwal Katiyar — Full Stack Engineer and Systems Architect",
   description: "Portfolio of Ujjwal Katiyar, a Full Stack Engineer building scalable real-time systems and responsive Next.js apps.",
   keywords: ["Ujjwal Katiyar", "Full Stack Engineer", "Noida", "India", "Software Engineer", "Next.js", "Shadcn UI", "Kafka", "Redis"],
   authors: [{ name: "Ujjwal Katiyar" }],

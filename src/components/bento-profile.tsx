@@ -8,13 +8,7 @@ import { Github, Linkedin } from "@/components/icons"
 import { Badge } from "@/components/ui/badge"
 
 export function BentoProfile() {
-  const [mounted, setMounted] = React.useState(false)
-  const [email, setEmail] = React.useState("")
-
-  React.useEffect(() => {
-    setMounted(true)
-    setEmail("ukcode07" + "@" + "gmail.com")
-  }, [])
+  const email = "ukcode07@gmail.com"
 
   const skillCategories = [
     { title: "Languages", icon: Code, skills: ["TypeScript", "JavaScript", "Python", "C/C++"] },
@@ -24,10 +18,6 @@ export function BentoProfile() {
     { title: "Concepts", icon: GitBranch, skills: ["Distributed Systems", "Microservices", "System Design", "Real-Time"] },
     { title: "APIs & Auth", icon: Key, skills: ["REST APIs", "WebSockets", "JWT", "OAuth"] },
   ]
-
-  if (!mounted) {
-    return <div className="min-h-[500px] w-full animate-pulse bg-muted/10 rounded-2xl" />
-  }
 
   return (
     <section className="w-full flex flex-col gap-6 pt-6 pb-4 border-b border-border/40">
@@ -115,9 +105,9 @@ export function BentoProfile() {
             <span className="text-xs font-semibold text-foreground tracking-wider uppercase select-none">
               Let&apos;s Connect
             </span>
-            <p className="text-xs text-muted-foreground font-light leading-relaxed">
+            {/* <p className="text-xs text-muted-foreground font-light leading-relaxed">
               Reach out for roles, collaborations, or developer banter.
-            </p>
+            </p> */}
           </div>
 
           {/* Social Links Bento-grid-buttons */}
@@ -145,13 +135,13 @@ export function BentoProfile() {
             </Link>
 
             {/* Email */}
-            <Link
-              href={email ? `mailto:${email}` : "#"}
+            <a
+              href={`mailto:${email}`}
               className="flex items-center gap-2 p-2.5 rounded-xl border border-border/40 bg-muted/10 dark:bg-zinc-950/20 text-xs font-normal text-muted-foreground hover:text-foreground hover:bg-muted/30 hover:border-foreground/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
             >
               <Mail className="h-4 w-4 text-violet-500" />
               <span className="truncate">Email</span>
-            </Link>
+            </a>
 
             {/* Resume */}
             <Link
