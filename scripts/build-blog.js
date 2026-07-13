@@ -60,6 +60,7 @@ function buildBlog() {
       category: data.category || "General",
       description: data.description || "",
       date: data.date || "",
+      lastModified: data.lastModified || "",
       readTime: data.readTime || "",
       tags: data.tags || [],
       keywords: data.keywords || [],

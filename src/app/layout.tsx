@@ -46,6 +46,13 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ujjwal Katiyar — Full Stack Engineer & Web Systems Architect",
+    description: "Portfolio of Ujjwal Katiyar, a Full Stack Engineer building scalable real-time systems and responsive Next.js apps.",
+    creator: "@ujjwalkatiyar07",
+    images: ["/profile_pic.webp"],
+  },
 };
 
 export default function RootLayout({

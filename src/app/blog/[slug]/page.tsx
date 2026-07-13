@@ -29,6 +29,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: post.description,
       type: "article",
       authors: ["Ujjwal Katiyar"],
+      images: [
+        {
+          url: "/profile_pic.webp",
+          width: 500,
+          height: 500,
+          alt: "Ujjwal Katiyar",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title} — Ujjwal Katiyar`,
+      description: post.description,
+      creator: "@ujjwalkatiyar07",
+      images: ["/profile_pic.webp"],
     },
   }
 }
@@ -50,8 +65,65 @@ export default async function BlogPostPage({ params }: PageProps) {
   // Parse markdown content to HTML
   const contentHtml = await marked.parse(post.content)
 
+  // Safe ISO Date parsing for schema markup
+  let isoPublishDate = new Date().toISOString()
+  try {
+    const d = new Date(post.date)
+    if (!isNaN(d.getTime())) {
+      isoPublishDate = d.toISOString()
+    }
+  } catch (e) {
+    console.error("Error parsing date: ", e)
+  }
+
+  let isoModifiedDate = isoPublishDate
+  if (post.lastModified) {
+    try {
+      const d = new Date(post.lastModified)
+      if (!isNaN(d.getTime())) {
+        isoModifiedDate = d.toISOString()
+      }
+    } catch (e) {
+      console.error("Error parsing lastModified date: ", e)
+    }
+  }
+
   return (
     <div className="flex flex-col min-h-screen bg-background font-sans transition-colors duration-300 antialiased selection:bg-indigo-500/10 selection:text-indigo-500">
+      {/* Dynamic Blog Posting Structured Data (JSON-LD) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": post.title,
+            "description": post.description,
+            "datePublished": isoPublishDate,
+            "dateModified": isoModifiedDate,
+            "author": [
+              {
+                "@type": "Person",
+                "name": "Ujjwal Katiyar",
+                "url": "https://ujjwalkatiyar.in"
+              }
+            ],
+            "publisher": {
+              "@type": "Organization",
+              "name": "Ujjwal Katiyar",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://ujjwalkatiyar.in/profile_pic.webp"
+              }
+            },
+            "image": "https://ujjwalkatiyar.in/profile_pic.webp",
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": `https://ujjwalkatiyar.in/blog/${slug}`
+            }
+          })
+        }}
+      />
       {/* Navigation */}
       <Navbar />
 
@@ -73,8 +145,17 @@ export default async function BlogPostPage({ params }: PageProps) {
             <div className="flex items-center gap-3 text-[10px] text-muted-foreground font-light uppercase tracking-wider">
               <span className="flex items-center gap-1">
                 <Calendar className="h-3.5 w-3.5" />
-                {post.date}
+                Published: {post.date}
               </span>
+              {post.lastModified && (
+                <>
+                  <span>•</span>
+                  <span className="flex items-center gap-1">
+                    <Calendar className="h-3.5 w-3.5" />
+                    Updated: {post.lastModified}
+                  </span>
+                </>
+              )}
               <span>•</span>
               <span className="flex items-center gap-1">
                 <Clock className="h-3.5 w-3.5" />

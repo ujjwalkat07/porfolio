@@ -3,6 +3,7 @@ title: "Monolith vs Microservices - A brief introduction"
 category: "System Design"
 description: "Monolith is an architectural style for building a web application in which all components of the application, such as the Auth "
 date: "Jul 12, 2026"
+lastModified: "Jul 13, 2026"
 readTime: "5 min read"
 tags: ["System Design","System Architecture","Engineering","Monolith vs Microservices"]
 keywords: ["Software Architecture", "Scaling Systems", "Distributed Systems", "Web Performance", "API Gateway","Monolith","Microservices", "Monolith vs Microservices","System Design basics"]
@@ -61,7 +62,7 @@ microservices/
 │   ├── package.json
 └── docker-compose.yml
 ```
-#### So, the question arises, why do we need microservices when a monolith is doing the same job?
+So, the question arises, **why do we need microservices when a monolith is doing the same job?**
 <br/>
 Let us understand the problems with monoliths. As we know, monoliths have a thighly coupled architecture where all the components are connected to each other, and if one component fails, then the entire application will fail. Also, if we want to scale the service, we have to scale the entire application. Which is not efficient.
 
