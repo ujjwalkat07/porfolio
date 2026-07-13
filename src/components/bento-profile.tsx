@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import Image from "next/image"
-import Link from "next/link"
 import { Mail, Phone, FileText, GraduationCap, Code, Layers, Database, Server, GitBranch, Key, ArrowUpRight, ShieldCheck } from "lucide-react"
 import { Github, Linkedin } from "@/components/icons"
 import { Badge } from "@/components/ui/badge"
@@ -52,7 +51,7 @@ export function BentoProfile() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                   </span>
-                  <span className="text-[10px] font-medium tracking-wider text-emerald-600 dark:text-emerald-400 uppercase">
+                  <span className="text-[10px] font-semibold tracking-wider text-emerald-800 dark:text-emerald-400 uppercase">
                     Open to opportunities
                   </span>
                 </Badge>
@@ -113,7 +112,7 @@ export function BentoProfile() {
           {/* Social Links Bento-grid-buttons */}
           <div className="grid grid-cols-2 gap-2">
             {/* GitHub */}
-            <Link
+            <a
               href="https://github.com/ujjwalkat07"
               target="_blank"
               rel="noopener noreferrer"
@@ -121,10 +120,10 @@ export function BentoProfile() {
             >
               <Github className="h-4 w-4" />
               <span>GitHub</span>
-            </Link>
+            </a>
 
             {/* LinkedIn */}
-            <Link
+            <a
               href="https://www.linkedin.com/in/ujjwalkatiyar07"
               target="_blank"
               rel="noopener noreferrer"
@@ -132,7 +131,7 @@ export function BentoProfile() {
             >
               <Linkedin className="h-4 w-4 text-[#0077B5]" />
               <span>LinkedIn</span>
-            </Link>
+            </a>
 
             {/* Email */}
             <a
@@ -144,7 +143,7 @@ export function BentoProfile() {
             </a>
 
             {/* Resume */}
-            <Link
+            <a
               href="/ujjwal-resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
@@ -152,7 +151,7 @@ export function BentoProfile() {
             >
               <FileText className="h-4 w-4 text-emerald-500" />
               <span>Resume</span>
-            </Link>
+            </a>
           </div>
         </div>
 
@@ -173,7 +172,7 @@ export function BentoProfile() {
               <br />
               B.Tech in CSE (AI Specialization)
               <br />
-              <span className="text-[10px] text-muted-foreground/60">Oct 2023 – Feb 2027 · Greater Noida</span>
+              <span className="text-[10px] text-muted-foreground font-normal">Oct 2023 – Feb 2027 · Greater Noida</span>
             </div>
           </div>
 

@@ -4,7 +4,6 @@ import * as React from "react"
 import { Mail, Phone, FileText } from "lucide-react"
 import { Github, Linkedin } from "@/components/icons"
 import { Badge } from "@/components/ui/badge"
-import Link from "next/link"
 
 export function Hero() {
   const [mounted, setMounted] = React.useState(false)
@@ -53,7 +52,7 @@ export function Hero() {
         {/* Contacts */}
         <div className="flex flex-wrap gap-2.5 mt-2">
           {/* Email */}
-          <Link
+          <a
             id="hero-email-link"
             href={email ? `mailto:${email}` : "#"}
             aria-label="Send email to Ujjwal Katiyar"
@@ -61,10 +60,10 @@ export function Hero() {
           >
             <Mail className="h-3.5 w-3.5 text-muted-foreground/80" />
             <span>{email || "ukcode07 [at] gmail.com"}</span>
-          </Link>
+          </a>
 
           {/* Phone */}
-          <Link
+          <a
             id="hero-phone-link"
             href="tel:+917309324025"
             aria-label="Call Ujjwal Katiyar"
@@ -72,10 +71,10 @@ export function Hero() {
           >
             <Phone className="h-3.5 w-3.5 text-muted-foreground/80" />
             <span>+91 73093 24025</span>
-          </Link>
+          </a>
 
           {/* Resume */}
-          <Link
+          <a
             id="hero-resume-link"
             href="/ujjwal-resume.pdf"
             target="_blank"
@@ -85,10 +84,10 @@ export function Hero() {
           >
             <FileText className="h-3.5 w-3.5 text-muted-foreground/80" />
             <span>Resume</span>
-          </Link>
+          </a>
 
           {/* LinkedIn */}
-          <Link
+          <a
             id="hero-linkedin-link"
             href="https://www.linkedin.com/in/ujjwalkatiyar07"
             target="_blank"
@@ -98,10 +97,10 @@ export function Hero() {
           >
             <Linkedin className="h-3.5 w-3.5 text-muted-foreground/80" />
             <span>LinkedIn</span>
-          </Link>
+          </a>
 
           {/* GitHub */}
-          <Link
+          <a
             id="hero-github-link"
             href="https://github.com/ujjwalkat07"
             target="_blank"
@@ -111,7 +110,7 @@ export function Hero() {
           >
             <Github className="h-3.5 w-3.5 text-muted-foreground/80" />
             <span>GitHub</span>
-          </Link>
+          </a>
         </div>
       </div>
     </section>

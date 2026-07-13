@@ -81,7 +81,7 @@ export function Projects() {
                       <Badge
                         key={j}
                         variant="secondary"
-                        className="px-2 py-0.5 border border-border/40 text-[10px] text-muted-foreground/90 font-light tracking-wide uppercase bg-muted/65 rounded-md select-none"
+                        className="px-2 py-0.5 border border-border/40 text-[10px] text-secondary-foreground font-medium tracking-wide uppercase bg-secondary/80 rounded-md select-none"
                       >
                         {tag}
                       </Badge>
@@ -94,7 +94,7 @@ export function Projects() {
                       {project.title}
                     </h3>
                     {project.featured && (
-                      <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-indigo-500 bg-indigo-500/10 border border-indigo-500/20 px-2.5 py-0.5 rounded-full select-none">
+                      <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-indigo-600 dark:text-indigo-400 bg-indigo-500/5 dark:bg-indigo-500/10 border border-indigo-500/20 dark:border-indigo-500/30 px-2.5 py-0.5 rounded-full select-none">
                         <Sparkles className="h-3 w-3" />
                         <span>Featured Engine</span>
                       </span>

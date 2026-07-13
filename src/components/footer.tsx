@@ -35,6 +35,7 @@ export function Footer() {
               key={link.label}
               id={`footer-link-${link.label.toLowerCase().replace(/[^a-z0-9]/g, "")}`}
               href={link.href}
+              prefetch={false}
               className="text-xs font-normal text-muted-foreground hover:text-foreground transition-colors"
             >
               {link.label}
@@ -45,7 +46,7 @@ export function Footer() {
 
       {/* Bottom Row: Info and Socials */}
       <div className="flex flex-col gap-4 pt-4 border-t border-border/10 items-center justify-between sm:flex-row text-center sm:text-left">
-        <span className="text-xs text-muted-foreground/80 font-light">
+        <span className="text-xs text-muted-foreground font-light">
           © {currentYear} Ujjwal Katiyar. All rights reserved.
         </span>
         <div className="flex items-center gap-1.5 -mr-2">
@@ -59,7 +60,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Visit Ujjwal Katiyar's ${social.name} profile`}
-                className="flex items-center justify-center w-10 h-10 text-muted-foreground/60 hover:text-foreground hover:scale-110 active:scale-90 transition-all duration-200"
+                className="flex items-center justify-center w-10 h-10 text-muted-foreground hover:text-foreground hover:scale-110 active:scale-90 transition-all duration-200"
               >
                 <Icon className="h-4 w-4" />
               </a>

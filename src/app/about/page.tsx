@@ -89,13 +89,13 @@ export default function AboutPage() {
                   
                   {/* Timeline content card */}
                   <div className="flex flex-col gap-1.5">
-                    <span className="text-[11px] font-semibold tracking-wider text-indigo-500 uppercase">
+                    <span className="text-[11px] font-semibold tracking-wider text-indigo-600 dark:text-indigo-400 uppercase">
                       {item.date}
                     </span>
                     <h3 className="text-base font-semibold text-foreground group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors">
                       {item.title}
                     </h3>
-                    <span className="text-xs text-muted-foreground/80 font-normal">
+                    <span className="text-xs text-muted-foreground font-normal">
                       {item.institution}
                     </span>
                     <p className="text-[13px] text-muted-foreground/95 font-light leading-relaxed mt-2">

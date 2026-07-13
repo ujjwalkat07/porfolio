@@ -81,7 +81,7 @@ export function ContactForm() {
               onChange={handleChange}
               disabled={status === "submitting"}
               placeholder="e.g. John Doe"
-              className="w-full text-sm bg-muted/20 border border-border/60 rounded-xl px-4 py-2.5 text-foreground placeholder-muted-foreground/60 focus:outline-none focus:border-indigo-500/50 transition-all duration-200 disabled:opacity-50"
+              className="w-full text-sm bg-muted/20 border border-border/60 rounded-xl px-4 py-2.5 text-foreground placeholder-muted-foreground focus:outline-none focus:border-indigo-500/50 transition-all duration-200 disabled:opacity-50"
             />
           </div>
 
@@ -99,7 +99,7 @@ export function ContactForm() {
               onChange={handleChange}
               disabled={status === "submitting"}
               placeholder="e.g. john@example.com"
-              className="w-full text-sm bg-muted/20 border border-border/60 rounded-xl px-4 py-2.5 text-foreground placeholder-muted-foreground/60 focus:outline-none focus:border-indigo-500/50 transition-all duration-200 disabled:opacity-50"
+              className="w-full text-sm bg-muted/20 border border-border/60 rounded-xl px-4 py-2.5 text-foreground placeholder-muted-foreground focus:outline-none focus:border-indigo-500/50 transition-all duration-200 disabled:opacity-50"
             />
           </div>
 
@@ -117,7 +117,7 @@ export function ContactForm() {
               onChange={handleChange}
               disabled={status === "submitting"}
               placeholder="e.g. Partnership Inquiry"
-              className="w-full text-sm bg-muted/20 border border-border/60 rounded-xl px-4 py-2.5 text-foreground placeholder-muted-foreground/60 focus:outline-none focus:border-indigo-500/50 transition-all duration-200 disabled:opacity-50"
+              className="w-full text-sm bg-muted/20 border border-border/60 rounded-xl px-4 py-2.5 text-foreground placeholder-muted-foreground focus:outline-none focus:border-indigo-500/50 transition-all duration-200 disabled:opacity-50"
             />
           </div>
 
@@ -135,7 +135,7 @@ export function ContactForm() {
               onChange={handleChange}
               disabled={status === "submitting"}
               placeholder="Write your message here..."
-              className="w-full text-sm bg-muted/20 border border-border/60 rounded-xl px-4 py-2.5 text-foreground placeholder-muted-foreground/60 focus:outline-none focus:border-indigo-500/50 transition-all duration-200 resize-none disabled:opacity-50"
+              className="w-full text-sm bg-muted/20 border border-border/60 rounded-xl px-4 py-2.5 text-foreground placeholder-muted-foreground focus:outline-none focus:border-indigo-500/50 transition-all duration-200 resize-none disabled:opacity-50"
             />
           </div>
 

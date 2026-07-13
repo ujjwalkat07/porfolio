@@ -78,7 +78,7 @@ export default function ContactPage() {
                       <Icon className="h-4.5 w-4.5" />
                     </span>
                     <div className="flex flex-col gap-0.5 min-w-0">
-                      <span className="text-[10px] font-semibold tracking-wider text-muted-foreground/80 uppercase">
+                      <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">
                         {detail.title}
                       </span>
                       {detail.href ? (
@@ -102,7 +102,7 @@ export default function ContactPage() {
 
             {/* Socials Connection */}
             <div className="flex flex-col gap-3 pt-2">
-              <span className="text-[10px] font-semibold tracking-wider text-muted-foreground/80 uppercase">
+              <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">
                 Connect elsewhere
               </span>
               <div className="flex items-center gap-2">
@@ -116,7 +116,7 @@ export default function ContactPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`Visit Ujjwal Katiyar's ${social.name}`}
-                      className="flex items-center justify-center w-11 h-11 border border-border/40 bg-card rounded-xl text-muted-foreground/60 hover:text-foreground hover:scale-105 active:scale-95 transition-all duration-200"
+                      className="flex items-center justify-center w-11 h-11 border border-border/40 bg-card rounded-xl text-muted-foreground hover:text-foreground hover:scale-105 active:scale-95 transition-all duration-200"
                     >
                       <Icon className="h-4.5 w-4.5" />
                     </a>

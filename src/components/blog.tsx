@@ -107,7 +107,7 @@ export function Blog() {
 
               <div>
                 {/* Description snippet */}
-                <p className="text-xs text-muted-foreground/80 font-light leading-relaxed mt-4 line-clamp-3">
+                <p className="text-xs text-muted-foreground font-light leading-relaxed mt-4 line-clamp-3">
                   {post.description}
                 </p>
 
