@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     siteName: "Ujjwal Katiyar",
     images: [
       {
-        url: "/profile_pic.png",
+        url: "/profile_pic.webp",
         width: 500,
         height: 500,
         alt: "Ujjwal Katiyar",
@@ -68,7 +68,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               "name": "Ujjwal Katiyar",
-              "image": "https://ujjwalkatiyar.in/profile_pic.png",
+              "image": "https://ujjwalkatiyar.in/profile_pic.webp",
               "jobTitle": "Full Stack Engineer",
               "url": "https://ujjwalkatiyar.in",
               "sameAs": [

@@ -31,7 +31,7 @@ export function BentoProfile() {
             {/* Avatar image */}
             <div className="relative h-20 w-20 flex-shrink-0 rounded-full overflow-hidden border-2 border-border/80 dark:border-zinc-800/80 shadow-md group-hover:scale-105 transition-transform duration-300">
               <Image
-                src="/profile_pic.png"
+                src="/profile_pic.webp"
                 alt="Ujjwal Katiyar"
                 fill
                 sizes="80px"

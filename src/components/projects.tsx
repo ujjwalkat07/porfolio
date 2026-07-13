@@ -14,7 +14,7 @@ export function Projects() {
         "A full-stack cryptocurrency exchange with a real-time order matching engine pairing buy/sell orders by price-priority. Live price updates via WebSockets, high-throughput processing with Kafka, and Redis caching for concurrent data access.",
       demo: "https://web-exchange-x.onrender.com/",
       github: "https://github.com/ujjwalkat07/crypto-exchange-web",
-      image: "/crypto.png",
+      image: "/crypto.webp",
     },
     {
       title: "CRM-X",
@@ -24,7 +24,7 @@ export function Projects() {
         "A next-generation Customer Relationship Management platform engineered as a high-performance monorepo. Combines a premium glassmorphic growth dashboard, sales pipeline automation, lead tracking, and client-server decoupling.",
       demo: "https://crm-x-crm-client.vercel.app/",
       github: "https://github.com/ujjwalkat07/crm-x",
-      image: "/crmx.png",
+      image: "/crmx.webp",
     },
     {
       title: "QR Event Management System",
@@ -34,7 +34,7 @@ export function Projects() {
         "QR code-based participant verification system for large-scale events. Includes a JWT-secured evaluation platform for mentors and judges. Onboarded 2000+ participants with an 80% reduction in manual check-in time.",
       demo: "https://lamp-mih.vercel.app",
       github: "https://github.com/ujjwalkat07/lamp",
-      image: "/lamp.png",
+      image: "/lamp.webp",
     },
   ]
 
