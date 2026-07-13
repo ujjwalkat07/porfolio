@@ -100,7 +100,7 @@ export function Blog() {
                 </div>
 
                 {/* Article Title */}
-                <h3 className="text-base font-semibold tracking-tight text-foreground group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors duration-200 mt-3 line-clamp-3 leading-snug">
+                <h3 className="text-xl font-bold tracking-tight text-foreground group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors duration-200 mt-3 line-clamp-3 leading-snug">
                   {post.title}
                 </h3>
               </div>
@@ -113,6 +113,7 @@ export function Blog() {
 
                 {/* Author signature section */}
                 <div className="flex items-center gap-2 mt-4 pt-4 border-t border-border/20">
+                  
                   <div className="flex -space-x-1">
                     <span className="flex items-center justify-center h-5 w-5 rounded-full bg-indigo-500/20 text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-400 text-[9px] font-bold ring-1 ring-border/20">
                       UK
@@ -121,6 +122,8 @@ export function Blog() {
                   <span className="text-xs font-normal text-muted-foreground group-hover:text-foreground/90 transition-colors">
                     Ujjwal Katiyar
                   </span>
+
+
                 </div>
               </div>
             </Link>
