@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy | Ujjwal Katiyar",
   description: "Read the privacy practices and policies for Ujjwal Katiyar's developer portfolio, including cookie details and contact forms.",
   alternates: {
-    canonical: "/privacy",
+    canonical: "https://ujjwalkatiyar.in/privacy",
   },
 }
 

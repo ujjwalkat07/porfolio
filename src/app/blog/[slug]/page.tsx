@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     keywords: [...(post.tags || []), ...(post.keywords || []), "Ujjwal Katiyar", "Full Stack Engineer", "Blog", "System Design"],
     authors: [{ name: "Ujjwal Katiyar" }],
     alternates: {
-      canonical: `/blog/${slug}`,
+      canonical: `https://ujjwalkatiyar.in/blog/${slug}`,
     },
     openGraph: {
       title: `${post.title} — Ujjwal Katiyar`,

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "About | Ujjwal Katiyar — Full Stack Engineer",
   description: "Learn more about Ujjwal Katiyar's background, education in Computer Science (AI), and approach to building scalable systems.",
   alternates: {
-    canonical: "/about",
+    canonical: "https://ujjwalkatiyar.in/about",
   },
 }
 

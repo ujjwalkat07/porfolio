@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Terms & Disclaimer | Ujjwal Katiyar",
   description: "Read the Terms of Use and Disclaimer policies for Ujjwal Katiyar's portfolio, articles, and open-source code demonstrations.",
   alternates: {
-    canonical: "/terms",
+    canonical: "https://ujjwalkatiyar.in/terms",
   },
 }
 

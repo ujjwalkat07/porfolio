@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Contact | Ujjwal Katiyar — Full Stack Engineer",
   description: "Get in touch with Ujjwal Katiyar. Send a message, find contact details, or connect on LinkedIn and GitHub.",
   alternates: {
-    canonical: "/contact",
+    canonical: "https://ujjwalkatiyar.in/contact",
   },
 }
 

@@ -26,9 +26,17 @@ export const metadata: Metadata = {
   keywords: ["Ujjwal Katiyar", "Full Stack Engineer", "Noida", "India", "Software Engineer", "Next.js", "Shadcn UI", "Kafka", "Redis"],
   authors: [{ name: "Ujjwal Katiyar" }],
   alternates: {
-    canonical: "/",
+    canonical: "https://ujjwalkatiyar.in",
     languages: {
-      "en-US": "/",
+      "en-US": "https://ujjwalkatiyar.in",
+    },
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
     },
   },
   openGraph: {
