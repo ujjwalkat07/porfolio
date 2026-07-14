@@ -9,7 +9,6 @@ tags: ["System Design","System Architecture","Engineering","Monolith vs Microser
 keywords: ["Software Architecture", "Scaling Systems", "Distributed Systems", "Web Performance", "API Gateway","Monolith","Microservices", "Monolith vs Microservices","System Design basics"]
 link: "https://ujjwalkatiyar.in/blog/monolith-vs-microservices"
 ---
-# Monolith vs Microservices
 
 In this blog, we will understand the difference between a monolith and microservices and what the use cases of a monolith and microservices are.
 
@@ -77,7 +76,7 @@ Here we clearly see the stats that the product service is having more requests t
 
 So here microservices come into the picture. In microservices, we can scale the service independently. So if we want to scale the product service, we can scale it independently, and if we want to scale the auth service, we can scale it independently. Which is efficient in terms of cost and time.
 
-## Quick differnces between monolith and microservices:
+## Quick differences between monolith and microservices:
 
 | Feature | Monolith | Microservices |
 | --- | --- | --- |

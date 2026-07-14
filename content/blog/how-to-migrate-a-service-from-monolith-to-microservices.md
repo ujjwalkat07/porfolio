@@ -10,8 +10,6 @@ keywords: ["Software Architecture", "Scaling Systems", "Distributed Systems", "W
 link: "https://ujjwalkatiyar.in/blog/how-to-migrate-a-service-from-monolith-to-microservices"
 ---
 
-# How to migrate a service from monolith to microservices
-
 In a previous blog post, we discussed the monolith architecture and the microservices architecture. In that post, we discussed that the monolith architecture may be old, but it is still widely used among companies that are small or emerging.
 
 As a company grows, the monolith architecture becomes hard to manage because of the growing codebase, slow development, and hard debugging. So, it needs to migrate to a microservices architecture.
