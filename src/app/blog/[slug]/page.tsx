@@ -62,6 +62,8 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound()
   }
 
+  const otherPosts = posts.filter((p) => p.slug !== slug).slice(0, 2)
+
   // Parse markdown content to HTML
   const contentHtml = await marked.parse(post.content)
 
@@ -209,6 +211,32 @@ export default async function BlogPostPage({ params }: PageProps) {
 
           {/* Share Buttons at the bottom */}
           <ShareButtons title={post.title} />
+
+          {/* Read Next Section for Internal Linking & SEO */}
+          {otherPosts.length > 0 && (
+            <div className="mt-1 pt-1 border-t border-border/40">
+              <h3 className="text-lg font-bold mb-6 text-foreground">Read Next</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {otherPosts.map((otherPost) => (
+                  <Link
+                    key={otherPost.slug}
+                    href={`/blog/${otherPost.slug}`}
+                    className="group block p-5 rounded-xl border border-border/30 bg-muted/5 hover:bg-muted/10 hover:border-foreground/15 transition-all duration-300"
+                  >
+                    <span className="text-[10px] font-light text-muted-foreground uppercase tracking-wider">
+                      {otherPost.date}
+                    </span>
+                    <h4 className="text-base font-bold text-foreground group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors mt-2">
+                      {otherPost.title}
+                    </h4>
+                    <p className="text-xs text-muted-foreground font-light line-clamp-2 mt-2">
+                      {otherPost.description}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
         </article>
 
         {/* Footer */}

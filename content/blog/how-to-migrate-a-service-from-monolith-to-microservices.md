@@ -3,14 +3,14 @@ title: "How to migrate a service from monolith to microservices"
 category: "System Design"
 description: "Migrating the services from a monolith to microservices is a complex process that requires careful planning and execution. But it enhances scalability and improves the speed of the application."
 date: "Jul 13, 2026"
-lastModified: "Jul 13, 2026"
+lastModified: "Jul 15, 2026"
 readTime: "5 min read"
 tags: ["System Design","System Architecture","Engineering","Monolith vs Microservices"]
 keywords: ["Software Architecture", "Scaling Systems", "Distributed Systems", "Web Performance", "API Gateway","Monolith","Microservices", "Monolith vs Microservices","System Design basics"]
 link: "https://ujjwalkatiyar.in/blog/how-to-migrate-a-service-from-monolith-to-microservices"
 ---
 
-In a previous blog post, we discussed the monolith architecture and the microservices architecture. In that post, we discussed that the monolith architecture may be old, but it is still widely used among companies that are small or emerging.
+In a [previous blog post](/blog/monolith-vs-microservices), we discussed the monolith architecture and the microservices architecture. In that post, we discussed that the monolith architecture may be old, but it is still widely used among companies that are small or emerging.
 
 As a company grows, the monolith architecture becomes hard to manage because of the growing codebase, slow development, and hard debugging. So, it needs to migrate to a microservices architecture.
 

@@ -76,7 +76,7 @@ export function ShareButtons({ title }: ShareButtonsProps) {
   ]
 
   return (
-    <div className="flex flex-col gap-4 py-6 border-y border-border/40 my-8">
+    <div className="flex flex-col gap-4 border-y border-border/40 my-2">
       <span className="text-[10px] font-medium tracking-wider text-muted-foreground uppercase select-none">
         Share this article
       </span>

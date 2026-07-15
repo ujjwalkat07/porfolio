@@ -3,7 +3,7 @@ title: "Monolith vs Microservices - A brief introduction"
 category: "System Design"
 description: "Monolith is an architectural style for building a web application in which all components of the application, such as the Auth "
 date: "Jul 12, 2026"
-lastModified: "Jul 13, 2026"
+lastModified: "Jul 15, 2026"
 readTime: "5 min read"
 tags: ["System Design","System Architecture","Engineering","Monolith vs Microservices"]
 keywords: ["Software Architecture", "Scaling Systems", "Distributed Systems", "Web Performance", "API Gateway","Monolith","Microservices", "Monolith vs Microservices","System Design basics"]
@@ -88,5 +88,5 @@ So here microservices come into the picture. In microservices, we can scale the 
 | Complexity | Low, due to single codebase and easy to debug | High, due to multiple codebases and complex to debug |
 
 
-In next post, we will understand how to migrate from monolith to microservices, trade-offs, use cases, implementation, etc.
+In the [next post](/blog/how-to-migrate-a-service-from-monolith-to-microservices), we will understand how to migrate from monolith to microservices, trade-offs, use cases, implementation, etc.
 
