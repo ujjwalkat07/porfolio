@@ -1,6 +1,8 @@
 import { Metadata } from "next"
 import Link from "next/link"
 import { ArrowLeft, GraduationCap, Code2, Server, Briefcase } from "lucide-react"
+import { Navbar } from "@/components/navbar"
+import { Footer } from "@/components/footer"
 
 export const metadata: Metadata = {
   title: "About | Ujjwal Katiyar — Full Stack Engineer",
@@ -36,9 +38,11 @@ export default function AboutPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-background py-16 px-6 antialiased selection:bg-indigo-500/10 selection:text-indigo-500">
-      <div className="max-w-3xl mx-auto flex flex-col gap-10">
-        
+    <div className="flex flex-col min-h-screen bg-background font-sans transition-colors duration-300 antialiased selection:bg-indigo-500/10 selection:text-indigo-500">
+      <Navbar />
+
+      <main className="flex-1 w-full max-w-[960px] mx-auto px-6 md:px-10 flex flex-col pt-16 pb-16 gap-10">
+
         {/* Back Link */}
         <Link
           id="about-back-link"
@@ -86,13 +90,13 @@ export default function AboutPage() {
                   <span className="absolute -left-[37px] top-1.5 flex h-[22px] w-[22px] items-center justify-center rounded-full bg-card border border-border/60 text-indigo-500 group-hover:bg-indigo-500/10 transition-colors shadow-xs">
                     <Icon className="h-3 w-3" />
                   </span>
-                  
+
                   {/* Timeline content card */}
                   <div className="flex flex-col gap-1.5">
                     <span className="text-[11px] font-semibold tracking-wider text-indigo-600 dark:text-indigo-400 uppercase">
                       {item.date}
                     </span>
-                    <h3 className="text-base font-semibold text-foreground group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors">
+                    <h3 className="text-base font-semibold text-foreground group-hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">
                       {item.title}
                     </h3>
                     <span className="text-xs text-muted-foreground font-normal">
@@ -108,7 +112,11 @@ export default function AboutPage() {
           </div>
         </div>
 
+      </main>
+
+      <div className="w-full max-w-[960px] mx-auto">
+        <Footer />
       </div>
-    </main>
+    </div>
   )
 }

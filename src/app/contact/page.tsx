@@ -3,6 +3,8 @@ import Link from "next/link"
 import { ArrowLeft, Mail, MapPin } from "lucide-react"
 import { Linkedin, Github, Twitter } from "@/components/icons"
 import { ContactForm } from "@/components/contact-form"
+import { Navbar } from "@/components/navbar"
+import { Footer } from "@/components/footer"
 
 export const metadata: Metadata = {
   title: "Contact | Ujjwal Katiyar — Full Stack Engineer",
@@ -37,9 +39,11 @@ export default function ContactPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-background py-16 px-6 antialiased selection:bg-indigo-500/10 selection:text-indigo-500">
-      <div className="max-w-4xl mx-auto flex flex-col gap-10">
-        
+    <div className="flex flex-col min-h-screen bg-background font-sans transition-colors duration-300 antialiased selection:bg-indigo-500/10 selection:text-indigo-500">
+      <Navbar />
+
+      <main className="flex-1 w-full max-w-[960px] mx-auto px-6 md:px-10 flex flex-col pt-16 pb-16 gap-10">
+
         {/* Back Link */}
         <Link
           id="contact-back-link"
@@ -62,13 +66,13 @@ export default function ContactPage() {
 
         {/* Layout Grid */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 pt-4 border-t border-border/20">
-          
+
           {/* Contact Details Column */}
           <div className="md:col-span-2 flex flex-col gap-6">
             <h2 className="text-lg font-bold tracking-tight text-foreground">
               Contact Details
             </h2>
-            
+
             <div className="flex flex-col gap-4">
               {contactDetails.map((detail, idx) => {
                 const Icon = detail.icon
@@ -134,7 +138,10 @@ export default function ContactPage() {
 
         </div>
 
+      </main>
+      <div className="w-full max-w-[960px] mx-auto">
+        <Footer />
       </div>
-    </main>
+    </div>
   )
 }

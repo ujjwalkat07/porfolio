@@ -4,13 +4,29 @@ import * as React from "react"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { FileText } from "lucide-react"
 import Link from "next/link"
+import { useRouter, usePathname } from "next/navigation"
 
 export function Navbar() {
+  const router = useRouter()
+  const pathname = usePathname()
   const [activeSection, setActiveSection] = React.useState("")
 
   React.useEffect(() => {
+    if (pathname === "/about") {
+      setActiveSection("about")
+      return
+    }
+    if (pathname === "/contact") {
+      setActiveSection("contact")
+      return
+    }
+    if (pathname.startsWith("/blog")) {
+      setActiveSection("blog")
+      return
+    }
+
     const handleScroll = () => {
-      const sections = ["about", "skills", "projects", "blog"]
+      const sections = ["projects"]
       let currentSection = ""
 
       for (const section of sections) {
@@ -29,10 +45,33 @@ export function Navbar() {
     }
 
     window.addEventListener("scroll", handleScroll)
+    handleScroll()
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [pathname])
 
   const scrollTo = (id: string) => {
+    if (id === "about") {
+      if (pathname === "/about") {
+        window.scrollTo({ top: 0, behavior: "smooth" })
+      } else {
+        router.push("/about")
+      }
+      return
+    }
+
+    if (id === "contact") {
+      if (pathname === "/contact") {
+        window.scrollTo({ top: 0, behavior: "smooth" })
+      } else {
+        router.push("/contact")
+      }
+      return
+    }
+
+    if (id === "blog") {
+      router.push("/blog")
+    }
+
     const element = document.getElementById(id)
     if (element) {
       const offset = 80 // Offset for sticky navbar
@@ -46,7 +85,8 @@ export function Navbar() {
         behavior: "smooth",
       })
     } else {
-      window.location.href = id === "hero" ? "/" : `/#${id}`
+      const targetPath = id === "hero" ? "/" : `/#${id}`
+      router.push(targetPath)
     }
   }
 
@@ -62,17 +102,16 @@ export function Navbar() {
           Ujjwal Katiyar
         </button>
         <ul className="hidden gap-1 md:flex">
-          {["about", "skills", "projects", "blog"].map((section) => (
+          {["about", "projects", "blog", "contact"].map((section) => (
             <li key={section}>
               <button
                 id={`navbar-link-${section}`}
                 onClick={() => scrollTo(section)}
                 aria-label={`Scroll to ${section} section`}
-                className={`text-xs font-normal capitalize px-3 py-1.5 rounded-md cursor-pointer transition-all duration-200 ${
-                  activeSection === section
+                className={`text-xs font-normal capitalize px-3 py-1.5 rounded-md cursor-pointer transition-all duration-200 ${activeSection === section
                     ? "bg-muted text-foreground font-medium"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                }`}
+                  }`}
               >
                 {section}
               </button>

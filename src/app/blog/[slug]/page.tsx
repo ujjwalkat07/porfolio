@@ -130,10 +130,10 @@ export default async function BlogPostPage({ params }: PageProps) {
       <Navbar />
 
       {/* Main Page Layout Wrapper */}
-      <main className="flex-1 w-full max-w-[960px] mx-auto px-6 md:px-10 flex flex-col pt-16 pb-10">
+      <main className="flex-1 w-full max-w-[900px] mx-auto px-6 md:px-10 flex flex-col pt-16 pb-10">
         {/* Back Link */}
         <Link
-          href="/#blog"
+          href="/blog"
           className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground mb-8 transition-colors self-start"
         >
           <ArrowLeft className="h-3.5 w-3.5" />
@@ -184,11 +184,11 @@ export default async function BlogPostPage({ params }: PageProps) {
           </div>
 
           {/* Share Buttons */}
-          <ShareButtons title={post.title}/>
+          <ShareButtons title={post.title} />
 
           {/* HTML rendered markdown body */}
           <div
-            className="-mt-16 text-foreground leading-relaxed font-normal text-sm sm:text-base max-w-none
+            className="mt-0 text-foreground leading-relaxed font-normal text-sm sm:text-base max-w-none
               [&>h1]:text-2xl [&>h1]:font-bold [&>h1]:text-foreground [&>h1]:mt-10 [&>h1]:mb-4 [&>h1]:tracking-tight
               [&>h2]:text-xl [&>h2]:font-bold [&>h2]:text-foreground [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:tracking-tight
               [&>h3]:text-lg [&>h3]:font-semibold [&>h3]:text-foreground [&>h3]:mt-8 [&>h3]:mb-3
