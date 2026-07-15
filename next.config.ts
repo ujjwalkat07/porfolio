@@ -1,10 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  trailingSlash: false,
   async headers() {
     return [
       {
         source: "/:path*",
+        
         headers: [
           {
             key: "Strict-Transport-Security",
