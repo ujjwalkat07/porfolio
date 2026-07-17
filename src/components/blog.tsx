@@ -59,9 +59,9 @@ export function Blog() {
     <section id="blog" className="py-8 border-b border-border/40 transition-colors duration-300">
       {/* Section Header & Subtitle */}
       <div className="flex flex-col gap-2 mb-8">
-        <h2 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+        <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
           What I&apos;ve been writing
-        </h2>
+        </h1>
         <p className="text-sm font-light text-muted-foreground max-w-2xl leading-relaxed">
           Insights on event-driven systems, microservice monorepos, and high-frequency real-time web applications.
         </p>
@@ -75,11 +75,10 @@ export function Blog() {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`text-xs font-normal px-3.5 py-1.5 rounded-lg cursor-pointer transition-all duration-200 select-none ${
-                activeCategory === category
+              className={`text-xs font-normal px-3.5 py-1.5 rounded-lg cursor-pointer transition-all duration-200 select-none ${activeCategory === category
                   ? "bg-neutral-900 text-neutral-50 dark:bg-neutral-100 dark:text-neutral-950 font-medium"
                   : "text-muted-foreground hover:text-foreground hover:bg-muted/40"
-              }`}
+                }`}
             >
               {category}
             </button>
