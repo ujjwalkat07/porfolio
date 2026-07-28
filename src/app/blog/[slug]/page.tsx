@@ -130,7 +130,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       <Navbar />
 
       {/* Main Page Layout Wrapper */}
-      <main className="flex-1 w-full max-w-[900px] mx-auto px-6 md:px-10 flex flex-col pt-16 pb-10">
+      <main className="flex-1 w-full max-w-[800px] mx-auto px-6 md:px-10 flex flex-col pt-16 pb-10">
         {/* Back Link */}
         <Link
           href="/blog"

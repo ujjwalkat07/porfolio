@@ -37,6 +37,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   openGraph: {
@@ -76,6 +79,12 @@ export default function RootLayout({
     >
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Ujjwal Katiyar — Blog RSS Feed"
+          href="https://ujjwalkatiyar.in/rss.xml"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

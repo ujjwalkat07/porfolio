@@ -98,15 +98,15 @@ export function Blog() {
             <Search className="absolute left-3 top-[7px] h-3.5 w-3.5 text-muted-foreground/70" />
           </div>
 
-          {/* <a
-            href="/feed.xml"
+          <a
+            href="/rss.xml"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center h-[28px] w-[28px] rounded-full border border-border/50 text-muted-foreground hover:text-foreground hover:bg-muted/40 transition-colors"
             aria-label="RSS Feed"
           >
             <Rss className="h-3.5 w-3.5" />
-          </a> */}
+          </a>
         </div>
       </div>
 

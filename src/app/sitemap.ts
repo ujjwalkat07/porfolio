@@ -5,20 +5,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://ujjwalkatiyar.in"
 
   // Base routes
-  const routes = ["", "/blog", "/about", "/contact", "/privacy", "/terms"].map((route) => ({
+  const routes = ["", "/blog", "/about", "/contact", "/privacy", "/terms", "/rss.xml"].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: route === "" ? 1.0 : 0.8,
+    changeFrequency: route === "" || route === "/blog" ? ("daily" as const) : ("monthly" as const),
+    priority: route === "" ? 1.0 : route === "/blog" ? 0.9 : 0.7,
   }))
 
   // Dynamic blog routes
-  const blogRoutes = posts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.lastModified || post.date || new Date()),
-    changeFrequency: "weekly" as const,
-    priority: 0.8,
-  }))
+  const blogRoutes = posts.map((post) => {
+    const rawDate = post.lastModified || post.date
+    const parsedDate = rawDate ? new Date(rawDate) : new Date()
+    const validDate = isNaN(parsedDate.getTime()) ? new Date() : parsedDate
+
+    return {
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: validDate,
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    }
+  })
 
   return [...routes, ...blogRoutes]
 }

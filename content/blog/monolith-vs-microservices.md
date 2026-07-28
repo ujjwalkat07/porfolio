@@ -1,7 +1,7 @@
 ---
 title: "Monolith vs Microservices - A brief introduction"
 category: "System Design"
-description: "Monolith is an architectural style for building a web application in which all components of the application, such as the Auth "
+description: "A comprehensive comparison between monolithic and microservices architecture, exploring key differences, scalability trade-offs, and real-world system design use cases."
 date: "Jul 12, 2026"
 lastModified: "Jul 15, 2026"
 readTime: "5 min read"
