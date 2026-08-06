@@ -2,6 +2,8 @@ import { supabase } from "@/lib/supabase"
 import { NextRequest, NextResponse } from "next/server"
 import { createHash } from "crypto"
 
+export const dynamic = "force-dynamic"
+
 function getClientIp(request: NextRequest): string {
   // Try standard proxy headers first, then fall back
   const forwarded = request.headers.get("x-forwarded-for")
