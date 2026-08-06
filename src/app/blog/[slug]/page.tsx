@@ -116,11 +116,12 @@ export default async function BlogPostPage({ params }: PageProps) {
       "@type": "Person",
       "name": "Ujjwal Katiyar",
       "url": "https://ujjwalkatiyar.in",
-      "logo": {
+      "image": {
         "@type": "ImageObject",
         "url": "https://ujjwalkatiyar.in/profile_pic.webp",
       },
     },
+
     "keywords": (post.tags || []).join(", "),
     "articleSection": post.category || "Technology",
     "inLanguage": "en-US",
