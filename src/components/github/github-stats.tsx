@@ -6,7 +6,23 @@ interface GithubStatsProps {
 }
 
 export function GithubStats({ repos }: GithubStatsProps) {
+  if (!repos || repos.length === 0) {
+    return (
+      <section className="flex flex-col gap-6" aria-label="GitHub Repository Statistics">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 animate-pulse">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="flex flex-col gap-2 p-4 rounded-xl border border-border/50 bg-card/40">
+              <div className="h-4 w-20 rounded bg-muted/80" />
+              <div className="h-7 w-12 rounded bg-muted/60" />
+            </div>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
   const totalStars = repos.reduce((acc, repo) => acc + repo.stargazers_count, 0)
+
   const totalForks = repos.reduce((acc, repo) => acc + repo.forks_count, 0)
   const totalOpenIssues = repos.reduce((acc, repo) => acc + repo.open_issues_count, 0)
 

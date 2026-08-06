@@ -65,23 +65,24 @@ export default async function GithubPage() {
   const jsonLdProfile = {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
-    "dateCreated": user.created_at,
+    "dateCreated": user?.created_at || new Date().toISOString(),
     "dateModified": new Date().toISOString(),
     "mainEntity": {
       "@type": "Person",
-      "name": user.name || "Ujjwal Katiyar",
-      "alternateName": user.login,
+      "name": user?.name || "Ujjwal Katiyar",
+      "alternateName": user?.login || "ujjwalkat07",
       "url": "https://ujjwalkatiyar.in/github",
-      "image": user.avatar_url,
+      "image": user?.avatar_url || "https://avatars.githubusercontent.com/u/ujjwalkat07?v=4",
       "jobTitle": "Full Stack Engineer & Systems Architect",
       "sameAs": [
-        user.html_url,
+        user?.html_url || "https://github.com/ujjwalkat07",
         "https://ujjwalkatiyar.in",
         "https://www.linkedin.com/in/ujjwalkatiyar07",
       ],
-      "description": user.bio,
+      "description": user?.bio || "Full Stack Engineer & Systems Architect",
     },
   }
+
 
   const jsonLdItemList = {
     "@context": "https://schema.org",

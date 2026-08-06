@@ -138,7 +138,26 @@ export function GithubRepoList({ repos }: GithubRepoListProps) {
       </div>
 
       {/* Grid of Repository Cards */}
-      {filteredRepos.length === 0 ? (
+      {(!repos || repos.length === 0) ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 animate-pulse">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="flex flex-col gap-4 rounded-xl border border-border/60 bg-card/40 p-5">
+              <div className="flex items-center justify-between">
+                <div className="h-5 w-40 rounded bg-muted/80" />
+                <div className="h-4 w-4 rounded-full bg-muted/60" />
+              </div>
+              <div className="space-y-2">
+                <div className="h-3.5 w-full rounded bg-muted/60" />
+                <div className="h-3.5 w-3/4 rounded bg-muted/40" />
+              </div>
+              <div className="flex items-center gap-4 pt-3 border-t border-border/30">
+                <div className="h-3 w-16 rounded bg-muted/60" />
+                <div className="h-3 w-12 rounded bg-muted/60" />
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : filteredRepos.length === 0 ? (
         <div className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-border/60 py-16 text-center">
           <Code className="h-8 w-8 text-muted-foreground/60" />
           <p className="text-sm font-medium text-foreground">No repositories found</p>
@@ -148,6 +167,7 @@ export function GithubRepoList({ repos }: GithubRepoListProps) {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+
           {filteredRepos.map((repo) => {
             const formattedDate = new Date(repo.updated_at).toLocaleDateString("en-US", {
               month: "short",

@@ -4,13 +4,38 @@ import { Github } from "@/components/icons"
 import { MapPin, Users, BookOpen, ExternalLink, Link2, Calendar } from "lucide-react"
 
 interface GithubProfileHeaderProps {
-  user: GithubUser
+  user: GithubUser | null
 }
 
 export function GithubProfileHeader({ user }: GithubProfileHeaderProps) {
-  const memberSince = new Date(user.created_at).getFullYear()
+  if (!user) {
+    return (
+      <header className="relative overflow-hidden rounded-2xl border border-border/60 bg-card/40 p-6 md:p-8 shadow-sm transition-all duration-300 animate-pulse">
+        <div className="relative flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+            <div className="h-24 w-24 sm:h-28 sm:w-28 rounded-full bg-muted/80" />
+            <div className="flex flex-col gap-2.5">
+              <div className="flex items-center gap-3">
+                <div className="h-7 w-44 rounded-md bg-muted/80" />
+                <div className="h-5 w-24 rounded-full bg-muted/50" />
+              </div>
+              <div className="h-4 w-72 rounded-md bg-muted/60" />
+              <div className="h-3 w-40 rounded-md bg-muted/40" />
+            </div>
+          </div>
+          <div className="flex flex-col gap-3">
+            <div className="h-9 w-36 rounded-xl bg-muted/80" />
+            <div className="h-4 w-48 rounded-md bg-muted/60" />
+          </div>
+        </div>
+      </header>
+    )
+  }
+
+  const memberSince = user.created_at ? new Date(user.created_at).getFullYear() : new Date().getFullYear()
 
   return (
+
     <header className="relative overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-br from-background via-muted/30 to-background p-6 md:p-8 shadow-sm transition-all duration-300">
       <div className="relative flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
