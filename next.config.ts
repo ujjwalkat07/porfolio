@@ -2,11 +2,38 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   trailingSlash: false,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "raw.githubusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.jsdelivr.net",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.simpleicons.org",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.flaticon.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.flaticon.com",
+      },
+    ],
+  },
   async headers() {
     return [
       {
         source: "/:path*",
-        
         headers: [
           {
             key: "Strict-Transport-Security",
