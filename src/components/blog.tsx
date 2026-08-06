@@ -60,10 +60,11 @@ export function Blog() {
     <section id="blog" className="py-8 border-b border-border/40 transition-colors duration-300">
       {/* Section Header & Subtitle */}
       <div className="flex flex-col gap-2 mb-8">
-        <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+        <h2 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
           What I&apos;ve been writing
-        </h1>
+        </h2>
         <p className="text-sm font-light text-muted-foreground max-w-2xl leading-relaxed">
+
           Insights on event-driven systems, microservice monorepos, and high-frequency real-time web applications.
         </p>
       </div>

@@ -1,7 +1,7 @@
 ---
 title: "How to migrate a service from monolith to microservices"
 category: "System Design"
-description: "Migrating the services from a monolith to microservices is a complex process that requires careful planning and execution. But it enhances scalability and improves the speed of the application."
+description: "Learn step-by-step strategies to migrate monolithic services to scalable microservices in real-world production without downtime or data loss."
 date: "Jul 13, 2026"
 lastModified: "Jul 15, 2026"
 readTime: "5 min read"

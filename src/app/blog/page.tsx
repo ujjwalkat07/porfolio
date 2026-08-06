@@ -40,9 +40,11 @@ export default function BlogListingPage() {
 
       {/* Main Page Layout Wrapper */}
       <main className="flex-1 w-full max-w-[1200px] mx-auto px-6 md:px-10 flex flex-col pt-16 gap-6">
+        <h1 className="sr-only">Blog — Ujjwal Katiyar</h1>
         <Blog />
         <Footer />
       </main>
+
     </div>
   )
 }

@@ -32,10 +32,11 @@ export function GithubProfileHeader({ user }: GithubProfileHeaderProps) {
           {/* User Bio & Details */}
           <div className="flex flex-col gap-2">
             <div className="flex flex-wrap items-center gap-3">
-              <h1 className="text-2xl font-bold tracking-tight sm:text-3xl text-foreground">
+              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl text-foreground">
                 {user.name || user.login}
-              </h1>
+              </h2>
               <span className="rounded-full border border-primary/20 bg-primary/10 px-3 py-0.5 text-xs font-medium text-primary">
+
                 @{user.login}
               </span>
             </div>
