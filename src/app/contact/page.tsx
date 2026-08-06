@@ -19,8 +19,8 @@ export default function ContactPage() {
     {
       icon: Mail,
       title: "Email",
-      value: "ukcode07@gmail.com",
-      href: "mailto:ukcode07@gmail.com",
+      value: "contact@ujjwalkatiyar.in",
+      href: "mailto:contact@ujjwalkatiyar.in",
       label: "Send email",
     },
     {
@@ -59,9 +59,9 @@ export default function ContactPage() {
           <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
             Get in touch
           </h1>
-          <p className="text-sm font-light text-muted-foreground leading-relaxed max-w-xl">
+          {/* <p className="text-sm font-light text-muted-foreground leading-relaxed max-w-xl">
             Have an opportunity, a project proposal, or just want to say hi? Drop a message below or reach out via email.
-          </p>
+          </p> */}
         </div>
 
         {/* Layout Grid */}

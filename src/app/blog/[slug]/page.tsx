@@ -4,6 +4,7 @@ import { Calendar, Clock, ArrowLeft } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { ShareButtons } from "@/components/share-buttons"
+import { ImpressionCounter } from "@/components/impression-counter"
 import posts from "@/content/blog-posts.json"
 import { marked } from "marked"
 import type { Metadata } from "next"
@@ -163,6 +164,8 @@ export default async function BlogPostPage({ params }: PageProps) {
                 <Clock className="h-3.5 w-3.5" />
                 {post.readTime}
               </span>
+              <span>•</span>
+              <ImpressionCounter slug={slug} />
             </div>
 
             {/* Title */}

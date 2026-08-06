@@ -4,6 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Search, Rss } from "lucide-react"
+import { ImpressionCounter } from "@/components/impression-counter"
 import { usePathname } from "next/navigation"
 import posts from "@/content/blog-posts.json"
 
@@ -141,19 +142,24 @@ export function Blog() {
                   </p>
 
                   {/* Author signature section */}
-                  <div className="flex items-center gap-2 mt-6 pt-4 border-t border-border/20">
-                    <div className="relative h-5.5 w-5.5 rounded-full overflow-hidden border border-border/40">
-                      <Image
-                        src="/profile_pic.webp"
-                        alt="Ujjwal Katiyar"
-                        fill
-                        sizes="22px"
-                        className="object-cover"
-                      />
+                  <div className="flex items-center justify-between mt-6 pt-4 border-t border-border/20">
+                    <div className="flex items-center gap-2">
+                      <div className="relative h-5.5 w-5.5 rounded-full overflow-hidden border border-border/40">
+                        <Image
+                          src="/profile_pic.webp"
+                          alt="Ujjwal Katiyar"
+                          fill
+                          sizes="22px"
+                          className="object-cover"
+                        />
+                      </div>
+                      <span className="text-xs font-normal text-muted-foreground group-hover:text-foreground/90 transition-colors">
+                        Ujjwal Katiyar
+                      </span>
                     </div>
-                    <span className="text-xs font-normal text-muted-foreground group-hover:text-foreground/90 transition-colors">
-                      Ujjwal Katiyar
-                    </span>
+                    <p className="text-xs">
+                    <ImpressionCounter slug={post.slug} readOnly />
+                    </p>
                   </div>
                 </div>
               </Link>

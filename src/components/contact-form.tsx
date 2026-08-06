@@ -31,12 +31,24 @@ export function ContactForm() {
 
     setStatus("submitting")
 
-    // Simulate API request
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1200))
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        setStatus("error")
+        setErrorMsg(data.error || "Something went wrong. Please try again later.")
+        return
+      }
+
       setStatus("success")
       setFormData({ name: "", email: "", subject: "", message: "" })
-    } catch (err) {
+    } catch {
       setStatus("error")
       setErrorMsg("Something went wrong. Please try again later.")
     }
