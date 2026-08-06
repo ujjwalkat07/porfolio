@@ -76,10 +76,11 @@ export function Blog() {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`text-xs font-normal px-3.5 py-1.5 rounded-lg cursor-pointer transition-all duration-200 select-none ${activeCategory === category
-                  ? "bg-neutral-900 text-neutral-50 dark:bg-neutral-100 dark:text-neutral-950 font-medium"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted/40"
-                }`}
+              className={`text-xs px-3.5 py-1.5 rounded-lg cursor-pointer transition-all duration-200 select-none ${
+                activeCategory === category
+                  ? "bg-foreground text-background font-semibold shadow-xs"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50 font-normal"
+              }`}
             >
               {category}
             </button>
@@ -94,16 +95,16 @@ export function Blog() {
               placeholder="Search..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full text-xs bg-muted/10 border border-border/50 rounded-full pl-8 pr-3 py-1.5 text-foreground placeholder-muted-foreground focus:outline-none focus:border-foreground/30 focus:bg-card transition-all"
+              className="w-full text-xs bg-muted/20 border border-border/60 rounded-full pl-8 pr-3 py-1.5 text-foreground placeholder-muted-foreground focus:outline-none focus:border-foreground/40 focus:bg-card transition-all"
             />
-            <Search className="absolute left-3 top-[7px] h-3.5 w-3.5 text-muted-foreground/70" />
+            <Search className="absolute left-3 top-[7px] h-3.5 w-3.5 text-muted-foreground" />
           </div>
 
           <a
             href="/rss.xml"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center h-[28px] w-[28px] rounded-full border border-border/50 text-muted-foreground hover:text-foreground hover:bg-muted/40 transition-colors"
+            className="flex items-center justify-center h-[28px] w-[28px] rounded-full border border-border/60 text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
             aria-label="RSS Feed"
           >
             <Rss className="h-3.5 w-3.5" />
@@ -119,13 +120,13 @@ export function Blog() {
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group flex flex-col justify-between p-6 md:p-8 rounded-2xl border border-border/30 bg-card shadow-md hover:shadow-lg hover:border-foreground/15 transition-all duration-300 min-h-[340px]"
+                className="group flex flex-col justify-between p-6 md:p-8 rounded-2xl border border-border/50 bg-card shadow-sm hover:shadow-md hover:border-foreground/20 transition-all duration-300 min-h-[340px]"
               >
                 <div>
                   {/* Meta Category & Date */}
-                  <div className="text-xs font-light text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+                  <div className="text-xs font-medium text-muted-foreground uppercase tracking-wider flex items-center gap-2">
                     <span>{formatDate(post.date)}</span>
-                    <span className="text-muted-foreground/30">•</span>
+                    <span className="text-muted-foreground/50">•</span>
                     <span>{post.category}</span>
                   </div>
 
@@ -137,14 +138,14 @@ export function Blog() {
 
                 <div>
                   {/* Description snippet */}
-                  <p className="text-sm font-light text-muted-foreground/80 leading-relaxed mt-4 line-clamp-3">
+                  <p className="text-sm font-normal text-muted-foreground leading-relaxed mt-4 line-clamp-3">
                     {post.description}
                   </p>
 
                   {/* Author signature section */}
-                  <div className="flex items-center justify-between mt-6 pt-4 border-t border-border/20">
+                  <div className="flex items-center justify-between mt-6 pt-4 border-t border-border/30">
                     <div className="flex items-center gap-2">
-                      <div className="relative h-5.5 w-5.5 rounded-full overflow-hidden border border-border/40">
+                      <div className="relative h-5.5 w-5.5 rounded-full overflow-hidden border border-border/60">
                         <Image
                           src="/profile_pic.webp"
                           alt="Ujjwal Katiyar"
@@ -153,16 +154,17 @@ export function Blog() {
                           className="object-cover"
                         />
                       </div>
-                      <span className="text-xs font-normal text-muted-foreground group-hover:text-foreground/90 transition-colors">
+                      <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
                         Ujjwal Katiyar
                       </span>
                     </div>
                     <p className="text-xs">
-                    <ImpressionCounter slug={post.slug} readOnly />
+                      <ImpressionCounter slug={post.slug} readOnly />
                     </p>
                   </div>
                 </div>
               </Link>
+
             ))}
           </div>
 

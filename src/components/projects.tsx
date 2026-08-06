@@ -62,8 +62,8 @@ export function Projects() {
     <section id="projects" className="py-5 border-b border-border/40 transition-colors duration-300">
       {/* Section Header */}
       <div className="mb-8">
-        <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-neutral-300 dark:text-neutral-300 select-none">
-Projects
+        <h2 className="text-xl md:text-2xl font-bold tracking-tight text-foreground select-none">
+          Projects
         </h2>
       </div>
 
@@ -72,13 +72,13 @@ Projects
         {projects.map((project, i) => (
           <div
             key={i}
-            className="bg-[#121212] dark:bg-[#121212] border border-neutral-800/80 hover:border-neutral-700/90 rounded-2xl md:rounded-3xl p-5 md:p-6 flex flex-col justify-between group transition-all duration-300 shadow-xl"
+            className="bg-card border border-border rounded-2xl md:rounded-3xl p-5 md:p-6 flex flex-col justify-between group hover:border-foreground/25 transition-all duration-300 shadow-sm hover:shadow-md"
           >
             <div>
               {/* Top Title inside card */}
 
               <div className="flex items-center justify-between">
-                <h3 className="text-lg md:text-xl font-bold text-white tracking-tight select-none">
+                <h3 className="text-lg md:text-xl font-bold text-foreground tracking-tight select-none">
                   {project.title}
                 </h3>
                 <div className="flex justify-end gap-2">
@@ -88,7 +88,7 @@ Projects
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`View GitHub repository for ${project.title}`}
-                      className="w-9 h-9 rounded-full bg-neutral-800/70 border border-neutral-700/50 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-700/80 transition-all duration-200"
+                      className="w-9 h-9 rounded-full bg-muted/60 border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-200"
                     >
                       <Github className="w-4 h-4" />
                     </a>
@@ -99,7 +99,7 @@ Projects
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Visit live demo for ${project.title}`}
-                    className="w-9 h-9 rounded-full bg-neutral-800/70 border border-neutral-700/50 flex items-center justify-center text-neutral-300 hover:text-white hover:bg-neutral-700/80 transition-all duration-200"
+                    className="w-9 h-9 rounded-full bg-muted/60 border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-200"
                   >
                     <ArrowUpRight className="w-4 h-4" />
                   </a>
@@ -107,7 +107,7 @@ Projects
 
               </div>
               {/* Preview Image Container */}
-              <div className="relative w-full h-[200px] rounded-lg overflow-hidden border border-neutral-800/80 bg-neutral-950 mt-5">
+              <div className="relative w-full h-[200px] rounded-lg overflow-hidden border border-border bg-muted/40 mt-5">
                 <Image
                   src={project.image}
                   alt={`Preview screenshot of ${project.title}`}
@@ -121,15 +121,8 @@ Projects
 
             {/* Bottom Details & Links */}
             <div>
-              {/* Title & Arrow Button */}
-              {/* <div className="flex items-center justify-between gap-3 mb-2">
-                <h4 className="text-lg font-semibold text-white tracking-tight">
-                  {project.title}
-                </h4>
-              </div> */}
-
               {/* Description */}
-              <p className="text-xs md:text-sm text-neutral-400 font-normal leading-relaxed line-clamp-2 mb-4 mt-5">
+              <p className="text-xs md:text-sm text-muted-foreground font-normal leading-relaxed line-clamp-2 mb-4 mt-5">
                 {project.description}
               </p>
 
@@ -138,13 +131,13 @@ Projects
                 {project.tags.map((tag, j) => (
                   <span
                     key={j}
-                    className="bg-neutral-800/70 border border-neutral-700/60 text-neutral-300 text-[11px] md:text-xs px-3 py-1 rounded-full font-medium tracking-wide"
+                    className="bg-muted border border-border text-foreground text-[11px] md:text-xs px-3 py-1 rounded-full font-medium tracking-wide"
                   >
                     {tag}
                   </span>
                 ))}
                 {project.extraCount && (
-                  <span className="bg-neutral-800/40 border border-neutral-700/40 text-neutral-400 text-[11px] md:text-xs px-2.5 py-1 rounded-full font-medium">
+                  <span className="bg-muted/50 border border-border/80 text-muted-foreground text-[11px] md:text-xs px-2.5 py-1 rounded-full font-medium">
                     +{project.extraCount}
                   </span>
                 )}
@@ -153,6 +146,7 @@ Projects
           </div>
         ))}
       </div>
+
     </section>
   )
 }
