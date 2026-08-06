@@ -91,42 +91,78 @@ export default async function BlogPostPage({ params }: PageProps) {
     }
   }
 
+  const jsonLdArticle = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://ujjwalkatiyar.in/blog/${slug}`,
+    },
+    "headline": post.title,
+    "description": post.description,
+    "image": ["https://ujjwalkatiyar.in/profile_pic.webp"],
+    "datePublished": isoPublishDate,
+    "dateModified": isoModifiedDate,
+    "author": {
+      "@type": "Person",
+      "name": "Ujjwal Katiyar",
+      "url": "https://ujjwalkatiyar.in",
+      "sameAs": [
+        "https://github.com/ujjwalkat07",
+        "https://www.linkedin.com/in/ujjwalkatiyar07",
+      ],
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Ujjwal Katiyar",
+      "url": "https://ujjwalkatiyar.in",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://ujjwalkatiyar.in/profile_pic.webp",
+      },
+    },
+    "keywords": (post.tags || []).join(", "),
+    "articleSection": post.category || "Technology",
+    "inLanguage": "en-US",
+  }
+
+  const jsonLdBreadcrumbs = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://ujjwalkatiyar.in",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://ujjwalkatiyar.in/blog",
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": post.title,
+        "item": `https://ujjwalkatiyar.in/blog/${slug}`,
+      },
+    ],
+  }
+
   return (
     <div className="flex flex-col min-h-screen bg-background font-sans transition-colors duration-300 antialiased selection:bg-indigo-500/10 selection:text-indigo-500">
-      {/* Dynamic Blog Posting Structured Data (JSON-LD) */}
+      {/* Dynamic Blog Posting & Breadcrumbs Structured Data (JSON-LD) */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            "headline": post.title,
-            "description": post.description,
-            "datePublished": isoPublishDate,
-            "dateModified": isoModifiedDate,
-            "author": [
-              {
-                "@type": "Person",
-                "name": "Ujjwal Katiyar",
-                "url": "https://ujjwalkatiyar.in"
-              }
-            ],
-            "publisher": {
-              "@type": "Organization",
-              "name": "Ujjwal Katiyar",
-              "logo": {
-                "@type": "ImageObject",
-                "url": "https://ujjwalkatiyar.in/profile_pic.webp"
-              }
-            },
-            "image": "https://ujjwalkatiyar.in/profile_pic.webp",
-            "mainEntityOfPage": {
-              "@type": "WebPage",
-              "@id": `https://ujjwalkatiyar.in/blog/${slug}`
-            }
-          })
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdArticle) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumbs) }}
+      />
+
       {/* Navigation */}
       <Navbar />
 
