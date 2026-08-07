@@ -42,7 +42,7 @@ function parseFrontmatter(fileContent) {
 
 function buildBlog() {
   if (!fs.existsSync(BLOG_DIR)) {
-    console.error(`Blog directory not found: ${BLOG_DIR}`)
+    //(`Blog directory not found: ${BLOG_DIR}`)
     process.exit(1)
   }
 
@@ -77,7 +77,7 @@ function buildBlog() {
   }
 
   fs.writeFileSync(OUTPUT_FILE, JSON.stringify(posts, null, 2), "utf-8")
-  console.log(`Successfully built ${posts.length} blog posts into ${OUTPUT_FILE}`)
+  //.log(`Successfully built ${posts.length} blog posts into ${OUTPUT_FILE}`)
 }
 
 buildBlog()

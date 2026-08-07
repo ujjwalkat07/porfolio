@@ -44,13 +44,13 @@ export async function POST(request: NextRequest) {
     })
 
     if (error) {
-      console.error("Supabase RPC error:", error)
+      //("Supabase RPC error:", error)
       return NextResponse.json({ error: "Failed to increment" }, { status: 500 })
     }
 
     return NextResponse.json({ count: data })
   } catch (e) {
-    console.error("Impression POST error:", e)
+    // ("Impression POST error:", e)
     return NextResponse.json({ error: "Internal error" }, { status: 500 })
   }
 }
@@ -70,13 +70,13 @@ export async function GET(request: NextRequest) {
       .single()
 
     if (error && error.code !== "PGRST116") {
-      console.error("Supabase query error:", error)
+      //("Supabase query error:", error)
       return NextResponse.json({ error: "Failed to fetch" }, { status: 500 })
     }
 
     return NextResponse.json({ count: data?.view_count ?? 0 })
   } catch (e) {
-    console.error("Impression GET error:", e)
+    //("Impression GET error:", e)
     return NextResponse.json({ error: "Internal error" }, { status: 500 })
   }
 }

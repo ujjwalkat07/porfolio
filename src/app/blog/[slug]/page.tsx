@@ -76,7 +76,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       isoPublishDate = d.toISOString()
     }
   } catch (e) {
-    console.error("Error parsing date: ", e)
+    //("Error parsing date: ", e)
   }
 
   let isoModifiedDate = isoPublishDate
@@ -87,7 +87,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         isoModifiedDate = d.toISOString()
       }
     } catch (e) {
-      console.error("Error parsing lastModified date: ", e)
+      //("Error parsing lastModified date: ", e)
     }
   }
 

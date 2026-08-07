@@ -32,7 +32,7 @@ export function ImpressionCounter({ slug, readOnly = false }: ImpressionCounterP
           setCount(data.count)
         }
       } catch (err) {
-        console.error("Failed to fetch impression:", err)
+        //("Failed to fetch impression:", err)
       }
     }
 

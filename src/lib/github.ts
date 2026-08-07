@@ -78,14 +78,14 @@ export async function fetchGithubUser(username: string = GITHUB_USERNAME): Promi
     })
 
     if (!res.ok) {
-      console.warn(`GitHub API user fetch failed with status: ${res.status}.`)
+      //.warn(`GitHub API user fetch failed with status: ${res.status}.`)
       return null
     }
 
     const data = await res.json()
     return data
   } catch (error) {
-    console.error("Error fetching GitHub user:", error)
+    //("Error fetching GitHub user:", error)
     return null
   }
 }
@@ -108,7 +108,7 @@ export async function fetchGithubRepos(username: string = GITHUB_USERNAME): Prom
     })
 
     if (!res.ok) {
-      console.warn(`GitHub API repos fetch failed with status: ${res.status}.`)
+      //.warn(`GitHub API repos fetch failed with status: ${res.status}.`)
       return []
     }
 
@@ -120,7 +120,7 @@ export async function fetchGithubRepos(username: string = GITHUB_USERNAME): Prom
 
     return []
   } catch (error) {
-    console.error("Error fetching GitHub repositories:", error)
+    //("Error fetching GitHub repositories:", error)
     return []
   }
 }

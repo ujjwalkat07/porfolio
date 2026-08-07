@@ -25,13 +25,13 @@ export async function POST(request: NextRequest) {
     })
 
     if (error) {
-      console.error("Supabase insert error:", error)
+      //("Supabase insert error:", error)
       return NextResponse.json({ error: "Failed to save message." }, { status: 500 })
     }
 
     return NextResponse.json({ success: true })
   } catch (e) {
-    console.error("Contact POST error:", e)
+    //("Contact POST error:", e)
     return NextResponse.json({ error: "Internal server error." }, { status: 500 })
   }
 }
