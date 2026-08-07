@@ -271,7 +271,7 @@ export function GithubRepoList({ repos }: GithubRepoListProps) {
                       </a>
                     )}
 
-                    <div className="flex items-center gap-1 text-[11px] text-muted-foreground/70 shrink-0">
+                    <div className="flex items-center gap-1 text-[11px] text-muted-foreground/100 shrink-0">
                       <Calendar className="h-3 w-3 shrink-0" />
                       <span>{formattedDate}</span>
                     </div>
