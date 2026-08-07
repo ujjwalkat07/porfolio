@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <main className="min-h-screen bg-background py-16 px-6 antialiased selection:bg-indigo-500/10 selection:text-indigo-500">
+    <main className="min-h-screen bg-background py-12 sm:py-16 px-4 sm:px-6 md:px-10 antialiased selection:bg-indigo-500/10 selection:text-indigo-500">
       <div className="max-w-3xl mx-auto flex flex-col gap-10">
         
         {/* Back Link */}
@@ -27,7 +27,7 @@ export default function TermsPage() {
 
         {/* Header */}
         <div className="flex flex-col gap-4">
-          <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
+          <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl md:text-5xl">
             Terms &amp; Disclaimer
           </h1>
           <p className="text-xs font-light text-muted-foreground uppercase tracking-widest">

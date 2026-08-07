@@ -40,8 +40,8 @@ export function ImpressionCounter({ slug, readOnly = false }: ImpressionCounterP
   }, [slug, readOnly])
 
   return (
-    <span className="inline-flex items-center gap-1 text-muted-foreground">
-      <Eye className="h-3.5 w-3.5" />
+    <span className="inline-flex items-center gap-1 text-muted-foreground whitespace-nowrap shrink-0">
+      <Eye className="h-3.5 w-3.5 shrink-0" />
       {count !== null ? (
         <span>{count.toLocaleString()} views</span>
       ) : (

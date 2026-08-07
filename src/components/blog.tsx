@@ -89,8 +89,8 @@ export function Blog() {
         </div>
 
         {/* Search bar + RSS feed icon */}
-        <div className="flex items-center gap-3">
-          <div className="relative w-full sm:w-48">
+        <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
+          <div className="relative flex-1 sm:w-48 sm:flex-initial">
             <input
               type="text"
               placeholder="Search..."
@@ -105,7 +105,7 @@ export function Blog() {
             href="/rss.xml"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center h-[28px] w-[28px] rounded-full border border-border/60 text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+            className="flex items-center justify-center h-[28px] w-[28px] shrink-0 rounded-full border border-border/60 text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
             aria-label="RSS Feed"
           >
             <Rss className="h-3.5 w-3.5" />
@@ -121,14 +121,14 @@ export function Blog() {
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group flex flex-col justify-between p-6 md:p-8 rounded-2xl border border-border/50 bg-card shadow-sm hover:shadow-md hover:border-foreground/20 transition-all duration-300 min-h-[340px]"
+                className="group flex flex-col justify-between p-5 sm:p-6 md:p-8 rounded-2xl border border-border/50 bg-card shadow-sm hover:shadow-md hover:border-foreground/20 transition-all duration-300 min-h-[300px] sm:min-h-[340px]"
               >
                 <div>
                   {/* Meta Category & Date */}
-                  <div className="text-xs font-medium text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-                    <span>{formatDate(post.date)}</span>
-                    <span className="text-muted-foreground/50">•</span>
-                    <span>{post.category}</span>
+                  <div className="text-xs font-medium text-muted-foreground uppercase tracking-wider flex flex-wrap items-center gap-2">
+                    <span className="shrink-0">{formatDate(post.date)}</span>
+                    <span className="text-muted-foreground/50 shrink-0">•</span>
+                    <span className="shrink-0">{post.category}</span>
                   </div>
 
                   {/* Article Title */}

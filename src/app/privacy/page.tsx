@@ -16,7 +16,7 @@ export default async function PrivacyPolicyPage() {
   const contentHtml = await marked.parse(privacyPolicyContent)
 
   return (
-    <main className="min-h-screen bg-background py-16 px-6 antialiased selection:bg-indigo-500/10 selection:text-indigo-500">
+    <main className="min-h-screen bg-background py-12 sm:py-16 px-4 sm:px-6 md:px-10 antialiased selection:bg-indigo-500/10 selection:text-indigo-500">
       <div className="max-w-3xl mx-auto flex flex-col gap-10">
         
         {/* Back Link */}
@@ -31,7 +31,7 @@ export default async function PrivacyPolicyPage() {
 
         {/* Header */}
         <div className="flex flex-col gap-4">
-          <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
+          <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl md:text-5xl">
             Privacy Policy
           </h1>
           <p className="text-xs font-light text-muted-foreground uppercase tracking-widest">
@@ -41,7 +41,7 @@ export default async function PrivacyPolicyPage() {
 
         {/* Policy Content */}
         <div
-          className="text-foreground leading-relaxed font-normal text-sm sm:text-base max-w-none pt-6 border-t border-border/20
+          className="text-foreground leading-relaxed font-normal text-sm sm:text-base max-w-none pt-6 border-t border-border/20 break-words [overflow-wrap:anywhere]
             [&>h1]:text-2xl [&>h1]:font-bold [&>h1]:text-foreground [&>h1]:mt-10 [&>h1]:mb-4 [&>h1]:tracking-tight
             [&>h2]:text-xl [&>h2]:font-bold [&>h2]:text-foreground [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:tracking-tight
             [&>h3]:text-lg [&>h3]:font-semibold [&>h3]:text-foreground [&>h3]:mt-8 [&>h3]:mb-3

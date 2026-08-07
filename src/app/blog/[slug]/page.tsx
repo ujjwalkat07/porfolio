@@ -168,11 +168,11 @@ export default async function BlogPostPage({ params }: PageProps) {
       <Navbar />
 
       {/* Main Page Layout Wrapper */}
-      <main className="flex-1 w-full max-w-[800px] mx-auto px-6 md:px-10 flex flex-col pt-16 pb-10">
+      <main className="flex-1 w-full max-w-[800px] mx-auto px-4 sm:px-6 md:px-10 flex flex-col pt-12 sm:pt-16 pb-10">
         {/* Back Link */}
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground mb-8 transition-colors self-start"
+          className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground mb-6 sm:mb-8 transition-colors self-start"
         >
           <ArrowLeft className="h-3.5 w-3.5" />
           <span>Back to blog posts</span>
@@ -182,31 +182,33 @@ export default async function BlogPostPage({ params }: PageProps) {
         <article className="flex flex-col gap-6 text-foreground">
           <div className="flex flex-col gap-4">
             {/* Meta details */}
-            <div className="flex items-center gap-3 text-[10px] text-muted-foreground font-light uppercase tracking-wider">
-              <span className="flex items-center gap-1">
-                <Calendar className="h-3.5 w-3.5" />
+            <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-[10px] sm:text-xs text-muted-foreground font-light uppercase tracking-wider">
+              <span className="inline-flex items-center gap-1 shrink-0 whitespace-nowrap">
+                <Calendar className="h-3.5 w-3.5 shrink-0" />
                 Published: {post.date}
               </span>
               {post.lastModified && (
                 <>
-                  <span>•</span>
-                  <span className="flex items-center gap-1">
-                    <Calendar className="h-3.5 w-3.5" />
+                  <span className="text-muted-foreground/40 shrink-0 select-none">•</span>
+                  <span className="inline-flex items-center gap-1 shrink-0 whitespace-nowrap">
+                    <Calendar className="h-3.5 w-3.5 shrink-0" />
                     Updated: {post.lastModified}
                   </span>
                 </>
               )}
-              <span>•</span>
-              <span className="flex items-center gap-1">
-                <Clock className="h-3.5 w-3.5" />
+              <span className="text-muted-foreground/40 shrink-0 select-none">•</span>
+              <span className="inline-flex items-center gap-1 shrink-0 whitespace-nowrap">
+                <Clock className="h-3.5 w-3.5 shrink-0" />
                 {post.readTime}
               </span>
-              <span>•</span>
-              <ImpressionCounter slug={slug} />
+              <span className="text-muted-foreground/40 shrink-0 select-none">•</span>
+              <span className="inline-flex items-center gap-1 shrink-0 whitespace-nowrap">
+                <ImpressionCounter slug={slug} />
+              </span>
             </div>
 
             {/* Title */}
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground leading-[1.15]">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground leading-[1.2] sm:leading-[1.15] break-words [overflow-wrap:anywhere]">
               {post.title}
             </h1>
 
@@ -215,7 +217,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               {post.tags.map((tag, j) => (
                 <span
                   key={j}
-                  className="text-[9px] font-normal text-indigo-500 dark:text-indigo-400 bg-indigo-500/5 border border-indigo-500/10 rounded-md px-2.5 py-0.5 tracking-wide uppercase select-none font-medium"
+                  className="text-[9px] sm:text-[10px] font-normal text-indigo-500 dark:text-indigo-400 bg-indigo-500/5 border border-indigo-500/10 rounded-md px-2.5 py-0.5 tracking-wide uppercase select-none font-medium"
                 >
                   {tag}
                 </span>
@@ -228,23 +230,24 @@ export default async function BlogPostPage({ params }: PageProps) {
 
           {/* HTML rendered markdown body */}
           <div
-            className="mt-0 text-foreground leading-relaxed font-normal text-sm sm:text-base max-w-none
-              [&>h1]:text-2xl [&>h1]:font-bold [&>h1]:text-foreground [&>h1]:mt-10 [&>h1]:mb-4 [&>h1]:tracking-tight
-              [&>h2]:text-xl [&>h2]:font-bold [&>h2]:text-foreground [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:tracking-tight
-              [&>h3]:text-lg [&>h3]:font-semibold [&>h3]:text-foreground [&>h3]:mt-8 [&>h3]:mb-3
+            className="mt-0 text-foreground leading-relaxed font-normal text-sm sm:text-base max-w-none break-words [overflow-wrap:anywhere]
+              [&>h1]:text-xl sm:[&>h1]:text-2xl [&>h1]:font-bold [&>h1]:text-foreground [&>h1]:mt-8 sm:[&>h1]:mt-10 [&>h1]:mb-4 [&>h1]:tracking-tight
+              [&>h2]:text-lg sm:[&>h2]:text-xl [&>h2]:font-bold [&>h2]:text-foreground [&>h2]:mt-8 sm:[&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:tracking-tight
+              [&>h3]:text-base sm:[&>h3]:text-lg [&>h3]:font-semibold [&>h3]:text-foreground [&>h3]:mt-6 sm:[&>h3]:mt-8 [&>h3]:mb-3
               [&>p]:mb-5 [&>p]:leading-relaxed [&>p]:text-foreground [&>p]:font-light [&>p]:tracking-wide
               [&>p>strong]:font-semibold [&>p>strong]:text-foreground
-              [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-6 [&>ul]:text-foreground [&>ul]:flex [&>ul]:flex-col [&>ul]:gap-2.5 [&>ul]:font-light [&>ul]:tracking-wide
-              [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-6 [&>ol]:text-foreground [&>ol]:flex [&>ol]:flex-col [&>ol]:gap-2.5 [&>ol]:font-light [&>ol]:tracking-wide
+              [&>ul]:list-disc [&>ul]:pl-5 sm:[&>ul]:pl-6 [&>ul]:mb-6 [&>ul]:text-foreground [&>ul]:flex [&>ul]:flex-col [&>ul]:gap-2.5 [&>ul]:font-light [&>ul]:tracking-wide
+              [&>ol]:list-decimal [&>ol]:pl-5 sm:[&>ol]:pl-6 [&>ol]:mb-6 [&>ol]:text-foreground [&>ol]:flex [&>ol]:flex-col [&>ol]:gap-2.5 [&>ol]:font-light [&>ol]:tracking-wide
               [&>li]:leading-relaxed
-              [&>blockquote]:border-l-4 [&>blockquote]:border-indigo-500 [&>blockquote]:pl-4 [&>blockquote]:italic [&>blockquote]:text-muted-foreground [&>blockquote]:my-8
-              [&>pre]:p-5 [&>pre]:bg-muted/20 [&>pre]:border [&>pre]:border-border/40 [&>pre]:rounded-2xl [&>pre]:overflow-x-auto [&>pre]:my-8 [&>pre]:shadow-xs
-              [&>code]:text-xs [&>code]:font-mono [&>code]:bg-indigo-500/10 [&>code]:px-2 [&>code]:py-0.5 [&>code]:rounded-md [&>code]:text-indigo-500 dark:[&>code]:text-indigo-400 [&>code]:font-medium
-              [&>pre>code]:bg-transparent [&>pre>code]:p-0 [&>pre>code]:text-foreground [&>pre>code]:font-normal [&>pre>code]:leading-normal
-              [&_table]:w-full [&_table]:my-8 [&_table]:border-collapse [&_table]:text-sm [&_table]:text-foreground
-              [&_th]:border [&_th]:border-border/40 [&_th]:bg-muted/20 [&_th]:px-4 [&_th]:py-2.5 [&_th]:text-left [&_th]:font-semibold [&_th]:text-foreground
-              [&_td]:border [&_td]:border-border/40 [&_td]:px-4 [&_td]:py-2.5 [&_td]:text-foreground [&_td]:font-light
+              [&>blockquote]:border-l-4 [&>blockquote]:border-indigo-500 [&>blockquote]:pl-4 [&>blockquote]:italic [&>blockquote]:text-muted-foreground [&>blockquote]:my-6 sm:[&>blockquote]:my-8
+              [&>pre]:p-4 sm:[&>pre]:p-5 [&>pre]:bg-muted/20 [&>pre]:border [&>pre]:border-border/40 [&>pre]:rounded-xl sm:[&>pre]:rounded-2xl [&>pre]:max-w-full [&>pre]:overflow-x-auto [&>pre]:my-6 sm:[&>pre]:my-8 [&>pre]:shadow-xs
+              [&>code]:text-xs [&>code]:font-mono [&>code]:bg-indigo-500/10 [&>code]:px-1.5 sm:[&>code]:px-2 [&>code]:py-0.5 [&>code]:rounded-md [&>code]:text-indigo-500 dark:[&>code]:text-indigo-400 [&>code]:font-medium [&>code]:break-all
+              [&>pre>code]:bg-transparent [&>pre>code]:p-0 [&>pre>code]:text-foreground [&>pre>code]:font-normal [&>pre>code]:leading-normal [&>pre>code]:break-normal
+              [&_table]:block [&_table]:w-full [&_table]:max-w-full [&_table]:overflow-x-auto [&_table]:my-8 [&_table]:border-collapse [&_table]:text-xs sm:[&_table]:text-sm [&_table]:text-foreground
+              [&_th]:border [&_th]:border-border/40 [&_th]:bg-muted/20 [&_th]:px-3 sm:[&_th]:px-4 [&_th]:py-2 sm:[&_th]:py-2.5 [&_th]:text-left [&_th]:font-semibold [&_th]:text-foreground
+              [&_td]:border [&_td]:border-border/40 [&_td]:px-3 sm:[&_td]:px-4 [&_td]:py-2 sm:[&_td]:py-2.5 [&_td]:text-foreground [&_td]:font-light
               [&_tr:nth-child(even)]:bg-muted/5
+              [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-xl
             "
             dangerouslySetInnerHTML={{ __html: contentHtml }}
           />

@@ -12,7 +12,7 @@ export function BentoProfile() {
       {/* Top row: Avatar + Name + Role */}
       <div className="flex flex-col sm:flex-row gap-5 items-start sm:items-center mb-5">
         <div className="flex flex-col gap-1">
-          <h1 className="text-5xl sm:text-5xl font-bold tracking-tight text-foreground">
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground">
             Ujjwal Katiyar
           </h1>
           <p className="text-sm md:text-base font-medium text-muted-foreground">
@@ -22,7 +22,7 @@ export function BentoProfile() {
       </div>
 
       {/* About paragraph */}
-      <p className="text-sm md:text-sm text-muted-foreground max-w-3xl mb-6 text-justify">
+      <p className="text-xs md:text-sm text-muted-foreground max-w-3xl mb-6 text-justify">
         Software Developer specializing in real-time web applications, scalable systems and high-performance backend development, with hands-on experience across end-to-end product development. Combining academic grounding in data structures, algorithms, and systems design with shipped, real-world engineering work.
       </p>
 

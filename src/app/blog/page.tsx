@@ -39,7 +39,7 @@ export default function BlogListingPage() {
       <Navbar />
 
       {/* Main Page Layout Wrapper */}
-      <main className="flex-1 w-full max-w-[1200px] mx-auto px-6 md:px-10 flex flex-col pt-16 gap-6">
+      <main className="flex-1 w-full max-w-[1200px] mx-auto px-4 sm:px-6 md:px-10 flex flex-col pt-12 sm:pt-16 gap-6">
         <h1 className="sr-only">Blog — Ujjwal Katiyar</h1>
         <Blog />
         <Footer />

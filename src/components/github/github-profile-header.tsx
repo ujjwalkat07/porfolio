@@ -113,18 +113,18 @@ export function GithubProfileHeader({ user }: GithubProfileHeaderProps) {
             <ExternalLink className="h-3.5 w-3.5 opacity-70" />
           </a>
 
-          <div className="flex items-center gap-4 text-xs text-muted-foreground">
-            <div className="flex items-center gap-1">
-              <Users className="h-3.5 w-3.5 text-primary" />
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-muted-foreground">
+            <div className="flex items-center gap-1 shrink-0">
+              <Users className="h-3.5 w-3.5 text-primary shrink-0" />
               <strong className="font-semibold text-foreground">{user.followers}</strong> followers
             </div>
-            <span>•</span>
-            <div className="flex items-center gap-1">
+            <span className="shrink-0">•</span>
+            <div className="flex items-center gap-1 shrink-0">
               <strong className="font-semibold text-foreground">{user.following}</strong> following
             </div>
-            <span>•</span>
-            <div className="flex items-center gap-1">
-              <BookOpen className="h-3.5 w-3.5 text-blue-500" />
+            <span className="shrink-0">•</span>
+            <div className="flex items-center gap-1 shrink-0">
+              <BookOpen className="h-3.5 w-3.5 text-blue-500 shrink-0" />
               <strong className="font-semibold text-foreground">{user.public_repos}</strong> repos
             </div>
           </div>

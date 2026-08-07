@@ -234,45 +234,45 @@ export function GithubRepoList({ repos }: GithubRepoListProps) {
                 </div>
 
                 {/* Card Footer: Metadata & Actions */}
-                <div className="flex items-center justify-between border-t border-border/40 pt-4 mt-4 text-xs text-muted-foreground">
-                  <div className="flex items-center gap-4">
+                <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-border/40 pt-3 sm:pt-4 mt-3 sm:mt-4 text-xs text-muted-foreground">
+                  <div className="flex flex-wrap items-center gap-3 sm:gap-4">
                     {/* Language */}
                     {repo.language && (
-                      <div className="flex items-center gap-1.5">
+                      <div className="flex items-center gap-1.5 shrink-0">
                         <span className={`h-2.5 w-2.5 rounded-full ${dotColor}`} />
                         <span>{repo.language}</span>
                       </div>
                     )}
 
                     {/* Stars */}
-                    <div className="flex items-center gap-1" title="Stargazers">
-                      <Star className="h-3.5 w-3.5 text-amber-400" />
+                    <div className="flex items-center gap-1 shrink-0" title="Stargazers">
+                      <Star className="h-3.5 w-3.5 text-amber-400 shrink-0" />
                       <span>{repo.stargazers_count}</span>
                     </div>
 
                     {/* Forks */}
-                    <div className="flex items-center gap-1" title="Forks">
-                      <GitFork className="h-3.5 w-3.5 text-blue-400" />
+                    <div className="flex items-center gap-1 shrink-0" title="Forks">
+                      <GitFork className="h-3.5 w-3.5 text-blue-400 shrink-0" />
                       <span>{repo.forks_count}</span>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 shrink-0">
                     {/* Demo Link if Homepage exists */}
                     {repo.homepage && (
                       <a
                         href={repo.homepage.startsWith("http") ? repo.homepage : `https://${repo.homepage}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 font-medium text-primary hover:underline"
+                        className="inline-flex items-center gap-1 font-medium text-primary hover:underline shrink-0"
                       >
                         <span>Demo</span>
-                        <ExternalLink className="h-3 w-3" />
+                        <ExternalLink className="h-3 w-3 shrink-0" />
                       </a>
                     )}
 
-                    <div className="flex items-center gap-1 text-[11px] text-muted-foreground/70">
-                      <Calendar className="h-3 w-3" />
+                    <div className="flex items-center gap-1 text-[11px] text-muted-foreground/70 shrink-0">
+                      <Calendar className="h-3 w-3 shrink-0" />
                       <span>{formattedDate}</span>
                     </div>
                   </div>
