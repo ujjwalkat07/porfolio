@@ -21,9 +21,9 @@ export const viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ujjwalkatiyar.in"),
-  title: "Ujjwal Katiyar — Full Stack Engineer and Systems Architect",
-  description: "Portfolio of Ujjwal Katiyar, a Full Stack Engineer building scalable real-time systems and responsive Next.js apps.",
-  keywords: ["Ujjwal Katiyar", "Full Stack Engineer", "Noida", "India", "Software Engineer", "Next.js", "Shadcn UI", "Kafka", "Redis"],
+  title: "Ujjwal Katiyar — Software Developer and Systems Architect",
+  description: "Portfolio of Ujjwal Katiyar, a Software Developer building scalable real-time systems and responsive Next.js apps.",
+  keywords: ["Ujjwal Katiyar", "Software Developer", "Full Stack Developer", "System Architect", "Noida", "India", "Software Engineer", "Next.js", "Shadcn UI", "Kafka", "Redis", "ujjwal", "engineer", "backend developer"],
   authors: [{ name: "Ujjwal Katiyar" }],
   alternates: {
     canonical: "https://ujjwalkatiyar.in",
@@ -43,8 +43,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Ujjwal Katiyar — Full Stack Engineer & Web Systems Architect",
-    description: "Portfolio of Ujjwal Katiyar, a Full Stack Engineer building scalable real-time systems and responsive Next.js apps.",
+    title: "Ujjwal Katiyar — Software Developer & Web Systems Architect",
+    description: "Portfolio of Ujjwal Katiyar, a Software Developer building scalable real-time systems and responsive Next.js apps.",
     type: "website",
     locale: "en_US",
     siteName: "Ujjwal Katiyar",
@@ -59,8 +59,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ujjwal Katiyar — Full Stack Engineer & Web Systems Architect",
-    description: "Portfolio of Ujjwal Katiyar, a Full Stack Engineer building scalable real-time systems and responsive Next.js apps.",
+    title: "Ujjwal Katiyar — Software Developer & Web Systems Architect",
+    description: "Portfolio of Ujjwal Katiyar, a Software Developer building scalable real-time systems and responsive Next.js apps.",
     creator: "@ujjwalkatiyar07",
     images: ["/profile_pic.webp"],
   },
@@ -93,7 +93,7 @@ export default function RootLayout({
               "@type": "Person",
               "name": "Ujjwal Katiyar",
               "image": "https://ujjwalkatiyar.in/profile_pic.webp",
-              "jobTitle": "Full Stack Engineer",
+              "jobTitle": "Software Developer",
               "url": "https://ujjwalkatiyar.in",
               "sameAs": [
                 "https://github.com/ujjwalkat07",

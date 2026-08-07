@@ -19,7 +19,7 @@ export function About() {
         </h3>
         <div className="text-sm text-muted-foreground font-light leading-relaxed">
           <p>
-            Full Stack Engineer specializing in real-time web applications, scalable systems, and high-performance backend development, with hands-on experience across end-to-end product development. Currently pursuing a Bachelor’s in Computer Science with a specialization in Artificial Intelligence, combining academic grounding in data structures, algorithms, and systems design with shipped, real-world engineering work.
+            Software Developer specializing in real-time web applications, scalable systems, and high-performance backend development, with hands-on experience across end-to-end product development. Currently pursuing a Bachelor’s in Computer Science with a specialization in Artificial Intelligence, combining academic grounding in data structures, algorithms, and systems design with shipped, real-world engineering work.
           </p>
         </div>
 

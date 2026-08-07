@@ -13,7 +13,7 @@ import Link from "next/link"
 export const metadata: Metadata = {
   title: "GitHub Repositories & Open Source Projects — Ujjwal Katiyar",
   description:
-    "Explore open-source projects, developer statistics, and public GitHub code contributions of Ujjwal Katiyar, a Full Stack Engineer & Systems Architect.",
+    "Explore open-source projects, developer statistics, and public GitHub code contributions of Ujjwal Katiyar, a Software Developer & Systems Architect.",
   keywords: [
     "Ujjwal Katiyar GitHub",
     "Ujjwal Katiyar projects",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "TypeScript repositories",
     "Next.js projects",
     "Distributed Systems code",
-    "Full Stack Engineer Noida",
+    "Software Developer Noida",
     "GitHub Showcase",
   ],
   alternates: {
@@ -73,13 +73,13 @@ export default async function GithubPage() {
       "alternateName": user?.login || "ujjwalkat07",
       "url": "https://ujjwalkatiyar.in/github",
       "image": user?.avatar_url || "https://avatars.githubusercontent.com/u/ujjwalkat07?v=4",
-      "jobTitle": "Full Stack Engineer & Systems Architect",
+      "jobTitle": "Software Developer & Systems Architect",
       "sameAs": [
         user?.html_url || "https://github.com/ujjwalkat07",
         "https://ujjwalkatiyar.in",
         "https://www.linkedin.com/in/ujjwalkatiyar07",
       ],
-      "description": user?.bio || "Full Stack Engineer & Systems Architect",
+      "description": user?.bio || "Software Developer & Systems Architect",
     },
   }
 
@@ -187,7 +187,7 @@ export default async function GithubPage() {
           </div>
         </section>
       </main>
-<div className="w-full max-w-[960px] mx-auto">
+      <div className="w-full max-w-[960px] mx-auto">
         <Footer />
       </div>
     </>

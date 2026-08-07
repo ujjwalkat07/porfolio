@@ -7,7 +7,7 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 
 export const metadata: Metadata = {
-  title: "Contact | Ujjwal Katiyar — Full Stack Engineer",
+  title: "Contact | Ujjwal Katiyar — Software Developer",
   description: "Get in touch with Ujjwal Katiyar. Send a message, find contact details, or connect on LinkedIn and GitHub.",
   alternates: {
     canonical: "https://ujjwalkatiyar.in/contact",

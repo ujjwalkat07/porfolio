@@ -5,7 +5,7 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 
 export const metadata: Metadata = {
-  title: "About | Ujjwal Katiyar — Full Stack Engineer",
+  title: "About | Ujjwal Katiyar — Software Developer",
   description: "Learn more about Ujjwal Katiyar's background, education in Computer Science (AI), and approach to building scalable systems.",
   alternates: {
     canonical: "https://ujjwalkatiyar.in/about",
@@ -59,7 +59,7 @@ export default function AboutPage() {
             About Me
           </h1>
           <p className="text-sm font-light text-muted-foreground leading-relaxed">
-            Full Stack Engineer building resilient architectures, event pipelines, and dynamic user interfaces.
+            Software Developer building resilient architectures, event pipelines, and dynamic user interfaces.
           </p>
         </div>
 

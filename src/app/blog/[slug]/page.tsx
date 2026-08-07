@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${post.title} — Ujjwal Katiyar`,
     description: post.description,
-    keywords: [...(post.tags || []), ...(post.keywords || []), "Ujjwal Katiyar", "Full Stack Engineer", "Blog", "System Design"],
+    keywords: [...(post.tags || []), ...(post.keywords || []), "Ujjwal Katiyar", "Software Developer", "Blog", "System Design"],
     authors: [{ name: "Ujjwal Katiyar" }],
     alternates: {
       canonical: `https://ujjwalkatiyar.in/blog/${slug}`,
