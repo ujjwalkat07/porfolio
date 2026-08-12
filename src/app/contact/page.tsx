@@ -22,14 +22,7 @@ export default function ContactPage() {
       value: "contact@ujjwalkatiyar.in",
       href: "mailto:contact@ujjwalkatiyar.in",
       label: "Send email",
-    },
-    {
-      icon: MapPin,
-      title: "Location",
-      value: "Noida, Uttar Pradesh, India",
-      href: null,
-      label: null,
-    },
+    }
   ]
 
   const socials = [
