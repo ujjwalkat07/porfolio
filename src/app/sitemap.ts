@@ -5,11 +5,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://ujjwalkatiyar.in"
 
   // Base routes
-  const routes = ["", "/github", "/blog", "/about", "/contact", "/privacy", "/terms", "/rss.xml"].map((route) => ({
+  const routes = ["", "/github", "/leetcode", "/blog", "/about", "/contact", "/privacy", "/terms", "/rss.xml"].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
-    changeFrequency: route === "" || route === "/blog" || route === "/github" ? ("daily" as const) : ("monthly" as const),
-    priority: route === "" ? 1.0 : route === "/blog" || route === "/github" ? 0.9 : 0.7,
+    changeFrequency: route === "" || route === "/blog" || route === "/github" || route === "/leetcode" ? ("daily" as const) : ("monthly" as const),
+    priority: route === "" ? 1.0 : route === "/blog" || route === "/github" || route === "/leetcode" ? 0.9 : 0.7,
   }))
 
   // Dynamic blog routes

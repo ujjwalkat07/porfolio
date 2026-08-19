@@ -76,6 +76,7 @@ export default async function GithubPage() {
       "jobTitle": "Software Developer & Systems Architect",
       "sameAs": [
         user?.html_url || "https://github.com/ujjwalkat07",
+        "https://leetcode.com/u/ujjwalkat07",
         "https://ujjwalkatiyar.in",
         "https://www.linkedin.com/in/ujjwalkatiyar07",
       ],

@@ -10,6 +10,7 @@ const navLinks = [
   { label: "About", href: "/about" },
   { label: "Projects", href: "/#projects" },
   { label: "GitHub", href: "/github" },
+  { label: "LeetCode", href: "/leetcode" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ]

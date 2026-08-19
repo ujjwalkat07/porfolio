@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Mail, Phone, FileText } from "lucide-react"
-import { Github, Linkedin } from "@/components/icons"
+import { Github, Linkedin, LeetCode } from "@/components/icons"
 import { Badge } from "@/components/ui/badge"
 
 export function Hero() {
@@ -110,6 +110,17 @@ export function Hero() {
           >
             <Github className="h-3.5 w-3.5 text-muted-foreground/80" />
             <span>GitHub</span>
+          </a>
+
+          {/* LeetCode */}
+          <a
+            id="hero-leetcode-link"
+            href="/leetcode"
+            aria-label="Visit Ujjwal Katiyar's LeetCode showcase"
+            className="inline-flex items-center gap-2 text-sm font-normal text-muted-foreground px-4 py-2.5 border border-border/50 rounded-lg bg-card/50 hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
+          >
+            <LeetCode className="h-3.5 w-3.5 text-muted-foreground/80" />
+            <span>LeetCode</span>
           </a>
         </div>
       </div>

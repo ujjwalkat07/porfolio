@@ -97,6 +97,7 @@ export default function RootLayout({
               "url": "https://ujjwalkatiyar.in",
               "sameAs": [
                 "https://github.com/ujjwalkat07",
+                "https://leetcode.com/u/ujjwalkat07",
                 "https://www.linkedin.com/in/ujjwalkatiyar07"
               ],
               "address": {

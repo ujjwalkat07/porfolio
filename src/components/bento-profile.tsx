@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { Mail, FileText, ArrowUpRight } from "lucide-react"
-import { Github, Linkedin } from "@/components/icons"
+import { Github, Linkedin, LeetCode } from "@/components/icons"
 
 export function BentoProfile() {
   const email = "contact@ujjwalkatiyar.in"
@@ -36,6 +36,17 @@ export function BentoProfile() {
         >
           <Github className="h-4 w-4" />
           <span>GitHub</span>
+          <ArrowUpRight className="h-3 w-3 opacity-70" />
+        </a>
+
+        <a
+          href="https://leetcode.com/u/ujjwalkat07"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
+        >
+          <LeetCode className="h-4 w-4" />
+          <span>LeetCode</span>
           <ArrowUpRight className="h-3 w-3 opacity-70" />
         </a>
 

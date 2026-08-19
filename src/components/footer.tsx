@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, Youtube, Instagram, Facebook } from "@/components/icons"
+import { Github, Linkedin, Twitter, Youtube, Instagram, Facebook, LeetCode } from "@/components/icons"
 import Link from "next/link"
 
 export function Footer() {
@@ -6,6 +6,7 @@ export function Footer() {
 
   const socials = [
     { name: "GitHub", href: "https://github.com/ujjwalkat07", icon: Github },
+    { name: "LeetCode", href: "https://leetcode.com/u/ujjwalkat07", icon: LeetCode },
     { name: "LinkedIn", href: "https://www.linkedin.com/in/ujjwalkatiyar07", icon: Linkedin },
     { name: "X (Twitter)", href: "https://x.com/ujjwalkatiyar07", icon: Twitter },
   ]
