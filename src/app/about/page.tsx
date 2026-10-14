@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 import Link from "next/link"
-import { ArrowLeft, GraduationCap, Code2, Server, Briefcase } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 
@@ -13,35 +13,11 @@ export const metadata: Metadata = {
 }
 
 export default function AboutPage() {
-  const timeline = [
-    {
-      date: "Oct 2023 – Feb 2027",
-      title: "B.Tech in Computer Science & Engineering (AI Specialization)",
-      institution: "IIMT College of Engineering, Greater Noida",
-      description: "Focusing on artificial intelligence, algorithmic foundations, distributed databases, and software design principles.",
-      icon: GraduationCap,
-    },
-    {
-      date: "2024 – Present",
-      title: "Real-time Architectures & Messaging Systems",
-      institution: "Self-Driven Research & Production builds",
-      description: "Experimenting with event-driven message brokers like Apache Kafka, memory stores like Redis, and dynamic WebSocket pipelines to reduce interaction latency.",
-      icon: Server,
-    },
-    {
-      date: "2023 – Present",
-      title: "Full Stack Web Engineering",
-      institution: "Open Source Contributions & Portfolios",
-      description: "Building production-grade applications using Next.js, Node.js, Express, MongoDB, and Tailwind CSS. Implementing modern UI systems and dynamic SEO architectures.",
-      icon: Code2,
-    },
-  ]
-
   return (
     <div className="flex flex-col min-h-screen bg-background font-sans transition-colors duration-300 antialiased selection:bg-indigo-500/10 selection:text-indigo-500">
       <Navbar />
 
-      <main className="flex-1 w-full max-w-[960px] mx-auto px-4 sm:px-6 md:px-10 flex flex-col pt-12 sm:pt-16 pb-16 gap-10">
+      <main className="flex-1 w-full max-w-[900px] mx-auto px-4 sm:px-6 md:px-10 flex flex-col pt-12 sm:pt-16 pb-16 gap-10">
 
         {/* Back Link */}
         <Link
@@ -76,45 +52,9 @@ export default function AboutPage() {
           </p>
         </div>
 
-        {/* Timeline */}
-        <div className="flex flex-col gap-8 pt-4 border-t border-border/20">
-          <h2 className="text-xl font-bold tracking-tight text-foreground">
-            Journey &amp; Education
-          </h2>
-          <div className="flex flex-col gap-8 relative pl-6 border-l border-border/40">
-            {timeline.map((item, idx) => {
-              const Icon = item.icon
-              return (
-                <div key={idx} className="relative group">
-                  {/* Icon Badge Indicator */}
-                  <span className="absolute -left-[37px] top-1.5 flex h-[22px] w-[22px] items-center justify-center rounded-full bg-card border border-border/60 text-indigo-500 group-hover:bg-indigo-500/10 transition-colors shadow-xs">
-                    <Icon className="h-3 w-3" />
-                  </span>
-
-                  {/* Timeline content card */}
-                  <div className="flex flex-col gap-1.5">
-                    <span className="text-[11px] font-semibold tracking-wider text-indigo-600 dark:text-indigo-400 uppercase">
-                      {item.date}
-                    </span>
-                    <h3 className="text-base font-semibold text-foreground group-hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">
-                      {item.title}
-                    </h3>
-                    <span className="text-xs text-muted-foreground font-normal">
-                      {item.institution}
-                    </span>
-                    <p className="text-[13px] text-muted-foreground/95 font-light leading-relaxed mt-2">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-
       </main>
 
-      <div className="w-full max-w-[960px] mx-auto px-4 sm:px-6 md:px-10">
+      <div className="w-full max-w-[900px] mx-auto px-4 sm:px-6 md:px-10">
         <Footer />
       </div>
     </div>
