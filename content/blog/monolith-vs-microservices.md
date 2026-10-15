@@ -63,7 +63,7 @@ microservices/
 ```
 So, the question arises, **why do we need microservices when a monolith is doing the same job?**
 <br/>
-Let us understand the problems with monoliths. As we know, monoliths have a thighly coupled architecture where all the components are connected to each other, and if one component fails, then the entire application will fail. Also, if we want to scale the service, we have to scale the entire application. Which is not efficient.
+Let us understand the problems with monoliths. As we know, monoliths have a tightly coupled architecture where all the components are connected to each other, and if one component fails, then the entire application will fail. Also, if we want to scale the service, we have to scale the entire application. Which is not efficient.
 
 Let's take an example of an e-commerce website. 
 ```
@@ -72,7 +72,7 @@ payment -> 500+ requests per minute
 product -> 5000+ requests per minute
 auth -> 100+ requests per minute
 ```
-Here we clearly see the stats that the product service is having more requests then other services, and the auth service is having less requests then other services. So if we want to scale the product service, we have to scale the entire application. Which is not efficient in terms of cost and time.
+Here we clearly see the stats that the product service is having more requests than other services, and the auth service is having fewer requests than other services. So if we want to scale the product service, we have to scale the entire application. Which is not efficient in terms of cost and time.
 
 So here microservices come into the picture. In microservices, we can scale the service independently. So if we want to scale the product service, we can scale it independently, and if we want to scale the auth service, we can scale it independently. Which is efficient in terms of cost and time.
 

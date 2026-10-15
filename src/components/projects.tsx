@@ -49,12 +49,11 @@ export function Projects() {
     {
       title: "Camp-Life",
       description:
-        "A next-generation Customer Relationship Management platform engineered as a monorepo with glassmorphic dashboards.",
+        "Camp-Life is a camping and outdoor adventure platform with booking and payment gateway integration.",
       image: "/image.png",
       demo: "https://camping-ruby.vercel.app",
       github: "https://github.com/ujjwalkat07/camping",
-      tags: ["TypeScript", "Next.js", "Turborepo"],
-      extraCount: 4,
+      tags: ["TypeScript", "Next.js", "PostgreSQL"],
     },
   ]
 

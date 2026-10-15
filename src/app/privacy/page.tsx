@@ -23,9 +23,9 @@ export default async function PrivacyPolicyPage() {
         <Link
           id="privacy-back-link"
           href="/"
-          className="self-start inline-flex items-center gap-2 text-xs font-normal text-muted-foreground px-4 py-2.5 border border-border/50 rounded-lg bg-card/50 hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
+          className="self-start inline-flex items-center gap-2 text-xs font-medium text-muted-foreground hover:text-blue-600 dark:hover:text-blue-400 px-4 py-2.5 border border-border/50 hover:border-blue-500/30 rounded-lg bg-card/50 hover:bg-muted hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
         >
-          <ArrowLeft className="h-3.5 w-3.5" />
+          <ArrowLeft className="h-3.5 w-3.5 text-blue-500" />
           <span>Back to Home</span>
         </Link>
 
@@ -35,7 +35,7 @@ export default async function PrivacyPolicyPage() {
             Privacy Policy
           </h1>
           <p className="text-xs font-light text-muted-foreground uppercase tracking-widest">
-            Last Updated: July 12, 2026
+            Last Updated: October 15, 2026
           </p>
         </div>
 
@@ -58,7 +58,7 @@ export default async function PrivacyPolicyPage() {
             [&_th]:border [&_th]:border-border/40 [&_th]:bg-muted/20 [&_th]:px-4 [&_th]:py-2.5 [&_th]:text-left [&_th]:font-semibold [&_th]:text-foreground
             [&_td]:border [&_td]:border-border/40 [&_td]:px-4 [&_td]:py-2.5 [&_td]:text-foreground [&_td]:font-light
             [&_tr:nth-child(even)]:bg-muted/5
-            [&_a]:text-indigo-500 [&_a]:hover:text-indigo-600 [&_a]:underline [&_a]:transition-colors
+            [&_a]:text-blue-600 dark:[&_a]:text-blue-400 [&_a]:hover:text-blue-700 dark:[&_a]:hover:text-blue-300 [&_a]:underline [&_a]:underline-offset-2 [&_a]:transition-colors
           "
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
