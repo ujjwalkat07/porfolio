@@ -1,81 +1,86 @@
 "use client"
 
+import * as React from "react"
 import Image from "next/image"
 import { ArrowUpRight } from "lucide-react"
 import { Github } from "@/components/icons"
+import { projects, ProjectItem } from "@/data/projects"
 
-interface ProjectItem {
-  title: string
-  description: string
-  image: string
-  demo: string
-  github?: string
-  tags: string[]
-  extraCount?: number
+export type { ProjectItem }
+
+interface ProjectsProps {
+  showHeader?: boolean
+  showBorder?: boolean
+  showFilter?: boolean
+  className?: string
 }
 
-export function Projects() {
-  const projects: ProjectItem[] = [
-    {
-      title: "Exchange-X",
-      description:
-        "A full-stack cryptocurrency exchange with a real-time order matching engine pairing buy/sell orders by price-priority.",
-      image: "/crypto.webp",
-      demo: "https://web-exchange-x.onrender.com/",
-      github: "https://github.com/ujjwalkat07/crypto-exchange-web",
-      tags: ["TypeScript", "Node.js", "Next.js", "Kafka"],
-      extraCount: 3,
-    },
-    {
-      title: "CRM-X",
-      description:
-        "A next-generation Customer Relationship Management platform engineered as a monorepo with glassmorphic dashboards.",
-      image: "/crmx.webp",
-      demo: "https://crm-x-crm-client.vercel.app/",
-      github: "https://github.com/ujjwalkat07/crm-x",
-      tags: ["TypeScript", "Next.js", "Turborepo"],
-      extraCount: 4,
-    },
-    {
-      title: "Lamp",
-      description:
-        "LAMP is a modern TypeScript-based web application built with Next.js that provides QR code scanning and verification capabilities combined with an event management dashboard.",
-      image: "/lamp.png",
-      demo: "https://lamp-mih.vercel.app",
-      github: "https://github.com/ujjwalkat07/lamp",
-      tags: ["TypeScript", "Next.js", "Turborepo"],
-      extraCount: 4,
-    },
-    {
-      title: "Camp-Life",
-      description:
-        "Camp-Life is a camping and outdoor adventure platform with booking and payment gateway integration.",
-      image: "/image.png",
-      demo: "https://camping-ruby.vercel.app",
-      github: "https://github.com/ujjwalkat07/camping",
-      tags: ["TypeScript", "Next.js", "PostgreSQL"],
-    },
-  ]
+export function Projects({
+  showHeader = true,
+  showBorder = true,
+  showFilter = true,
+  className = "",
+}: ProjectsProps = {}) {
+  const [selectedTag, setSelectedTag] = React.useState<string>("All")
+
+  const allTags = React.useMemo(() => {
+    const tagsSet = new Set<string>()
+    projects.forEach((p) => p.tags.forEach((t) => tagsSet.add(t)))
+    return ["All", ...Array.from(tagsSet)]
+  }, [])
+
+  const filteredProjects = React.useMemo(() => {
+    if (selectedTag === "All") return projects
+    return projects.filter((p) => p.tags.includes(selectedTag))
+  }, [selectedTag])
 
   return (
-    <section id="projects" className="py-5 border-b border-border/40 transition-colors duration-300">
+    <section
+      id="projects"
+      className={`py-5 transition-colors duration-300 ${
+        showBorder ? "border-b border-border/40" : ""
+      } ${className}`}
+    >
       {/* Section Header */}
-      <div className="mb-8">
-        <h2 className="text-xl md:text-2xl font-bold tracking-tight text-foreground select-none">
-          Projects
-        </h2>
-      </div>
+      {showHeader && (
+        <div className="mb-8">
+          <h2 className="text-xl md:text-2xl font-bold tracking-tight text-foreground select-none">
+            Projects
+          </h2>
+        </div>
+      )}
+
+      {/* Filter Tags */}
+      {showFilter && (
+        <div className="flex flex-wrap items-center gap-2 mb-8">
+          {allTags.map((tag) => {
+            const isActive = selectedTag === tag
+            return (
+              <button
+                key={tag}
+                onClick={() => setSelectedTag(tag)}
+                className={`text-xs px-3.5 py-1.5 rounded-full font-medium transition-all duration-200 cursor-pointer ${
+                  isActive
+                    ? "bg-foreground text-background shadow-xs"
+                    : "bg-muted/60 hover:bg-muted text-muted-foreground hover:text-foreground border border-border/60"
+                }`}
+              >
+                {tag}
+              </button>
+            )
+          })}
+        </div>
+      )}
 
       {/* 2-Column Card Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-        {projects.map((project, i) => (
+        {filteredProjects.map((project, i) => (
           <div
-            key={i}
+            key={project.title}
             className="bg-card border border-border rounded-2xl md:rounded-3xl p-5 md:p-6 flex flex-col justify-between group hover:border-foreground/25 transition-all duration-300 shadow-sm hover:shadow-md"
           >
             <div>
               {/* Top Title inside card */}
-
               <div className="flex items-center justify-between">
                 <h3 className="text-lg md:text-xl font-bold text-foreground tracking-tight select-none">
                   {project.title}
@@ -103,8 +108,8 @@ export function Projects() {
                     <ArrowUpRight className="w-4 h-4" />
                   </a>
                 </div>
-
               </div>
+
               {/* Preview Image Container */}
               <div className="relative w-full h-[200px] rounded-lg overflow-hidden border border-border bg-muted/40 mt-5">
                 <Image
@@ -145,8 +150,6 @@ export function Projects() {
           </div>
         ))}
       </div>
-
     </section>
   )
 }
-

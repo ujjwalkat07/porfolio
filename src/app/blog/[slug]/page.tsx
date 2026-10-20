@@ -1,10 +1,13 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import { Calendar, Clock, ArrowLeft } from "lucide-react"
+import Image from "next/image"
+import { ArrowLeft, ArrowUpRight, Calendar, Clock } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { ShareButtons } from "@/components/share-buttons"
 import { ImpressionCounter } from "@/components/impression-counter"
+import { TableOfContents, type TocItem } from "@/components/blog/table-of-contents"
+import { BlogInteractions } from "@/components/blog/blog-interactions"
+import { SupabaseShareBar } from "@/components/blog/supabase-share-bar"
 import posts from "@/content/blog-posts.json"
 import { marked } from "marked"
 import type { Metadata } from "next"
@@ -20,7 +23,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${post.title} — Ujjwal Katiyar`,
     description: post.description,
-    keywords: [...(post.tags || []), ...(post.keywords || []), "Ujjwal Katiyar", "Software Developer", "Blog", "System Design"],
+    keywords: [
+      ...(post.tags || []),
+      ...(post.keywords || []),
+      "Ujjwal Katiyar",
+      "Software Developer",
+      "Blog",
+      "System Design",
+    ],
     authors: [{ name: "Ujjwal Katiyar" }],
     alternates: {
       canonical: `https://ujjwalkatiyar.in/blog/${slug}`,
@@ -55,6 +65,91 @@ export async function generateStaticParams() {
   }))
 }
 
+function extractToc(markdown: string): TocItem[] {
+  const headings: TocItem[] = []
+  const headingRegex = /^(#{2,3})\s+(.+)$/gm
+  let match
+  while ((match = headingRegex.exec(markdown)) !== null) {
+    const level = match[1].length
+    const rawText = match[2].trim()
+    const text = rawText
+      .replace(/\*\*(.*?)\*\*/g, "$1")
+      .replace(/\[(.*?)\]\(.*?\)/g, "$1")
+      .replace(/`([^`]+)`/g, "$1")
+    const id = text
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "")
+    headings.push({ id, text, level })
+  }
+  return headings
+}
+
+async function renderSupabaseMarkdown(content: string) {
+  const renderer = new marked.Renderer()
+
+  renderer.heading = function ({ text, depth }: { text: string; depth: number }) {
+    const rawTitle = text.replace(/<[^>]*>?/gm, "").trim()
+    const id = rawTitle
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "")
+
+    if (depth === 2) {
+      return `
+        <h2 id="${id}" class="group scroll-mt-24 font-display text-xl sm:text-2xl font-bold tracking-tight text-foreground mt-12 mb-4 flex items-center">
+          <span>${text}</span>
+          <a href="#${id}" class="ml-2.5 opacity-0 group-hover:opacity-100 transition-opacity text-[#3ECF8E] select-none text-base font-normal" aria-label="Link to section">#</a>
+        </h2>
+      `
+    }
+    if (depth === 3) {
+      return `
+        <h3 id="${id}" class="group scroll-mt-24 font-display text-lg sm:text-xl font-semibold tracking-tight text-foreground mt-8 mb-3 flex items-center">
+          <span>${text}</span>
+          <a href="#${id}" class="ml-2.5 opacity-0 group-hover:opacity-100 transition-opacity text-[#3ECF8E] select-none text-sm font-normal" aria-label="Link to section">#</a>
+        </h3>
+      `
+    }
+    return `<h${depth} id="${id}" class="font-display font-semibold tracking-tight text-foreground mt-6 mb-3">${text}</h${depth}>`
+  }
+
+  renderer.code = function ({ text, lang }: { text: string; lang?: string }) {
+    const encoded = encodeURIComponent(text)
+    const displayLang = (lang || "code").toUpperCase()
+    const escapedCode = text.replace(/</g, "&lt;").replace(/>/g, "&gt;")
+
+    return `
+      <div class="supabase-code-block not-prose my-6 sm:my-8 rounded-xl border border-neutral-200/90 dark:border-[#282828] bg-[#0f0f10] text-[#ededed] overflow-hidden shadow-xs">
+        <div class="flex items-center justify-between px-4 py-2.5 bg-[#171718] border-b border-neutral-800/80 text-xs font-code text-neutral-400 select-none">
+          <div class="flex items-center gap-2">
+            <div class="flex items-center gap-1.5" aria-hidden="true">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#ec6a5e] inline-block"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-[#f4bf4f] inline-block"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-[#61c554] inline-block"></span>
+            </div>
+            <span class="ml-2 text-[10px] font-code tracking-wider text-neutral-400 font-medium">${displayLang}</span>
+          </div>
+          <button type="button" class="supabase-copy-btn inline-flex items-center gap-1.5 text-[11px] font-code text-neutral-400 hover:text-white transition-colors cursor-pointer px-2 py-0.5 rounded hover:bg-neutral-800" data-code="${encoded}" aria-label="Copy code snippet">
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Copy</span>
+          </button>
+        </div>
+        <pre class="p-4 sm:p-5 overflow-x-auto text-xs sm:text-[13px] leading-relaxed font-code bg-transparent m-0 text-neutral-200"><code>${escapedCode}</code></pre>
+      </div>
+    `
+  }
+
+  renderer.codespan = function ({ text }: { text: string }) {
+    return `<code class="font-code text-[12px] sm:text-[12.5px] px-1.5 py-0.5 rounded bg-muted/70 dark:bg-[#1f1f1f] border border-border/70 text-foreground font-normal">${text}</code>`
+  }
+
+  return await marked.parse(content, { renderer })
+}
+
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params
   const post = posts.find((p) => p.slug === slug)
@@ -64,9 +159,8 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   const otherPosts = posts.filter((p) => p.slug !== slug).slice(0, 2)
-
-  // Parse markdown content to HTML
-  const contentHtml = await marked.parse(post.content)
+  const tocItems = extractToc(post.content)
+  const contentHtml = await renderSupabaseMarkdown(post.content)
 
   // Safe ISO Date parsing for schema markup
   let isoPublishDate = new Date().toISOString()
@@ -76,7 +170,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       isoPublishDate = d.toISOString()
     }
   } catch (e) {
-    //("Error parsing date: ", e)
+    // ignore
   }
 
   let isoModifiedDate = isoPublishDate
@@ -87,74 +181,76 @@ export default async function BlogPostPage({ params }: PageProps) {
         isoModifiedDate = d.toISOString()
       }
     } catch (e) {
-      //("Error parsing lastModified date: ", e)
+      // ignore
     }
   }
 
   const jsonLdArticle = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": {
+    mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `https://ujjwalkatiyar.in/blog/${slug}`,
     },
-    "headline": post.title,
-    "description": post.description,
-    "image": ["https://ujjwalkatiyar.in/profile_pic.webp"],
-    "datePublished": isoPublishDate,
-    "dateModified": isoModifiedDate,
-    "author": {
+    headline: post.title,
+    description: post.description,
+    image: ["https://ujjwalkatiyar.in/profile_pic.webp"],
+    datePublished: isoPublishDate,
+    dateModified: isoModifiedDate,
+    author: {
       "@type": "Person",
-      "name": "Ujjwal Katiyar",
-      "url": "https://ujjwalkatiyar.in",
-      "sameAs": [
+      name: "Ujjwal Katiyar",
+      url: "https://ujjwalkatiyar.in",
+      sameAs: [
         "https://github.com/ujjwalkat07",
         "https://www.linkedin.com/in/ujjwalkatiyar07",
       ],
     },
-    "publisher": {
+    publisher: {
       "@type": "Person",
-      "name": "Ujjwal Katiyar",
-      "url": "https://ujjwalkatiyar.in",
-      "image": {
+      name: "Ujjwal Katiyar",
+      url: "https://ujjwalkatiyar.in",
+      image: {
         "@type": "ImageObject",
-        "url": "https://ujjwalkatiyar.in/profile_pic.webp",
+        url: "https://ujjwalkatiyar.in/profile_pic.webp",
       },
     },
-
-    "keywords": (post.tags || []).join(", "),
-    "articleSection": post.category || "Technology",
-    "inLanguage": "en-US",
+    keywords: (post.tags || []).join(", "),
+    articleSection: post.category || "Engineering",
+    inLanguage: "en-US",
   }
 
   const jsonLdBreadcrumbs = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": [
+    itemListElement: [
       {
         "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://ujjwalkatiyar.in",
+        position: 1,
+        name: "Home",
+        item: "https://ujjwalkatiyar.in",
       },
       {
         "@type": "ListItem",
-        "position": 2,
-        "name": "Blog",
-        "item": "https://ujjwalkatiyar.in/blog",
+        position: 2,
+        name: "Blog",
+        item: "https://ujjwalkatiyar.in/blog",
       },
       {
         "@type": "ListItem",
-        "position": 3,
-        "name": post.title,
-        "item": `https://ujjwalkatiyar.in/blog/${slug}`,
+        position: 3,
+        name: post.title,
+        item: `https://ujjwalkatiyar.in/blog/${slug}`,
       },
     ],
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-background font-sans transition-colors duration-300 antialiased selection:bg-indigo-500/10 selection:text-indigo-500">
-      {/* Dynamic Blog Posting & Breadcrumbs Structured Data (JSON-LD) */}
+    <div className="flex flex-col min-h-screen bg-background font-body transition-colors duration-300 antialiased selection:bg-[#3ECF8E]/20 selection:text-[#10b981] dark:selection:text-[#3ECF8E]">
+      {/* Blog Interaction Handlers (Copy button, etc.) */}
+      <BlogInteractions />
+
+      {/* JSON-LD Schemas */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdArticle) }}
@@ -164,127 +260,170 @@ export default async function BlogPostPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumbs) }}
       />
 
-      {/* Navigation */}
+      {/* Global Navbar */}
       <Navbar />
 
-      {/* Main Page Layout Wrapper */}
-      <main className="flex-1 w-full max-w-[800px] mx-auto px-4 sm:px-6 md:px-10 flex flex-col pt-12 sm:pt-16 pb-10">
-        {/* Back Link */}
-        <Link
-          href="/blog"
-          className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground mb-6 sm:mb-8 transition-colors self-start"
-        >
-          <ArrowLeft className="h-3.5 w-3.5" />
-          <span>Back to blog posts</span>
-        </Link>
-
-        {/* Article Header */}
-        <article className="flex flex-col gap-6 text-foreground">
-          <div className="flex flex-col gap-4">
-            {/* Meta details */}
-            <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-[10px] sm:text-xs text-muted-foreground font-light uppercase tracking-wider">
-              <span className="inline-flex items-center gap-1 shrink-0 whitespace-nowrap">
-                <Calendar className="h-3.5 w-3.5 shrink-0" />
-                Published: {post.date}
-              </span>
-              {post.lastModified && (
-                <>
-                  <span className="text-muted-foreground/40 shrink-0 select-none">•</span>
-                  <span className="inline-flex items-center gap-1 shrink-0 whitespace-nowrap">
-                    <Calendar className="h-3.5 w-3.5 shrink-0" />
-                    Updated: {post.lastModified}
-                  </span>
-                </>
-              )}
-              <span className="text-muted-foreground/40 shrink-0 select-none">•</span>
-              <span className="inline-flex items-center gap-1 shrink-0 whitespace-nowrap">
-                <Clock className="h-3.5 w-3.5 shrink-0" />
-                {post.readTime}
-              </span>
-              <span className="text-muted-foreground/40 shrink-0 select-none">•</span>
-              <span className="inline-flex items-center gap-1 shrink-0 whitespace-nowrap">
-                <ImpressionCounter slug={slug} />
-              </span>
-            </div>
-
-            {/* Title */}
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground leading-[1.2] sm:leading-[1.15] break-words [overflow-wrap:anywhere]">
-              {post.title}
-            </h1>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-1.5 pt-1">
-              {post.tags.map((tag, j) => (
-                <span
-                  key={j}
-                  className="text-[9px] sm:text-[10px] font-normal text-indigo-500 dark:text-indigo-400 bg-indigo-500/5 border border-indigo-500/10 rounded-md px-2.5 py-0.5 tracking-wide uppercase select-none font-medium"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+      {/* Main Container - 12-Column Responsive Layout */}
+      <main className="flex-1 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:pl-36 pt-8 sm:pt-12 pb-16">
+        {/* Supabase Breadcrumbs & Back Link */}
+        <div className="flex items-center gap-5 mb-5 sm:mb-5 text-xs text-muted-foreground font-body">
+          <div className="flex items-center gap-1.5 text-xs text-muted-foreground/80">
+            <Link href="/blog" className="hover:text-foreground transition-colors">
+              Blog
+            </Link>
+            <span className="text-muted-foreground/40">/</span>
+            <span className="capitalize text-foreground font-medium">
+              {post.category || "Engineering"}
+            </span>
           </div>
+        </div>
 
-          {/* Share Buttons */}
-          <ShareButtons title={post.title} />
+        {/* 12-Column Grid Layout */}
+        <div className="grid grid-cols-12 gap-y-10 lg:gap-x-12">
+          {/* Main Article Column (col-span-12 lg:col-span-8) */}
+          <article className="col-span-12 lg:col-span-8 flex flex-col min-w-0">
+            {/* Header Section */}
+            <header className="flex flex-col gap-5 pb-3 border-border/60">
+              {/* Title */}
+              <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.2rem] font-semibold text-foreground text-pretty break-words">
+                {post.title}
+              </h1>
 
-          {/* HTML rendered markdown body */}
-          <div
-            className="mt-0 text-foreground leading-relaxed font-normal text-sm sm:text-base max-w-none break-words [overflow-wrap:anywhere]
-              [&>h1]:text-xl sm:[&>h1]:text-2xl [&>h1]:font-bold [&>h1]:text-foreground [&>h1]:mt-8 sm:[&>h1]:mt-10 [&>h1]:mb-4 [&>h1]:tracking-tight
-              [&>h2]:text-lg sm:[&>h2]:text-xl [&>h2]:font-bold [&>h2]:text-foreground [&>h2]:mt-8 sm:[&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:tracking-tight
-              [&>h3]:text-base sm:[&>h3]:text-lg [&>h3]:font-semibold [&>h3]:text-foreground [&>h3]:mt-6 sm:[&>h3]:mt-8 [&>h3]:mb-3
-              [&>p]:mb-5 [&>p]:leading-relaxed [&>p]:text-foreground [&>p]:font-light [&>p]:tracking-wide
-              [&>p>strong]:font-semibold [&>p>strong]:text-foreground
-              [&>ul]:list-disc [&>ul]:pl-5 sm:[&>ul]:pl-6 [&>ul]:mb-6 [&>ul]:text-foreground [&>ul]:flex [&>ul]:flex-col [&>ul]:gap-2.5 [&>ul]:font-light [&>ul]:tracking-wide
-              [&>ol]:list-decimal [&>ol]:pl-5 sm:[&>ol]:pl-6 [&>ol]:mb-6 [&>ol]:text-foreground [&>ol]:flex [&>ol]:flex-col [&>ol]:gap-2.5 [&>ol]:font-light [&>ol]:tracking-wide
-              [&>li]:leading-relaxed
-              [&>blockquote]:border-l-4 [&>blockquote]:border-indigo-500 [&>blockquote]:pl-4 [&>blockquote]:italic [&>blockquote]:text-muted-foreground [&>blockquote]:my-6 sm:[&>blockquote]:my-8
-              [&>pre]:p-4 sm:[&>pre]:p-5 [&>pre]:bg-muted/20 [&>pre]:border [&>pre]:border-border/40 [&>pre]:rounded-xl sm:[&>pre]:rounded-2xl [&>pre]:max-w-full [&>pre]:overflow-x-auto [&>pre]:my-6 sm:[&>pre]:my-8 [&>pre]:shadow-xs
-              [&>code]:text-xs [&>code]:font-mono [&>code]:bg-indigo-500/10 [&>code]:px-1.5 sm:[&>code]:px-2 [&>code]:py-0.5 [&>code]:rounded-md [&>code]:text-indigo-500 dark:[&>code]:text-indigo-400 [&>code]:font-medium [&>code]:break-all
-              [&>pre>code]:bg-transparent [&>pre>code]:p-0 [&>pre>code]:text-foreground [&>pre>code]:font-normal [&>pre>code]:leading-normal [&>pre>code]:break-normal
-              [&_table]:block [&_table]:w-full [&_table]:max-w-full [&_table]:overflow-x-auto [&_table]:my-8 [&_table]:border-collapse [&_table]:text-xs sm:[&_table]:text-sm [&_table]:text-foreground
-              [&_th]:border [&_th]:border-border/40 [&_th]:bg-muted/20 [&_th]:px-3 sm:[&_th]:px-4 [&_th]:py-2 sm:[&_th]:py-2.5 [&_th]:text-left [&_th]:font-semibold [&_th]:text-foreground
-              [&_td]:border [&_td]:border-border/40 [&_td]:px-3 sm:[&_td]:px-4 [&_td]:py-2 sm:[&_td]:py-2.5 [&_td]:text-foreground [&_td]:font-light
-              [&_tr:nth-child(even)]:bg-muted/5
-              [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-xl
-            "
-            dangerouslySetInnerHTML={{ __html: contentHtml }}
-          />
+              {/* Publication Meta details */}
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-muted-foreground">
+                <span className="inline-flex items-center">
+                  <span>{post.date}</span>
+                </span>
+                <span className="text-muted-foreground/40 select-none">•</span>
+                <span className="inline-flex items-center">
+                  <span>{post.readTime}</span>
+                </span>
+                <span className="text-muted-foreground/40 select-none">•</span>
+                <span className="inline-flex items-center gap-1.5">
+                  <ImpressionCounter slug={slug} />
+                </span>
+              </div>
 
-          {/* Share Buttons at the bottom */}
-          <ShareButtons title={post.title} />
+              {/* Supabase Author Snippet */}
+              <div className="flex items-center gap-3 pt-2">
+                <div className="relative w-9 h-9 rounded-full overflow-hidden border border-border/80 shrink-0">
+                  <Image
+                    src="/profile_pic.webp"
+                    alt="Ujjwal Katiyar"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-display text-sm font-semibold text-foreground">
+                    Ujjwal Katiyar
+                  </span>
+                  <span className="text-xs text-muted-foreground font-body">
+                    Software Developer
+                  </span>
+                </div>
+              </div>
+            </header>
 
-          {/* Read Next Section for Internal Linking & SEO */}
-          {otherPosts.length > 0 && (
-            <div className="mt-1 pt-1 border-t border-border/40">
-              <h3 className="text-lg font-bold mb-6 text-foreground">Read Next</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {otherPosts.map((otherPost) => (
+            {/* Markdown Article Body */}
+            <div
+              className="mt-5 text-neutral-800 dark:text-neutral-300 font-body text-[15px] sm:text-[16px] leading-[1.8] break-words [overflow-wrap:anywhere]
+                [&>p]:mb-6 [&>p]:leading-[1.8]
+                [&>p>strong]:font-semibold [&>p>strong]:text-foreground
+                [&>p>a]:text-foreground [&>p>a]:underline [&>p>a]:decoration-[#3ECF8E]/60 [&>p>a]:underline-offset-4 hover:[&>p>a]:text-[#3ECF8E] hover:[&>p>a]:decoration-[#3ECF8E] [&>p>a]:transition-colors
+                [&>ul]:list-disc [&>ul]:pl-5 sm:[&>ul]:pl-6 [&>ul]:mb-6 [&>ul]:space-y-2
+                [&>ol]:list-decimal [&>ol]:pl-5 sm:[&>ol]:pl-6 [&>ol]:mb-6 [&>ol]:space-y-2
+                [&>li]:leading-[1.75]
+                [&>blockquote]:border-l-2 [&>blockquote]:border-[#3ECF8E] [&>blockquote]:pl-4.5 [&>blockquote]:italic [&>blockquote]:text-muted-foreground [&>blockquote]:my-7
+                [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-xl [&_img]:border [&_img]:border-border/60 [&_img]:my-8
+                [&_table]:w-full [&_table]:border-collapse [&_table]:my-8 [&_table]:text-xs sm:[&_table]:text-sm [&_table]:border [&_table]:border-border/60 [&_table]:rounded-xl [&_table]:overflow-hidden
+                [&_th]:bg-muted/50 [&_th]:font-display [&_th]:font-semibold [&_th]:text-foreground [&_th]:px-4 [&_th]:py-3 [&_th]:text-left [&_th]:border-b [&_th]:border-border/60 [&_th]:text-[11px] [&_th]:uppercase [&_th]:tracking-wider
+                [&_td]:px-4 [&_td]:py-3 [&_td]:border-b [&_td]:border-border/40 [&_td]:text-neutral-700 dark:[&_td]:text-neutral-300
+                [&_tr:nth-child(even)]:bg-muted/15
+              "
+              dangerouslySetInnerHTML={{ __html: contentHtml }}
+            />
+
+            {/* Horizontal Share Banner */}
+            <SupabaseShareBar title={post.title} />
+
+            {/* Read Next Section */}
+            {otherPosts.length > 0 && (
+              <section className="mt-8 pt-4">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="font-display text-xl font-bold text-foreground">
+                    Read Next
+                  </h3>
                   <Link
-                    key={otherPost.slug}
-                    href={`/blog/${otherPost.slug}`}
-                    className="group block p-5 rounded-xl border border-border/30 bg-muted/5 hover:bg-muted/10 hover:border-foreground/15 transition-all duration-300"
+                    href="/blog"
+                    className="inline-flex items-center gap-1 text-xs text-[#3ECF8E] hover:underline font-medium"
                   >
-                    <span className="text-[10px] font-light text-muted-foreground uppercase tracking-wider">
-                      {otherPost.date}
-                    </span>
-                    <h4 className="text-base font-bold text-foreground group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors mt-2">
-                      {otherPost.title}
-                    </h4>
-                    <p className="text-xs text-muted-foreground font-light line-clamp-2 mt-2">
-                      {otherPost.description}
-                    </p>
+                    <span>View all posts</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
                   </Link>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  {otherPosts.map((otherPost) => (
+                    <Link
+                      key={otherPost.slug}
+                      href={`/blog/${otherPost.slug}`}
+                      className="group flex flex-col justify-between p-5 rounded-xl border border-border/60 bg-card/30 hover:bg-card/70 hover:border-[#3ECF8E]/40 transition-all duration-200"
+                    >
+                      <div>
+                        <div className="flex items-center gap-2 text-[10px] font-code text-muted-foreground uppercase tracking-wider mb-2">
+                          <span>{otherPost.date}</span>
+                          <span>•</span>
+                          <span>{otherPost.readTime}</span>
+                        </div>
+                        <h4 className="font-display text-base font-bold text-foreground group-hover:text-[#3ECF8E] transition-colors line-clamp-2">
+                          {otherPost.title}
+                        </h4>
+                        <p className="text-xs text-muted-foreground font-body line-clamp-2 mt-2 leading-relaxed">
+                          {otherPost.description}
+                        </p>
+                      </div>
+                      <div className="mt-4 pt-3 border-t border-border/40 flex items-center justify-between text-xs text-muted-foreground group-hover:text-[#3ECF8E] transition-colors font-medium">
+                        <span>Read article</span>
+                        <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
+          </article>
+
+          {/* Right Column / Sticky Sidebar (hidden lg:block col-span-4 col-start-9) */}
+          <aside className="hidden lg:block col-span-4 col-start-9 space-y-8 pl-4 xl:pl-8 pt-58">
+            {/* Category / Tags badges */}
+              <div className="flex flex-wrap items-center gap-2">
+                {post.tags.map((tag, i) => (
+                  <span
+                    key={i}
+                    className="text-[10px] font-code font-medium tracking-[0.06em] uppercase px-2 py-0.5 rounded-full border border-border/80 bg-muted/40 text-muted-foreground hover:border-[#3ECF8E]/60 hover:text-[#3ECF8E] transition-colors select-none"
+                  >
+                    {tag}
+                  </span>
                 ))}
               </div>
-            </div>
-          )}
-        </article>
+            <div className="sticky top-24 flex flex-col gap-8 max-h-[calc(100vh-7rem)] overflow-y-auto pr-1">
+              {/* Table of contents */}
+              {tocItems.length > 0 && <TableOfContents items={tocItems} />}
 
-        {/* Footer */}
-        <Footer />
+              {/* Share & AI Links */}
+              <div className="pt-2">
+                <SupabaseShareBar title={post.title} compact={true} />
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        {/* Global Footer */}
+        
       </main>
+      <div className="pt-5 border-border/60 max-w-[900px] mx-auto w-full  ">
+          <Footer />
+        </div>
     </div>
   )
 }

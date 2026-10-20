@@ -8,7 +8,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 
 const navLinks = [
   { label: "About", href: "/about" },
-  { label: "Projects", href: "/#projects" },
+  { label: "Projects", href: "/projects" },
   { label: "GitHub", href: "/github" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
@@ -19,7 +19,7 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
 
   function isActive(href: string) {
-    if (href === "/#projects") return pathname === "/"
+    if (href === "/") return pathname === "/"
     return pathname.startsWith(href)
   }
 

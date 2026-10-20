@@ -41,7 +41,8 @@ Let's start with an example: suppose **we have an e-commerce application with a 
 ```
 The company wants to migrate its orders service as a separate service and deploy it independently. From a system design perspective, we cannot directly migrate it; what we actually do is:
 
-**Step 1:** Identify the service that we have to migrate; in our case, we are migrating the orders service and building it as a separate service without altering the original service running in production.
+## Step 1: Identify the Service
+Identify the service that we have to migrate; in our case, we are migrating the orders service and building it as a separate service without altering the original service running in production.
 
 ```
     Orders service:
@@ -49,11 +50,15 @@ The company wants to migrate its orders service as a separate service and deploy
         - Order processing
         - Order history
 ```
-**Step 2:** Implement an API gateway for smooth communication between monolith and microservices at the early stage of migration.
 
-**Step 3:** Database Migration - as we migrate to a microservices architecture, we need to manage data consistency across the services; an event-driven architecture helps to maintain data consistency across the services.
+## Step 2: Implement an API Gateway
+Implement an API gateway for smooth communication between monolith and microservices at the early stage of migration.
 
-**Step 4:** Once we build the architecture, we can migrate the traffic from the original order service to the new orders service slowly and safely using multiple approaches.
+## Step 3: Database Migration
+As we migrate to a microservices architecture, we need to manage data consistency across the services; an event-driven architecture helps to maintain data consistency across the services.
+
+## Step 4: Traffic Migration & Routing
+Once we build the architecture, we can migrate the traffic from the original order service to the new orders service slowly and safely using multiple approaches.
 
 ```
 Old orders service  | New orders service
@@ -64,7 +69,8 @@ Old orders service  | New orders service
     5% of traffic   | 95% of traffic
     0% of traffic   | 100% of traffic
 ```
-Here, we used multiple approaches and algorithms to migrate the traffic slowly and safely from the original order service to the new orders service. like
+
+Here, we used multiple approaches and algorithms to migrate the traffic slowly and safely from the original order service to the new orders service, such as:
 
 ```
 1. Weighted Routing & Canary Deployments
@@ -73,7 +79,8 @@ Here, we used multiple approaches and algorithms to migrate the traffic slowly a
 4. Feature Flags
 ``` 
 
-**Step 5:** Monitor the new service closely and roll back if any issue found. Here, we use multiple testing (like unit testing, integration testing, performance testing, etc.) and validation strategies, logging, and monitoring tools to monitor the new service performance and stability. In case of failure, we roll back to the old service to prevent production failure.
+## Step 5: Monitoring and Rollback Strategies
+Monitor the new service closely and roll back if any issue found. Here, we use multiple testing (like unit testing, integration testing, performance testing, etc.) and validation strategies, logging, and monitoring tools to monitor the new service performance and stability. In case of failure, we roll back to the old service to prevent production failure.
 
-**Conclusion:**
+## Conclusion
 Migrating the services from a monolith to microservices is a complex process that requires careful planning and execution. But it enhances scalability and improves the speed of the application. This is all about migrating a single service from a monolith to microservices.

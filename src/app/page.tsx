@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/navbar"
 import { BentoProfile } from "@/components/bento-profile"
-import { Projects } from "@/components/projects"
 import { Blog } from "@/components/blog"
 import { Footer } from "@/components/footer"
 
@@ -16,7 +15,6 @@ export default function Home() {
         <BentoProfile />
 
         {/* Sections */}
-        <Projects />
         <Blog />
 
         {/* Footer */}

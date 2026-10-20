@@ -11,6 +11,16 @@ export function BentoProfile() {
     <section className="w-full pt-10 pb-2 border-b border-border/40">
       {/* Top row: Avatar + Name + Role */}
       <div className="flex flex-col sm:flex-row gap-5 items-start sm:items-center mb-5">
+        <div className="relative h-16 w-16 sm:h-20 sm:w-20 shrink-0 rounded-full overflow-hidden border-2 border-border/80 shadow-sm">
+          <Image
+            src="/profile_pic.webp"
+            alt="Ujjwal Katiyar"
+            fill
+            sizes="(max-width: 640px) 64px, 80px"
+            className="object-cover"
+            priority
+          />
+        </div>
         <div className="flex flex-col gap-1">
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground">
             Ujjwal Katiyar
