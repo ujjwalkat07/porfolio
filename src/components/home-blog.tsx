@@ -66,7 +66,7 @@ export function HomeBlog() {
                 )}
               </div>
 
-              <h3 className="text-base sm:text-lg font-bold tracking-tight text-foreground group-hover:text-primary hover:underline transition-colors duration-200 line-clamp-2">
+              <h3 className="text-base sm:text-lg font-semibold tracking-tight text-foreground group-hover:text-primary hover:underline transition-colors duration-200 line-clamp-2">
                 {post.title}
               </h3>
 
