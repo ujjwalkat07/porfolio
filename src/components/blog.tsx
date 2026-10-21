@@ -103,7 +103,7 @@ export function Blog() {
       {/* Articles Grid layout */}
       {displayedPosts.length > 0 ? (
         <div className="flex flex-col gap-10 mb-5">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1050px]  shadow-lg">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1050px]">
             {displayedPosts.map((post) => (
               <Link
                 key={post.slug}
