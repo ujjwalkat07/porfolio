@@ -12,7 +12,7 @@ const supabasePublishableKey =
 
 const supabaseSecretKey =
   process.env.SUPABASE_SECRET_KEY ||
-  ""
+  "placeholder-secret-key"
 
 // Public client using the publishable key (safe for client-side use)
 export const supabase = createClient(supabaseUrl, supabasePublishableKey)

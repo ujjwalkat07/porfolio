@@ -164,7 +164,12 @@
   font-family: var(--font-source-code-pro), "Source Code Pro", ui-monospace, Menlo, Monaco, Consolas, monospace;
 }
 
-.brand-selection {
-  selection-background-color: rgba(62, 207, 142, 0.2);
-  selection-color: #3ECF8E;
+::selection {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #059669;
+}
+
+.dark ::selection {
+  background-color: rgba(16, 185, 129, 0.25);
+  color: #34d399;
 }

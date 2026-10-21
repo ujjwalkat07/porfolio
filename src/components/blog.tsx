@@ -5,11 +5,9 @@ import Link from "next/link"
 import Image from "next/image"
 import { Search, Rss } from "lucide-react"
 import { ImpressionCounter } from "@/components/impression-counter"
-import { usePathname } from "next/navigation"
 import posts from "@/content/blog-posts.json"
 
 export function Blog() {
-  const pathname = usePathname()
   const [activeCategory, setActiveCategory] = React.useState("All")
   const [searchQuery, setSearchQuery] = React.useState("")
   const [visibleCount, setVisibleCount] = React.useState(6)
@@ -33,15 +31,10 @@ export function Blog() {
     })
   }, [activeCategory, searchQuery])
 
-  const isHomepage = pathname === "/"
-
-  // Compute displayed posts based on whether we are on the homepage or blog page
+  // Compute displayed posts based on visible count
   const displayedPosts = React.useMemo(() => {
-    if (isHomepage) {
-      return filteredPosts.slice(0, 3) // Show at most 3 on the homepage
-    }
     return filteredPosts.slice(0, visibleCount)
-  }, [filteredPosts, isHomepage, visibleCount])
+  }, [filteredPosts, visibleCount])
 
   // Formatting date helper to match "30 June" style
   const formatDate = (dateStr: string) => {
@@ -52,21 +45,15 @@ export function Blog() {
     return `${day} ${month}`
   }
 
-  const showMoreButtonVisible = isHomepage
-    ? filteredPosts.length > 3
-    : filteredPosts.length > visibleCount
+  const showMoreButtonVisible = filteredPosts.length > visibleCount
 
   return (
-    <section id="blog" className="py-8 border-b border-border/40 transition-colors duration-300">
+    <section id="blog" className="border-border/40 transition-colors duration-300">
       {/* Section Header & Subtitle */}
-      <div className="flex flex-col gap-2 mb-8">
-        <h2 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-          What I&apos;ve been writing
+      <div className="flex flex-col gap-2 mb-5">
+        <h2 className="text-4xl tracking-tight text-foreground sm:text-5xl">
+          Blog
         </h2>
-        <p className="text-sm font-light text-muted-foreground max-w-2xl leading-relaxed">
-
-          Insights on event-driven systems, microservice monorepos, and high-frequency real-time web applications.
-        </p>
       </div>
 
       {/* Control Bar: Filter pills + Search / Feed */}
@@ -115,24 +102,24 @@ export function Blog() {
 
       {/* Articles Grid layout */}
       {displayedPosts.length > 0 ? (
-        <div className="flex flex-col gap-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1050px]">
+        <div className="flex flex-col gap-10 mb-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1050px]  shadow-lg">
             {displayedPosts.map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group flex flex-col justify-between p-5 sm:p-6 md:p-8 rounded-2xl border border-border/50 bg-card shadow-sm hover:shadow-md hover:border-foreground/20 transition-all duration-300 min-h-[300px] sm:min-h-[340px]"
+                className="group flex flex-col justify-between p-5 sm:p-6 md:p-8 rounded-md border border-border/50 bg-card shadow-sm hover:shadow-md transition-all duration-300 min-h-[300px] sm:min-h-[340px] hover:bg-neutral-950/50"
               >
                 <div>
                   {/* Meta Category & Date */}
                   <div className="text-xs font-medium text-muted-foreground uppercase tracking-wider flex flex-wrap items-center gap-2">
                     <span className="shrink-0">{formatDate(post.date)}</span>
-                    <span className="text-muted-foreground/50 shrink-0">•</span>
+                   
                     <span className="shrink-0">{post.category}</span>
                   </div>
 
                   {/* Article Title */}
-                  <h3 className="text-xl font-bold tracking-tight text-foreground group-hover:text-indigo-500 dark:group-hover:text-[lab(74 -53.94 24.51)] transition-colors duration-200 mt-4 line-clamp-3 leading-snug">
+                  <h3 className="text-xl font-bold tracking-tight text-foreground dark:group-hover:text-[lab(74 -53.94 24.51)] transition-colors duration-200 mt-4 line-clamp-3 leading-snug">
                     {post.title}
                   </h3>
                 </div>
@@ -172,21 +159,12 @@ export function Blog() {
           {/* Show more posts button */}
           {showMoreButtonVisible && (
             <div className="flex justify-center mt-4">
-              {isHomepage ? (
-                <Link
-                  href="/blog"
-                  className="inline-flex h-9 items-center justify-center rounded-full border border-border bg-card px-6 text-xs font-medium text-foreground hover:bg-muted hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer shadow-xs gap-1.5"
-                >
-                  Show more posts
-                </Link>
-              ) : (
-                <button
-                  onClick={() => setVisibleCount((prev) => prev + 6)}
-                  className="inline-flex h-9 items-center justify-center rounded-full border border-border bg-card px-6 text-xs font-medium text-foreground hover:bg-muted hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer shadow-xs gap-1.5"
-                >
-                  Show more posts
-                </button>
-              )}
+              <button
+                onClick={() => setVisibleCount((prev) => prev + 6)}
+                className="inline-flex h-9 items-center justify-center rounded-full border border-border bg-card px-6 text-xs font-medium text-foreground hover:bg-muted hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer shadow-xs gap-1.5"
+              >
+                Show more posts
+              </button>
             </div>
           )}
         </div>

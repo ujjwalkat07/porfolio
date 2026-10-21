@@ -1,11 +1,11 @@
 import { Navbar } from "@/components/navbar"
 import { BentoProfile } from "@/components/bento-profile"
-import { Blog } from "@/components/blog"
+import { HomeBlog } from "@/components/home-blog"
 import { Footer } from "@/components/footer"
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-background font-sans transition-colors duration-300 antialiased selection:bg-indigo-500/10 selection:text-indigo-500">
+    <div className="flex flex-col min-h-screen bg-background font-sans transition-colors duration-300 antialiased selection:bg-emerald-500/20 selection:text-emerald-600 dark:selection:text-emerald-400">
       {/* Navigation */}
       <Navbar />
 
@@ -15,7 +15,7 @@ export default function Home() {
         <BentoProfile />
 
         {/* Sections */}
-        <Blog />
+        <HomeBlog />
 
         {/* Footer */}
         <Footer />

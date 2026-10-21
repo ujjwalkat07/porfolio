@@ -16,7 +16,7 @@ export default async function PrivacyPolicyPage() {
   const contentHtml = await marked.parse(privacyPolicyContent)
 
   return (
-    <main className="min-h-screen bg-background py-12 sm:py-16 px-4 sm:px-6 md:px-10 antialiased selection:bg-indigo-500/10 selection:text-indigo-500">
+    <main className="min-h-screen bg-background py-12 sm:py-16 px-4 sm:px-6 md:px-10 antialiased selection:bg-emerald-500/20 selection:text-emerald-600 dark:selection:text-emerald-400">
       <div className="max-w-3xl mx-auto flex flex-col gap-10">
         
         {/* Back Link */}

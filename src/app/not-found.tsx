@@ -3,7 +3,7 @@ import { ArrowLeft } from "lucide-react"
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-background px-6 text-center antialiased selection:bg-indigo-500/10 selection:text-indigo-500">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-background px-6 text-center antialiased selection:bg-emerald-500/20 selection:text-emerald-600 dark:selection:text-emerald-400">
       <div className="flex flex-col items-center gap-4 max-w-md">
         {/* Error Code Badge */}
         <span className="text-xs font-semibold tracking-widest text-indigo-500 uppercase select-none">

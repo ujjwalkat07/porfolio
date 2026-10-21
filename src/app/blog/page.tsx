@@ -30,7 +30,7 @@ export default function BlogListingPage() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-background font-sans transition-colors duration-300 antialiased selection:bg-indigo-500/10 selection:text-indigo-500">
+    <div className="flex flex-col min-h-screen bg-background font-sans transition-colors duration-300 antialiased selection:bg-emerald-500/20 selection:text-emerald-600 dark:selection:text-emerald-400">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
@@ -39,7 +39,7 @@ export default function BlogListingPage() {
       <Navbar />
 
       {/* Main Page Layout Wrapper */}
-      <main className="flex-1 w-full max-w-[1200px] mx-auto px-4 sm:px-6 md:px-10 flex flex-col pt-12 sm:pt-16 gap-6">
+      <main className="flex-1 w-full max-w-[1350px] mx-auto px-4 sm:px-6 md:px-10 flex flex-col pt-12 sm:pt-10 gap-6">
         <h1 className="sr-only">Blog — Ujjwal Katiyar</h1>
         <Blog />
         <Footer />

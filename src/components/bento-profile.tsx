@@ -8,7 +8,7 @@ export function BentoProfile() {
   const email = "contact@ujjwalkatiyar.in"
 
   return (
-    <section className="w-full pt-10 pb-2 border-b border-border/40">
+    <section className="w-full pt-10 pb-5 ">
       {/* Top row: Avatar + Name + Role */}
       <div className="flex flex-col sm:flex-row gap-5 items-start sm:items-center mb-5">
         <div className="flex flex-col gap-1">
@@ -22,7 +22,7 @@ export function BentoProfile() {
       </div>
 
       {/* About paragraph */}
-      <p className="text-xs md:text-sm text-muted-foreground max-w-3xl mb-6 text-justify">
+      <p className="text-xs md:text-sm text-muted-foreground max-w-3xl mb-6">
         Software Developer specializing in real-time web applications, scalable systems and high-performance backend development, with hands-on experience across end-to-end product development. Combining academic grounding in data structures, algorithms, and systems design with shipped, real-world engineering work.
       </p>
 
@@ -36,17 +36,6 @@ export function BentoProfile() {
         >
           <Github className="h-4 w-4" />
           <span>GitHub</span>
-          <ArrowUpRight className="h-3 w-3 opacity-70" />
-        </a>
-
-        <a
-          href="https://leetcode.com/u/ujjwalkat07"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
-        >
-          <LeetCode className="h-4 w-4" />
-          <span>LeetCode</span>
           <ArrowUpRight className="h-3 w-3 opacity-70" />
         </a>
 

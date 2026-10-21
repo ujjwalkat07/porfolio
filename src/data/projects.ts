@@ -33,7 +33,7 @@ export const projects: ProjectItem[] = [
     title: "Lamp",
     description:
       "LAMP is a modern TypeScript-based web application built with Next.js that provides QR code scanning and verification capabilities combined with an event management dashboard.",
-    image: "/lamp.png",
+    image: "/lamp.webp",
     demo: "https://lamp-mih.vercel.app",
     github: "https://github.com/ujjwalkat07/lamp",
     tags: ["TypeScript", "Next.js", "Turborepo"],
