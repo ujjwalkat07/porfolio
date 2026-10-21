@@ -26,12 +26,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/github`,
-      lastModified: new Date("2026-10-15"),
-      changeFrequency: "weekly",
-      priority: 0.7,
-    },
-    {
       url: `${baseUrl}/about`,
       lastModified: new Date("2026-10-15"),
       changeFrequency: "monthly",

@@ -123,14 +123,16 @@ export default function ProjectsPage() {
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
-            <Link
+            <a
               id="projects-cta-github"
-              href="/github"
+              href="https://github.com/ujjwalkat07"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-medium rounded-xl border border-border bg-card hover:bg-muted text-foreground transition-all duration-200 shadow-xs"
             >
               <Github className="w-3.5 h-3.5" />
-              <span>GitHub Repos</span>
-            </Link>
+              <span>GitHub Profile</span>
+            </a>
             <Link
               id="projects-cta-contact"
               href="/contact"

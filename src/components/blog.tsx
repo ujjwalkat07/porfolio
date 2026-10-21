@@ -132,7 +132,7 @@ export function Blog() {
                   </div>
 
                   {/* Article Title */}
-                  <h3 className="text-xl font-bold tracking-tight text-foreground group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors duration-200 mt-4 line-clamp-3 leading-snug">
+                  <h3 className="text-xl font-bold tracking-tight text-foreground group-hover:text-indigo-500 dark:group-hover:text-[lab(74 -53.94 24.51)] transition-colors duration-200 mt-4 line-clamp-3 leading-snug">
                     {post.title}
                   </h3>
                 </div>
