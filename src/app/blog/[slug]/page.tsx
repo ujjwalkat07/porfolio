@@ -240,7 +240,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       <Navbar />
 
       {/* Main Container - 12-Column Responsive Layout */}
-      <main className="flex-1 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:pl-36 pt-8 sm:pt-12 pb-16">
+      <main className="flex-1 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:pl-36 pt-8 sm:pt-12 pb-5">
         {/* Supabase Breadcrumbs & Back Link */}
         <div className="flex items-center gap-5 mb-5 sm:mb-5 text-xs text-muted-foreground font-body">
           <div className="flex items-center gap-1.5 text-xs text-muted-foreground/80">
@@ -325,7 +325,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
             {/* Read Next Section */}
             {otherPosts.length > 0 && (
-              <section className="mt-8 pt-4">
+              <section className="">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="font-display text-xl font-bold text-foreground">
                     Read Next
@@ -397,7 +397,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         {/* Global Footer */}
         
       </main>
-      <div className="pt-5 border-border/60 max-w-[900px] mx-auto w-full  ">
+      <div className=" border-border/60 max-w-[900px] mx-auto w-full  ">
           <Footer />
         </div>
     </div>
