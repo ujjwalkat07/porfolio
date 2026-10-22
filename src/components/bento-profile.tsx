@@ -12,11 +12,11 @@ export function BentoProfile() {
       {/* Top row: Avatar + Name + Role */}
       <div className="flex flex-col sm:flex-row gap-5 items-start sm:items-center mb-5">
         <div className="flex flex-col gap-1">
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground">
+          <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground">
             Ujjwal Katiyar
           </h1>
           <p className="text-sm md:text-base font-medium text-muted-foreground">
-            Software Developer &amp; Systems Architect
+            Software Developer
           </p>
         </div>
       </div>

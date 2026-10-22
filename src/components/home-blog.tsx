@@ -27,7 +27,7 @@ export function HomeBlog() {
       {/* Section Header */}
       <div className="flex items-center justify-between mb-2 pb-3 border-b border-border/40">
         <div className="flex items-center gap-3">
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
             Blog
           </h2>
           <span className="text-xs px-2 py-0.5 rounded-full bg-muted text-muted-foreground font-medium">
