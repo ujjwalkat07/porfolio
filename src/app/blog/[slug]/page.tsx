@@ -346,10 +346,8 @@ export default async function BlogPostPage({ params }: PageProps) {
                       className="group flex flex-col justify-between p-5 rounded-xl border border-border/60 bg-card/30 hover:bg-card/70 hover:border-[#3ECF8E]/40 transition-all duration-200"
                     >
                       <div>
-                        <div className="flex items-center gap-2 text-[10px] font-code text-muted-foreground uppercase tracking-wider mb-2">
+                        <div className="flex items-center gap-2 text-[10px] text-muted-foreground uppercase tracking-wider mb-2">
                           <span>{otherPost.date}</span>
-                          <span>•</span>
-                          <span>{otherPost.readTime}</span>
                         </div>
                         <h4 className="font-display text-base font-bold text-foreground group-hover:text-[#3ECF8E] transition-colors line-clamp-2">
                           {otherPost.title}
