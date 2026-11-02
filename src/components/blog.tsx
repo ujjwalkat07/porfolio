@@ -108,7 +108,7 @@ export function Blog() {
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group flex flex-col justify-between p-5 sm:p-6 md:p-8 rounded-md border border-border/50 bg-card shadow-sm hover:shadow-md transition-all duration-300 min-h-[300px] sm:min-h-[340px] hover:bg-neutral-950/50"
+                className="group flex flex-col justify-between p-5 sm:p-6 md:p-8 rounded-md border border-border/50 bg-card shadow-sm hover:shadow-md transition-all duration-300 min-h-[300px] sm:min-h-[340px] hover:bg-muted/40 dark:hover:bg-neutral-900/40"
               >
                 <div>
                   {/* Meta Category & Date */}

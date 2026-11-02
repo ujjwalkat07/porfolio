@@ -39,7 +39,7 @@ export function BentoProfile() {
           href="https://github.com/ujjwalkat07"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 border border-gray-700 px-2 py-1 rounded-sm bg-neutral-800"
+          className="inline-flex items-center gap-1.5 text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 border border-neutral-300 dark:border-gray-700 px-2 py-1 rounded-sm bg-neutral-100 hover:bg-neutral-200/80 dark:bg-neutral-800 dark:hover:bg-neutral-700"
         >
           <Github className="h-4 w-4" />
           <span>GitHub</span>
@@ -50,7 +50,7 @@ export function BentoProfile() {
           href="https://www.linkedin.com/in/ujjwalkatiyar07"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 border border-gray-700 px-2 py-1 rounded-sm bg-neutral-800"
+          className="inline-flex items-center gap-1.5 text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 border border-neutral-300 dark:border-gray-700 px-2 py-1 rounded-sm bg-neutral-100 hover:bg-neutral-200/80 dark:bg-neutral-800 dark:hover:bg-neutral-700"
         >
           <Linkedin className="h-4 w-4" />
           <span>LinkedIn</span>
@@ -59,7 +59,7 @@ export function BentoProfile() {
 
         <a
           href={`mailto:${email}`}
-          className="inline-flex items-center gap-1.5 text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 border border-gray-700 px-2 py-1 rounded-sm bg-neutral-800"
+          className="inline-flex items-center gap-1.5 text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 border border-neutral-300 dark:border-gray-700 px-2 py-1 rounded-sm bg-neutral-100 hover:bg-neutral-200/80 dark:bg-neutral-800 dark:hover:bg-neutral-700"
         >
           <Mail className="h-4 w-4" />
           <span>Email</span>
@@ -70,7 +70,7 @@ export function BentoProfile() {
           href="/ujjwal-resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 border border-gray-700 px-2 py-1 rounded-sm bg-neutral-800"
+          className="inline-flex items-center gap-1.5 text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 border border-neutral-300 dark:border-gray-700 px-2 py-1 rounded-sm bg-neutral-100 hover:bg-neutral-200/80 dark:bg-neutral-800 dark:hover:bg-neutral-700"
         >
           <FileText className="h-4 w-4" />
           <span>Resume</span>
