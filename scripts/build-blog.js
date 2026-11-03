@@ -54,6 +54,9 @@ function buildBlog() {
     const fileContent = fs.readFileSync(filePath, "utf-8")
     const { data, content } = parseFrontmatter(fileContent)
 
+    // Normalize any relative public paths to root web paths
+    const normalizedContent = content.trim().replace(/!\[(.*?)\]\((?:\.\.\/)*public\/(.*?)\)/g, '![$1](/$2)')
+
     posts.push({
       slug: file.replace(".md", ""),
       title: data.title || "Untitled",
@@ -65,7 +68,7 @@ function buildBlog() {
       tags: data.tags || [],
       keywords: data.keywords || [],
       link: data.link || "#",
-      content: content.trim(),
+      content: normalizedContent,
     })
   })
 

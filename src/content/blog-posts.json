@@ -3,7 +3,7 @@
     "slug": "the-engineering-behind-asi-telemetery",
     "title": "The Engineering behind ASI Telemetery",
     "category": "Engineering",
-    "description": "",
+    "description": "ASI:Telemetry is an Observability and monitoring platform for AI agents and ai applications.",
     "date": "Oct 21, 2026",
     "lastModified": "Oct 21, 2026",
     "readTime": "5 min read",
@@ -14,7 +14,7 @@
       ""
     ],
     "link": "https://ujjwalkatiyar.in/blog/the-engineering-behind-asi-telemetery",
-    "content": "In this blog, we will understand the engineering behind ASI Telemetery.\r\n\r\nhey everyone, today we are going to under stand"
+    "content": "![alt text](/asi.png)\n\n## Introduction\nThe idea of [ASI:Telemetry](https://asi-telemetry.vercel.app/) came to me when I was exploring and building AI agents using [uagents](https://uagents.fetch.ai/) library developed by [Fetch.ai](http://fetch.ai/).\n\nI noticed **Fetch.ai** has [ASI:One](https://asi1.ai/) (An AI Assistant similar to ChatGPT & Claude, but here you can call your agent direclty by giving a prompt) and [Agentverse](https://agentverse.ai/) (A marketplace for AI agents where you can host your agents).\n\nWhile exploring their products, I noticed one thing missing from their ecosystem: a tool for monitoring agents built with the uagent library. So, I built it: **ASI:Telemetry**, an Observability and monitoring platform for AI agents where developers can track agent performance, LLM cost, token usage, communication between multiple agents, and more, directly by installing our [SDK](https://pypi.org/project/asi-telemetry/).\n\n```code\npip install asi:telemetry\n```\n\n## Architectural Design Of ASI:Telemetry\n\n```mermaid\nflowchart TB\n    A[\"Fetch.ai Ecosystem\"]\n\n    A --> B[\"uAgents\"]\n    A --> C[\"Agentverse\"]\n    A --> D[\"ASI:One\"]\n    A --> E[\"ASI:Telemetry\"]\n\n    B --> B1[\"Build AI Agents\"]\n    C --> C1[\"Host & Discover Agents\"]\n    D --> D1[\"Interact with AI Agents\"]\n    E --> E1[\"Monitor & Observe Agents\"]\n\n    B1 --> F[\"Autonomous AI Agents\"]\n    C1 --> F\n    D1 --> F\n\n    F --> E1\n\n    E1 --> G[\"Distributed Tracing\"]\n    E1 --> H[\"Performance Metrics\"]\n    E1 --> I[\"Error Tracking\"]\n    E1 --> J[\"LLM Cost Analytics\"]\n\n    classDef ecosystem fill:#172554,stroke:#3b82f6,color:#fff\n    classDef telemetry fill:#064e3b,stroke:#10b981,color:#fff\n    class A,B,C,D ecosystem\n    class E,E1,G,H,I,J telemetry\n```\n\n## How SDK Collect traces ?"
   },
   {
     "slug": "the-engineering-behind-zero-context",

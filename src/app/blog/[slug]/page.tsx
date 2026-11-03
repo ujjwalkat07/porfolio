@@ -7,6 +7,7 @@ import { Footer } from "@/components/footer"
 import { ImpressionCounter } from "@/components/impression-counter"
 import { TableOfContents, type TocItem } from "@/components/blog/table-of-contents"
 import { BlogInteractions } from "@/components/blog/blog-interactions"
+import { MermaidRenderer } from "@/components/blog/mermaid-renderer"
 import { SupabaseShareBar } from "@/components/blog/supabase-share-bar"
 import posts from "@/content/blog-posts.json"
 import { marked } from "marked"
@@ -116,11 +117,32 @@ async function renderSupabaseMarkdown(content: string) {
   }
 
   renderer.code = function ({ text, lang }: { text: string; lang?: string }) {
+    if (lang === "mermaid") {
+      const cleanChart = text.trim()
+      return `
+        <div class="mermaid-block not-prose my-8 w-full flex flex-col items-center justify-center overflow-x-auto rounded-xl sm:rounded-2xl border border-border/70 bg-card/60 p-4 sm:p-6 shadow-xs" data-chart="${encodeURIComponent(cleanChart)}">
+          <div class="mermaid-render flex justify-center w-full min-h-[140px] items-center">
+            <div class="flex items-center gap-2 text-xs text-muted-foreground animate-pulse py-6">
+              <svg class="h-4 w-4 animate-spin text-[#3ECF8E]" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+              </svg>
+              <span>Rendering diagram...</span>
+            </div>
+          </div>
+        </div>
+      `
+    }
     return renderShadcnCodeBlock(text, lang)
   }
 
   renderer.codespan = function ({ text }: { text: string }) {
     return `<code class="font-code text-[12px] sm:text-[12.5px] px-1.5 py-0.5 rounded bg-muted/70 dark:bg-[#1f1f1f] border border-border/70 text-foreground font-normal">${text}</code>`
+  }
+
+  renderer.image = function ({ href, title, text }: { href: string; title?: string | null; text: string }) {
+    const cleanHref = href.replace(/^(\.\.\/)*public\//, "/").replace(/^\/public\//, "/")
+    return `<img src="${cleanHref}" alt="${text || ""}" ${title ? `title="${title}"` : ""} class="max-w-full h-auto rounded-xl border border-border/60 my-8" />`
   }
 
   return await marked.parse(content, { renderer })
@@ -223,8 +245,9 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <div className="flex flex-col min-h-screen bg-background font-body transition-colors duration-300 antialiased selection:bg-[#3ECF8E]/20 selection:text-[#10b981] dark:selection:text-[#3ECF8E]">
-      {/* Blog Interaction Handlers (Copy button, etc.) */}
+      {/* Blog Interaction Handlers (Copy button, Mermaid rendering, etc.) */}
       <BlogInteractions />
+      <MermaidRenderer />
 
       {/* JSON-LD Schemas */}
       <script
@@ -279,14 +302,13 @@ export default async function BlogPostPage({ params }: PageProps) {
                   <ImpressionCounter slug={slug} />
                 </span>
               </div>
-
-              {/* Supabase Author Snippet */}
               <div className="flex items-center gap-3 pt-2">
                 <div className="relative w-9 h-9 rounded-full overflow-hidden border border-border/80 shrink-0">
                   <Image
                     src="/profile_pic.webp"
                     alt="Ujjwal Katiyar"
                     fill
+                    sizes="36px"
                     className="object-cover"
                   />
                 </div>
@@ -303,7 +325,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
             {/* Markdown Article Body */}
             <div
-              className="mt-5 text-neutral-800 dark:text-neutral-300 font-body text-[15px] sm:text-[16px] leading-[1.8] break-words [overflow-wrap:anywhere]
+              className="text-neutral-800 dark:text-neutral-300 font-body text-[15px] sm:text-[16px] leading-[1.8] break-words [overflow-wrap:anywhere]
                 [&>p]:mb-6 [&>p]:leading-[1.8]
                 [&>p>strong]:font-semibold [&>p>strong]:text-foreground
                 [&>p>a]:text-foreground [&>p>a]:underline [&>p>a]:decoration-[#3ECF8E]/60 [&>p>a]:underline-offset-4 hover:[&>p>a]:text-[#3ECF8E] hover:[&>p>a]:decoration-[#3ECF8E] [&>p>a]:transition-colors
@@ -370,16 +392,16 @@ export default async function BlogPostPage({ params }: PageProps) {
           {/* Right Column / Sticky Sidebar (hidden lg:block col-span-4 col-start-9) */}
           <aside className="hidden lg:block col-span-4 col-start-9 space-y-8 pl-4 xl:pl-8 pt-58">
             {/* Category / Tags badges */}
-              <div className="flex flex-wrap items-center gap-2">
-                {post.tags.map((tag, i) => (
-                  <span
-                    key={i}
-                    className="text-[10px] font-code font-medium tracking-[0.06em] uppercase px-2 py-0.5 rounded-full border border-border/80 bg-muted/40 text-muted-foreground hover:border-[#3ECF8E]/60 hover:text-[#3ECF8E] transition-colors select-none"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+            <div className="flex flex-wrap items-center gap-2">
+              {post.tags.map((tag, i) => (
+                <span
+                  key={i}
+                  className="text-[10px] font-code font-medium tracking-[0.06em] uppercase px-2 py-0.5 rounded-full border border-border/80 bg-muted/40 text-muted-foreground hover:border-[#3ECF8E]/60 hover:text-[#3ECF8E] transition-colors select-none"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
             <div className="sticky top-24 flex flex-col gap-8 max-h-[calc(100vh-7rem)] overflow-y-auto pr-1">
               {/* Table of contents */}
               {tocItems.length > 0 && <TableOfContents items={tocItems} />}
@@ -393,11 +415,11 @@ export default async function BlogPostPage({ params }: PageProps) {
         </div>
 
         {/* Global Footer */}
-        
+
       </main>
       <div className=" border-border/60 max-w-[900px] mx-auto w-full  ">
-          <Footer />
-        </div>
+        <Footer />
+      </div>
     </div>
   )
 }
