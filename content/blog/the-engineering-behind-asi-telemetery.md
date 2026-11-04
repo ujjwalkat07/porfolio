@@ -2,20 +2,20 @@
 title: "The Engineering behind ASI Telemetery"
 category: "Engineering"
 description: "ASI:Telemetry is an Observability and monitoring platform for AI agents and ai applications."
-date: "Oct 21, 2026"
-lastModified: "Oct 21, 2026"
+date: "November 4, 2026"
+lastModified: "November 4, 2026"
 readTime: "5 min read"
 tags: ["Engineering"]
-keywords: [""]
+keywords: ["ASI:Telemetry", "ASI", "Telemetry", "Observability", "Monitoring", "AI Agents", "AI Applications", "Fetch.ai", "uagents", "LLM", "Token Usage", "Cost Monitoring", "Agent Performance", "Agent Communication", "SDK", "FastAPI", "ClickHouse", "Python", "Backend", "Frontend", "Dashboard", "API", "Microservices", "Trace", "Metric", "Span", "Latency", "Performance", "Usage Tracking", "Cost Optimization", "Efficiency", "Development", "Production", "AI Development", "Agent Engineering"]
 link: "https://ujjwalkatiyar.in/blog/the-engineering-behind-asi-telemetery"
 ---
 
 ![alt text](/asi.png)
 
 ## Introduction
-The idea of [ASI:Telemetry](https://asi-telemetry.vercel.app/) came to me when I was exploring and building AI agents using [uagents](https://uagents.fetch.ai/) library developed by [Fetch.ai](http://fetch.ai/).
+The idea of [ASI:Telemetry](https://asi-telemetry.vercel.app/) came to me when I was exploring and building AI agents using the [uagents](https://uagents.fetch.ai/) library developed by [Fetch.ai](http://fetch.ai/).
 
-I noticed **Fetch.ai** has [ASI:One](https://asi1.ai/) (An AI Assistant similar to ChatGPT & Claude, but here you can call your agent direclty by giving a prompt) and [Agentverse](https://agentverse.ai/) (A marketplace for AI agents where you can host your agents).
+I noticed **Fetch.ai** has [ASI:One](https://asi1.ai/) (An AI Assistant similar to ChatGPT & Claude, but here you can call your agent directly by giving a prompt) and [Agentverse](https://agentverse.ai/) (A marketplace for AI agents where you can host your agents).
 
 While exploring their products, I noticed one thing missing from their ecosystem: a tool for monitoring agents built with the uagent library. So, I built it: **ASI:Telemetry**, an Observability and monitoring platform for AI agents where developers can track agent performance, LLM cost, token usage, communication between multiple agents, and more, directly by installing our [SDK](https://pypi.org/project/asi-telemetry/).
 
@@ -95,6 +95,6 @@ client = genai.Client()
 observe.instrument_gemini(client)  # This will automatically monitor the AI agent and collect its traces
 
 ```
-Here, we use monkey patching technique/method to instrument LLM API calls and collect its data. As, we can see above code example we intialtize the **observe.instrument_gemini(client)**, Under the hood it receives a reference to the Gemini client and intercept API calls, whenever LLM calls its capture relevent data and send it to python backend.
+Here, we use a monkey-patching technique/method to instrument LLM API calls and collect data. As we can see in the code example above, we initialize the **observe.instrument_gemini(client)**, Under the hood it receives a reference to the Gemini client and intercept API calls, whenever LLM calls its capture relevent data and send it to python backend.
 
 ### Agent Tracing
