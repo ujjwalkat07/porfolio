@@ -26,34 +26,33 @@ pip install asi:telemetry
 ## Architectural Design Of ASI:Telemetry
 
 ```mermaid
-flowchart TB
-    A["Fetch.ai Ecosystem"]
 
-    A --> B["uAgents"]
-    A --> C["Agentverse"]
-    A --> D["ASI:One"]
-    A --> E["ASI:Telemetry"]
+%%{init: {"themeVariables": {"fontSize": "12px"}, "flowchart": {"nodeSpacing": 18, "rankSpacing": 25, "padding": 5}}}%%
 
-    B --> B1["Build AI Agents"]
-    C --> C1["Host & Discover Agents"]
-    D --> D1["Interact with AI Agents"]
-    E --> E1["Monitor & Observe Agents"]
+flowchart TD
+    A["AI Agent / AI Application"]
+    B["ASI:Telemetry SDK"]
+    C["FastAPI Backend"]
+    D["Processing & Validation"]
+    E[("ClickHouse Database")]
+    G["ASI:Telemetry Dashboard"]
 
-    B1 --> F["Autonomous AI Agents"]
-    C1 --> F
-    D1 --> F
+    A -->|"Execution events, LLM calls,<br/>requests & responses"| B
 
-    F --> E1
+    B -->|"Collect traces, metrics,<br/>tokens, latency & costs"| B
+    B -->|"Export events<br/>via Async HTTP"| C
 
-    E1 --> G["Distributed Tracing"]
-    E1 --> H["Performance Metrics"]
-    E1 --> I["Error Tracking"]
-    E1 --> J["LLM Cost Analytics"]
+    C -->|"Receive telemetry payloads"| D
+    D -->|"Stored traces, metrics<br/>& event records"| E
+    E -->|"Query & aggregate<br/>monitoring data"| G
 
-    classDef ecosystem fill:#172554,stroke:#3b82f6,color:#fff
-    classDef telemetry fill:#064e3b,stroke:#10b981,color:#fff
-    class A,B,C,D ecosystem
-    class E,E1,G,H,I,J telemetry
+    style A fill:#172554,stroke:#3b82f6,color:#fff
+    style B fill:#164e63,stroke:#06b6d4,color:#fff
+    style C fill:#312e81,stroke:#818cf8,color:#fff
+    style D fill:#312e81,stroke:#818cf8,color:#fff
+    style E fill:#064e3b,stroke:#10b981,color:#fff
+    style G fill:#064e3b,stroke:#10b981,color:#fff
+
 ```
 
 ## How SDK Collect traces ? 

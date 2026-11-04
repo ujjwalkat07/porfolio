@@ -117,11 +117,19 @@ async function renderSupabaseMarkdown(content: string) {
   }
 
   renderer.code = function ({ text, lang }: { text: string; lang?: string }) {
-    if (lang === "mermaid") {
+    const rawLang = (lang || "").trim()
+    if (rawLang === "mermaid" || rawLang.startsWith("mermaid")) {
       const cleanChart = text.trim()
+      let customMaxWidth = ""
+      const widthMatch = rawLang.match(/mermaid[ :](?:(?:max-)?width[=:])?([0-9]+(?:px|%|rem)?)/i)
+      if (widthMatch) {
+        const val = widthMatch[1]
+        customMaxWidth = /^[0-9]+$/.test(val) ? `${val}px` : val
+      }
+
       return `
-        <div class="mermaid-block not-prose my-8 w-full flex flex-col items-center justify-center overflow-x-auto rounded-xl sm:rounded-2xl border border-border/70 bg-card/60 p-4 sm:p-6 shadow-xs" data-chart="${encodeURIComponent(cleanChart)}">
-          <div class="mermaid-render flex justify-center w-full min-h-[140px] items-center">
+        <div class="mermaid-block not-prose my-8 w-full flex flex-col items-center justify-center relative overflow-hidden rounded-xl sm:rounded-2xl border border-border/70 bg-card/60 shadow-xs" data-chart="${encodeURIComponent(cleanChart)}"${customMaxWidth ? ` data-max-width="${customMaxWidth}"` : ""}>
+          <div class="mermaid-render flex justify-center w-full min-h-[180px] items-center p-6 sm:p-8 pt-12 overflow-hidden">
             <div class="flex items-center gap-2 text-xs text-muted-foreground animate-pulse py-6">
               <svg class="h-4 w-4 animate-spin text-[#3ECF8E]" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
