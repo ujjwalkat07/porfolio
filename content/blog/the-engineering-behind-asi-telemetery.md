@@ -56,3 +56,4 @@ flowchart TD
 ```
 
 ## How SDK Collect traces ? 
+Now, Let's understand how **ASI:Telemetry** SDK collect traces and sends to backend
