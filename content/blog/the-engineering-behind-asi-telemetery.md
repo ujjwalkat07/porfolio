@@ -56,4 +56,45 @@ flowchart TD
 ```
 
 ## How SDK Collect traces ? 
-Now, Let's understand how **ASI:Telemetry** SDK collect traces and sends to backend
+Now, Let's understand how **ASI:Telemetry** SDK collect traces and sends to backend, before that lets understand its main 3 core components.
+
+```mermaid
+flowchart TB
+    A["ASI:Telemetry SDK"]
+
+    B["Instrumentation"]
+    C["Agents/LLM Tracing"]
+    D["Tool Monitoring"]
+
+    A --> B
+    A --> C
+    A --> D
+
+    classDef sdk fill:#164e63,stroke:#06b6d4,color:#fff,stroke-width:2px
+    classDef feature fill:#172554,stroke:#3b82f6,color:#fff,stroke-width:1px
+
+    class A sdk
+    class B,C,D feature
+```
+Now, let's understand step by step its components and how they work.
+
+### AI SDK Instruments
+Here, what we have done is under the hood, we have created an instrumentation layer that will wrap all the AI SDK like Gemini, OpenAI, Claude etc. It helps to collect traces from the AI SDK like input token, output token, input text and more and send it to the python backend.
+
+**For Example :**
+```python
+from asi_telemetry import ASI_Telemetry
+from google import genai
+
+observe = ASI_Telemetry(
+    api_key="asi_live_9••••••••7cac",
+    agent_name="production-assistant",
+)
+
+client = genai.Client()
+observe.instrument_gemini(client)  # This will automatically monitor the AI agent and collect its traces
+
+```
+Here, we use monkey patching technique/method to instrument LLM API calls and collect its data. As, we can see above code example we intialtize the **observe.instrument_gemini(client)**, Under the hood it receives a reference to the Gemini client and intercept API calls, whenever LLM calls its capture relevent data and send it to python backend.
+
+### Agent Tracing
