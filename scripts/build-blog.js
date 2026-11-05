@@ -42,7 +42,6 @@ function parseFrontmatter(fileContent) {
 
 function buildBlog() {
   if (!fs.existsSync(BLOG_DIR)) {
-    //(`Blog directory not found: ${BLOG_DIR}`)
     process.exit(1)
   }
 
@@ -57,8 +56,11 @@ function buildBlog() {
     // Normalize any relative public paths to root web paths
     const normalizedContent = content.trim().replace(/!\[(.*?)\]\((?:\.\.\/)*public\/(.*?)\)/g, '![$1](/$2)')
 
+    // Explicit slug from frontmatter: read data.slug directly; fallback to filename only if missing
+    const slug = data.slug ? data.slug.trim() : file.replace(".md", "")
+
     posts.push({
-      slug: file.replace(".md", ""),
+      slug,
       title: data.title || "Untitled",
       category: data.category || "General",
       description: data.description || "",
@@ -67,7 +69,7 @@ function buildBlog() {
       readTime: data.readTime || "",
       tags: data.tags || [],
       keywords: data.keywords || [],
-      link: data.link || "#",
+      link: data.link || `https://ujjwalkatiyar.in/blog/${slug}`,
       content: normalizedContent,
     })
   })
@@ -80,7 +82,7 @@ function buildBlog() {
   }
 
   fs.writeFileSync(OUTPUT_FILE, JSON.stringify(posts, null, 2), "utf-8")
-  //.log(`Successfully built ${posts.length} blog posts into ${OUTPUT_FILE}`)
+  console.log(`Successfully built ${posts.length} blog posts into ${OUTPUT_FILE}`)
 }
 
 buildBlog()

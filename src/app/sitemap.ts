@@ -26,12 +26,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/about`,
-      lastModified: new Date("2026-10-15"),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
       url: `${baseUrl}/contact`,
       lastModified: new Date("2026-10-15"),
       changeFrequency: "monthly",
@@ -51,17 +45,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  // Dynamic blog routes
+  // Dynamic blog post routes mapped from the generated blog index
   const blogRoutes: MetadataRoute.Sitemap = posts.map((post) => {
-    const rawDate = post.lastModified || post.date
-    const parsedDate = rawDate ? new Date(rawDate) : new Date("2026-07-15")
-    const validDate = isNaN(parsedDate.getTime()) ? new Date("2026-07-15") : parsedDate
+    let lastMod = new Date("2026-10-15")
+    if (post.lastModified || post.date) {
+      const parsed = new Date(post.lastModified || post.date)
+      if (!isNaN(parsed.getTime())) {
+        lastMod = parsed
+      }
+    }
 
     return {
       url: `${baseUrl}/blog/${post.slug}`,
-      lastModified: validDate,
+      lastModified: lastMod,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.7,
     }
   })
 

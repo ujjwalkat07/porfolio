@@ -336,7 +336,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               className="text-neutral-800 dark:text-neutral-300 font-body text-[15px] sm:text-[16px] leading-[1.8] break-words [overflow-wrap:anywhere]
                 [&>p]:mb-6 [&>p]:leading-[1.8]
                 [&>p>strong]:font-semibold [&>p>strong]:text-foreground
-                [&>p>a]:text-foreground [&>p>a]:underline [&>p>a]:decoration-[#3ECF8E]/60 [&>p>a]:underline-offset-4 hover:[&>p>a]:text-[#3ECF8E] hover:[&>p>a]:decoration-[#3ECF8E] [&>p>a]:transition-colors
+                [&_a]:text-foreground [&_a]:underline [&_a]:decoration-[#3ECF8E]/60 [&_a]:underline-offset-4 [&_a:hover]:text-[#3ECF8E] [&_a:hover]:decoration-[#3ECF8E] [&_a]:transition-colors
                 [&>ul]:list-disc [&>ul]:pl-5 sm:[&>ul]:pl-6 [&>ul]:mb-6 [&>ul]:space-y-2
                 [&>ol]:list-decimal [&>ol]:pl-5 sm:[&>ol]:pl-6 [&>ol]:mb-6 [&>ol]:space-y-2
                 [&>li]:leading-[1.75]
