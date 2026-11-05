@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json({ success: true })
-  } catch (e) {
+  } catch {
     //("Contact POST error:", e)
     return NextResponse.json({ error: "Internal server error." }, { status: 500 })
   }

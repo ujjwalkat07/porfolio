@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json({ count: data })
-  } catch (e) {
+  } catch {
     // ("Impression POST error:", e)
     return NextResponse.json({ error: "Internal error" }, { status: 500 })
   }
@@ -75,7 +75,7 @@ export async function GET(request: NextRequest) {
     }
 
     return NextResponse.json({ count: data?.view_count ?? 0 })
-  } catch (e) {
+  } catch {
     //("Impression GET error:", e)
     return NextResponse.json({ error: "Internal error" }, { status: 500 })
   }

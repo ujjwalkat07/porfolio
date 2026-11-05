@@ -21,17 +21,13 @@ export function Navbar() {
     return pathname.startsWith(href)
   }
 
-  // Close mobile menu when pathname changes
-  React.useEffect(() => {
-    setMobileMenuOpen(false)
-  }, [pathname])
-
   return (
     <nav className="sticky top-0 left-0 right-0 z-50 border-b border-border/40 bg-background/80 px-4 sm:px-6 md:px-10 backdrop-blur-md transition-colors duration-300">
       <div className="flex h-14 items-center justify-between">
         <div className="flex items-center gap-8">
           <Link
             href="/"
+            onClick={() => setMobileMenuOpen(false)}
             className="text-sm font-semibold tracking-tight hover:text-foreground/80 transition-colors"
           >
             Ujjwal Katiyar
@@ -96,4 +92,3 @@ export function Navbar() {
     </nav>
   )
 }
-

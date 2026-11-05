@@ -6,8 +6,6 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { ImpressionCounter } from "@/components/impression-counter"
 import { TableOfContents, type TocItem } from "@/components/blog/table-of-contents"
-import { BlogInteractions } from "@/components/blog/blog-interactions"
-import { MermaidRenderer } from "@/components/blog/mermaid-renderer"
 import { SupabaseShareBar } from "@/components/blog/supabase-share-bar"
 import posts from "@/content/blog-posts.json"
 import type { Metadata } from "next"
@@ -16,9 +14,25 @@ interface PageProps {
   params: Promise<{ slug: string }>
 }
 
+interface BlogPostItem {
+  slug: string
+  title: string
+  category?: string
+  description?: string
+  date: string
+  lastModified?: string
+  readTime: string
+  tags?: string[]
+  keywords?: string[]
+  link?: string
+  toc?: TocItem[]
+}
+
+const blogPosts = posts as BlogPostItem[]
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const post = posts.find((p) => p.slug === slug)
+  const post = blogPosts.find((p) => p.slug === slug)
   if (!post) return {}
   return {
     title: `${post.title} — Ujjwal Katiyar`,
@@ -60,14 +74,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export async function generateStaticParams() {
-  return posts.map((post) => ({
+  return blogPosts.map((post) => ({
     slug: post.slug,
   }))
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params
-  const post = posts.find((p) => p.slug === slug)
+  const post = blogPosts.find((p) => p.slug === slug)
 
   if (!post) {
     notFound()
@@ -75,11 +89,11 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   let PostContent: React.ComponentType | null = null
   try {
-    PostContent = (await import(`@content/blog/${slug}.md`)).default
-  } catch (e1) {
+    PostContent = (await import(`@content/blog/${slug}.mdx`)).default
+  } catch {
     try {
-      PostContent = (await import(`@content/blog/${slug}.mdx`)).default
-    } catch (e2) {
+      PostContent = (await import(`@content/blog/${slug}.md`)).default
+    } catch {
       notFound()
     }
   }
@@ -88,8 +102,8 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound()
   }
 
-  const otherPosts = posts.filter((p) => p.slug !== slug).slice(0, 2)
-  const tocItems: TocItem[] = (post as any).toc || []
+  const otherPosts = blogPosts.filter((p) => p.slug !== slug).slice(0, 2)
+  const tocItems: TocItem[] = post.toc || []
 
   // Safe ISO Date parsing for schema markup
   let isoPublishDate = new Date().toISOString()
@@ -98,7 +112,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     if (!isNaN(d.getTime())) {
       isoPublishDate = d.toISOString()
     }
-  } catch (e) {
+  } catch {
     // ignore
   }
 
@@ -109,7 +123,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       if (!isNaN(d.getTime())) {
         isoModifiedDate = d.toISOString()
       }
-    } catch (e) {
+    } catch {
       // ignore
     }
   }
@@ -176,10 +190,6 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <div className="flex flex-col min-h-screen bg-background font-body transition-colors duration-300 antialiased selection:bg-[#3ECF8E]/20 selection:text-[#10b981] dark:selection:text-[#3ECF8E]">
-      {/* Blog Interaction Handlers (Copy button, Mermaid rendering, etc.) */}
-      <BlogInteractions />
-      <MermaidRenderer />
-
       {/* JSON-LD Schemas */}
       <script
         type="application/ld+json"
@@ -256,7 +266,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
             {/* MDX Article Body */}
             <div className="text-neutral-800 dark:text-neutral-300 font-body text-[15px] sm:text-[16px] leading-[1.8] break-words [overflow-wrap:anywhere]">
-              <PostContent />
+              <PostContent/>
             </div>
 
             {/* Horizontal Share Banner */}

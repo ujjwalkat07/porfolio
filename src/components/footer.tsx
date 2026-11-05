@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, Youtube, Instagram, Facebook, LeetCode } from "@/components/icons"
+import { Github, Linkedin, Twitter } from "@/components/icons"
 import Link from "next/link"
 
 export function Footer() {

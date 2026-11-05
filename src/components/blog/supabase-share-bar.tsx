@@ -40,17 +40,17 @@ function LinkedinIcon({ className }: { className?: string }) {
   )
 }
 
+const emptySubscribe = () => () => {}
+const getSnapshot = () => (typeof window !== "undefined" ? window.location.href : "")
+const getServerSnapshot = () => ""
+
 export function SupabaseShareBar({ title, compact = false }: SupabaseShareBarProps) {
   const [copied, setCopied] = React.useState(false)
-  const [url, setUrl] = React.useState("")
-
-  React.useEffect(() => {
-    setUrl(window.location.href)
-  }, [])
+  const url = React.useSyncExternalStore(emptySubscribe, getSnapshot, getServerSnapshot)
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(url)
+      await navigator.clipboard.writeText(url || window.location.href)
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch (err) {

@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 import Link from "next/link"
-import { ArrowLeft, Mail, MapPin } from "lucide-react"
+import { ArrowLeft, Mail } from "lucide-react"
 import { Linkedin, Github, Twitter } from "@/components/icons"
 import { ContactForm } from "@/components/contact-form"
 import { Navbar } from "@/components/navbar"

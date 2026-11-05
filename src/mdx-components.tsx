@@ -1,20 +1,39 @@
 import * as React from "react"
 import type { MDXComponents } from "mdx/types"
-import { renderShadcnCodeBlock } from "@/lib/syntax-highlight"
+import {
+  CodeBlock,
+  CodeBlockHeader,
+  CodeBlockTitle,
+  CodeBlockActions,
+  CodeBlockCopyButton,
+  CodeBlockContent,
+  CodeBlockLine,
+  CodeBlockFooter,
+} from "@/components/ui/code-block"
+import { Mermaid } from "@/components/Mermaid"
 import { cn } from "@/lib/utils"
 
 function getNodeText(node: React.ReactNode): string {
   if (!node) return ""
   if (typeof node === "string" || typeof node === "number") return String(node)
   if (Array.isArray(node)) return node.map(getNodeText).join("")
-  if (typeof node === "object" && "props" in node && (node as any).props?.children) {
-    return getNodeText((node as any).props.children)
+  if (React.isValidElement(node) && node.props && (node.props as { children?: React.ReactNode }).children) {
+    return getNodeText((node.props as { children?: React.ReactNode }).children)
   }
   return ""
 }
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
+    Mermaid,
+    CodeBlock,
+    CodeBlockHeader,
+    CodeBlockTitle,
+    CodeBlockActions,
+    CodeBlockCopyButton,
+    CodeBlockContent,
+    CodeBlockLine,
+    CodeBlockFooter,
     h2: ({ children, id, ...props }: React.ComponentPropsWithoutRef<"h2">) => {
       const rawText = getNodeText(children)
       const headerId = id || rawText.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
@@ -125,57 +144,70 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </tr>
     ),
-    img: ({ src, alt, title, ...props }: React.ComponentPropsWithoutRef<"img">) => {
+    img: ({ src, alt, title, style, width, ...props }: React.ComponentPropsWithoutRef<"img">) => {
       let cleanSrc = typeof src === "string" ? src : ""
       cleanSrc = cleanSrc.replace(/^(\.\.\/)*public\//, "/").replace(/^\/public\//, "")
+
+      // Parse custom width from alt text e.g. ![Architecture|400px](/image.png) or ![Architecture|50%](/image.png)
+      let customWidth: string | undefined = undefined
+      let cleanAlt = alt || ""
+      const altMatch = cleanAlt.match(/\|(?:width=)?([0-9]+(?:px|%|rem)?)$/i)
+      if (altMatch) {
+        const val = altMatch[1]
+        customWidth = /^[0-9]+$/.test(val) ? `${val}px` : val
+        cleanAlt = cleanAlt.slice(0, altMatch.index).trim()
+      }
+
+      // Also support title="width: 400px" or width prop
+      const titleMatch = typeof title === "string" ? title.match(/width[:=]\s*([0-9]+(?:px|%|rem)?)/i) : null
+      if (!customWidth && titleMatch) {
+        const val = titleMatch[1]
+        customWidth = /^[0-9]+$/.test(val) ? `${val}px` : val
+      }
+      if (!customWidth && width) {
+        customWidth = typeof width === "number" ? `${width}px` : width
+      }
+
       return (
-        <img
-          src={cleanSrc}
-          alt={alt || ""}
-          title={title}
-          className="max-w-full h-auto rounded-xl border border-border/60 my-8"
-          {...props}
-        />
+        <span className="block my-8 text-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={cleanSrc}
+            alt={cleanAlt}
+            title={title}
+            style={{
+              maxWidth: customWidth || "100%",
+              width: customWidth ? "100%" : undefined,
+              ...style,
+            }}
+            className="h-auto rounded-xl border border-border/60 mx-auto block shadow-xs"
+            {...props}
+          />
+        </span>
       )
     },
     pre: ({ children, ...props }: React.ComponentPropsWithoutRef<"pre">) => {
       if (React.isValidElement(children)) {
-        const childProps = children.props as { className?: string; children?: React.ReactNode }
+        const childProps = children.props as {
+          className?: string
+          children?: React.ReactNode
+          "data-language"?: string
+        }
         const rawClass = childProps?.className || ""
+        const dataLang = childProps?.["data-language"] || ""
         const rawCode = getNodeText(childProps?.children)
 
-        if (rawClass.includes("mermaid")) {
-          const cleanChart = rawCode.trim()
-          let customMaxWidth = ""
-          const widthMatch = rawClass.match(/mermaid[ :](?:(?:max-)?width[=:])?([0-9]+(?:px|%|rem)?)/i)
-          if (widthMatch) {
-            const val = widthMatch[1]
-            customMaxWidth = /^[0-9]+$/.test(val) ? `${val}px` : val
+        if (rawClass.includes("mermaid") || dataLang === "mermaid") {
+          let cleanChart = rawCode.trim()
+          if (cleanChart.startsWith("```")) {
+            cleanChart = cleanChart.replace(/^```[a-z]*\r?\n/, "").trim()
           }
-
-          return (
-            <div
-              className="mermaid-block not-prose my-8 w-full flex flex-col items-center justify-center relative overflow-hidden rounded-xl sm:rounded-2xl border border-border/70 bg-card/60 shadow-xs"
-              data-chart={encodeURIComponent(cleanChart)}
-              {...(customMaxWidth ? { "data-max-width": customMaxWidth } : {})}
-            >
-              <div className="mermaid-render flex justify-center w-full min-h-[180px] items-center p-6 sm:p-8 pt-12 overflow-hidden">
-                <div className="flex items-center gap-2 text-xs text-muted-foreground animate-pulse py-6">
-                  <svg className="h-4 w-4 animate-spin text-[#3ECF8E]" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-                  </svg>
-                  <span>Rendering diagram...</span>
-                </div>
-              </div>
-            </div>
-          )
+          return <Mermaid chart={cleanChart} />
         }
 
         const match = /language-([a-zA-Z0-9_-]+)/.exec(rawClass)
-        const lang = match ? match[1] : ""
-        const html = renderShadcnCodeBlock(rawCode, lang)
-        return <div dangerouslySetInnerHTML={{ __html: html }} />
+        const lang = match ? match[1] : (dataLang || "")
+        return <CodeBlock language={lang}>{rawCode}</CodeBlock>
       }
 
       return <pre {...props}>{children}</pre>
@@ -196,4 +228,3 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ...components,
   }
 }
-

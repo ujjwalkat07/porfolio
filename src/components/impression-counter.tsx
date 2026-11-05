@@ -31,7 +31,7 @@ export function ImpressionCounter({ slug, readOnly = false }: ImpressionCounterP
           const data = await res.json()
           setCount(data.count)
         }
-      } catch (err) {
+      } catch {
         //("Failed to fetch impression:", err)
       }
     }

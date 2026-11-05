@@ -1,8 +1,8 @@
 "use client"
 
-import Image from "next/image"
+
 import { Mail, FileText, ArrowUpRight } from "lucide-react"
-import { Github, Linkedin, LeetCode } from "@/components/icons"
+import { Github, Linkedin } from "@/components/icons"
 import Link from "next/link"
 
 export function BentoProfile() {
