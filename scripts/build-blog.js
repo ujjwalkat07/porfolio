@@ -40,12 +40,32 @@ function parseFrontmatter(fileContent) {
   return { data, content }
 }
 
+function extractToc(markdown) {
+  const headings = []
+  const headingRegex = /^(#{2,3})\s+(.+)$/gm
+  let match
+  while ((match = headingRegex.exec(markdown)) !== null) {
+    const level = match[1].length
+    const rawText = match[2].trim()
+    const text = rawText
+      .replace(/\*\*(.*?)\*\*/g, "$1")
+      .replace(/\[(.*?)\]\(.*?\)/g, "$1")
+      .replace(/`([^`]+)`/g, "$1")
+    const id = text
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "")
+    headings.push({ id, text, level })
+  }
+  return headings
+}
+
 function buildBlog() {
   if (!fs.existsSync(BLOG_DIR)) {
     process.exit(1)
   }
 
-  const files = fs.readdirSync(BLOG_DIR).filter((file) => file.endsWith(".md"))
+  const files = fs.readdirSync(BLOG_DIR).filter((file) => file.endsWith(".md") || file.endsWith(".mdx"))
   const posts = []
 
   files.forEach((file) => {
@@ -53,11 +73,8 @@ function buildBlog() {
     const fileContent = fs.readFileSync(filePath, "utf-8")
     const { data, content } = parseFrontmatter(fileContent)
 
-    // Normalize any relative public paths to root web paths
-    const normalizedContent = content.trim().replace(/!\[(.*?)\]\((?:\.\.\/)*public\/(.*?)\)/g, '![$1](/$2)')
-
     // Explicit slug from frontmatter: read data.slug directly; fallback to filename only if missing
-    const slug = data.slug ? data.slug.trim() : file.replace(".md", "")
+    const slug = data.slug ? data.slug.trim() : file.replace(/\.mdx?$/, "")
 
     posts.push({
       slug,
@@ -70,7 +87,7 @@ function buildBlog() {
       tags: data.tags || [],
       keywords: data.keywords || [],
       link: data.link || `https://ujjwalkatiyar.in/blog/${slug}`,
-      content: normalizedContent,
+      toc: extractToc(content),
     })
   })
 

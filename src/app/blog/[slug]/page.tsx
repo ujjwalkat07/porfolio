@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft, ArrowUpRight, Calendar, Clock } from "lucide-react"
+import { ArrowLeft, ArrowUpRight } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { ImpressionCounter } from "@/components/impression-counter"
@@ -10,9 +10,7 @@ import { BlogInteractions } from "@/components/blog/blog-interactions"
 import { MermaidRenderer } from "@/components/blog/mermaid-renderer"
 import { SupabaseShareBar } from "@/components/blog/supabase-share-bar"
 import posts from "@/content/blog-posts.json"
-import { marked } from "marked"
 import type { Metadata } from "next"
-import { renderShadcnCodeBlock } from "@/lib/syntax-highlight"
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -67,95 +65,6 @@ export async function generateStaticParams() {
   }))
 }
 
-function extractToc(markdown: string): TocItem[] {
-  const headings: TocItem[] = []
-  const headingRegex = /^(#{2,3})\s+(.+)$/gm
-  let match
-  while ((match = headingRegex.exec(markdown)) !== null) {
-    const level = match[1].length
-    const rawText = match[2].trim()
-    const text = rawText
-      .replace(/\*\*(.*?)\*\*/g, "$1")
-      .replace(/\[(.*?)\]\(.*?\)/g, "$1")
-      .replace(/`([^`]+)`/g, "$1")
-    const id = text
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "")
-    headings.push({ id, text, level })
-  }
-  return headings
-}
-
-async function renderSupabaseMarkdown(content: string) {
-  const renderer = new marked.Renderer()
-
-  renderer.heading = function ({ text, depth }: { text: string; depth: number }) {
-    const rawTitle = text.replace(/<[^>]*>?/gm, "").trim()
-    const id = rawTitle
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "")
-
-    if (depth === 2) {
-      return `
-        <h2 id="${id}" class="group scroll-mt-24 font-display text-xl sm:text-2xl font-bold tracking-tight text-foreground mt-12 mb-4 flex items-center">
-          <span>${text}</span>
-          <a href="#${id}" class="ml-2.5 opacity-0 group-hover:opacity-100 transition-opacity text-[#3ECF8E] select-none text-base font-normal" aria-label="Link to section">#</a>
-        </h2>
-      `
-    }
-    if (depth === 3) {
-      return `
-        <h3 id="${id}" class="group scroll-mt-24 font-display text-lg sm:text-xl font-semibold tracking-tight text-foreground mt-8 mb-3 flex items-center">
-          <span>${text}</span>
-          <a href="#${id}" class="ml-2.5 opacity-0 group-hover:opacity-100 transition-opacity text-[#3ECF8E] select-none text-sm font-normal" aria-label="Link to section">#</a>
-        </h3>
-      `
-    }
-    return `<h${depth} id="${id}" class="font-display font-semibold tracking-tight text-foreground mt-6 mb-3">${text}</h${depth}>`
-  }
-
-  renderer.code = function ({ text, lang }: { text: string; lang?: string }) {
-    const rawLang = (lang || "").trim()
-    if (rawLang === "mermaid" || rawLang.startsWith("mermaid")) {
-      const cleanChart = text.trim()
-      let customMaxWidth = ""
-      const widthMatch = rawLang.match(/mermaid[ :](?:(?:max-)?width[=:])?([0-9]+(?:px|%|rem)?)/i)
-      if (widthMatch) {
-        const val = widthMatch[1]
-        customMaxWidth = /^[0-9]+$/.test(val) ? `${val}px` : val
-      }
-
-      return `
-        <div class="mermaid-block not-prose my-8 w-full flex flex-col items-center justify-center relative overflow-hidden rounded-xl sm:rounded-2xl border border-border/70 bg-card/60 shadow-xs" data-chart="${encodeURIComponent(cleanChart)}"${customMaxWidth ? ` data-max-width="${customMaxWidth}"` : ""}>
-          <div class="mermaid-render flex justify-center w-full min-h-[180px] items-center p-6 sm:p-8 pt-12 overflow-hidden">
-            <div class="flex items-center gap-2 text-xs text-muted-foreground animate-pulse py-6">
-              <svg class="h-4 w-4 animate-spin text-[#3ECF8E]" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-              </svg>
-              <span>Rendering diagram...</span>
-            </div>
-          </div>
-        </div>
-      `
-    }
-    return renderShadcnCodeBlock(text, lang)
-  }
-
-  renderer.codespan = function ({ text }: { text: string }) {
-    return `<code class="font-code text-[12px] sm:text-[12.5px] px-1.5 py-0.5 rounded bg-muted/70 dark:bg-[#1f1f1f] border border-border/70 text-foreground font-normal">${text}</code>`
-  }
-
-  renderer.image = function ({ href, title, text }: { href: string; title?: string | null; text: string }) {
-    const cleanHref = href.replace(/^(\.\.\/)*public\//, "/").replace(/^\/public\//, "/")
-    return `<img src="${cleanHref}" alt="${text || ""}" ${title ? `title="${title}"` : ""} class="max-w-full h-auto rounded-xl border border-border/60 my-8" />`
-  }
-
-  return await marked.parse(content, { renderer })
-}
-
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params
   const post = posts.find((p) => p.slug === slug)
@@ -164,9 +73,23 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound()
   }
 
+  let PostContent: React.ComponentType | null = null
+  try {
+    PostContent = (await import(`@content/blog/${slug}.md`)).default
+  } catch (e1) {
+    try {
+      PostContent = (await import(`@content/blog/${slug}.mdx`)).default
+    } catch (e2) {
+      notFound()
+    }
+  }
+
+  if (!PostContent) {
+    notFound()
+  }
+
   const otherPosts = posts.filter((p) => p.slug !== slug).slice(0, 2)
-  const tocItems = extractToc(post.content)
-  const contentHtml = await renderSupabaseMarkdown(post.content)
+  const tocItems: TocItem[] = (post as any).toc || []
 
   // Safe ISO Date parsing for schema markup
   let isoPublishDate = new Date().toISOString()
@@ -272,7 +195,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
       {/* Main Container - 12-Column Responsive Layout */}
       <main className="flex-1 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:pl-36 pt-8 sm:pt-12 pb-5">
-        {/* Supabase Breadcrumbs & Back Link */}
+        {/* Breadcrumbs & Back Link */}
         <div className="flex items-center gap-5 mb-5 sm:mb-5 text-xs text-muted-foreground font-body">
           <div className="flex items-center gap-1.5 text-xs text-muted-foreground/80">
             <Link href="/blog" className="hover:text-foreground transition-colors">
@@ -331,24 +254,10 @@ export default async function BlogPostPage({ params }: PageProps) {
               </div>
             </header>
 
-            {/* Markdown Article Body */}
-            <div
-              className="text-neutral-800 dark:text-neutral-300 font-body text-[15px] sm:text-[16px] leading-[1.8] break-words [overflow-wrap:anywhere]
-                [&>p]:mb-6 [&>p]:leading-[1.8]
-                [&>p>strong]:font-semibold [&>p>strong]:text-foreground
-                [&_a]:text-foreground [&_a]:underline [&_a]:decoration-[#3ECF8E]/60 [&_a]:underline-offset-4 [&_a:hover]:text-[#3ECF8E] [&_a:hover]:decoration-[#3ECF8E] [&_a]:transition-colors
-                [&>ul]:list-disc [&>ul]:pl-5 sm:[&>ul]:pl-6 [&>ul]:mb-6 [&>ul]:space-y-2
-                [&>ol]:list-decimal [&>ol]:pl-5 sm:[&>ol]:pl-6 [&>ol]:mb-6 [&>ol]:space-y-2
-                [&>li]:leading-[1.75]
-                [&>blockquote]:border-l-2 [&>blockquote]:border-[#3ECF8E] [&>blockquote]:pl-4.5 [&>blockquote]:italic [&>blockquote]:text-muted-foreground [&>blockquote]:my-7
-                [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-xl [&_img]:border [&_img]:border-border/60 [&_img]:my-8
-                [&_table]:w-full [&_table]:border-collapse [&_table]:my-8 [&_table]:text-xs sm:[&_table]:text-sm [&_table]:border [&_table]:border-border/60 [&_table]:rounded-xl [&_table]:overflow-hidden
-                [&_th]:bg-muted/50 [&_th]:font-display [&_th]:font-semibold [&_th]:text-foreground [&_th]:px-4 [&_th]:py-3 [&_th]:text-left [&_th]:border-b [&_th]:border-border/60 [&_th]:text-[11px] [&_th]:uppercase [&_th]:tracking-wider
-                [&_td]:px-4 [&_td]:py-3 [&_td]:border-b [&_td]:border-border/40 [&_td]:text-neutral-700 dark:[&_td]:text-neutral-300
-                [&_tr:nth-child(even)]:bg-muted/15
-              "
-              dangerouslySetInnerHTML={{ __html: contentHtml }}
-            />
+            {/* MDX Article Body */}
+            <div className="text-neutral-800 dark:text-neutral-300 font-body text-[15px] sm:text-[16px] leading-[1.8] break-words [overflow-wrap:anywhere]">
+              <PostContent />
+            </div>
 
             {/* Horizontal Share Banner */}
             <SupabaseShareBar title={post.title} />
@@ -378,54 +287,49 @@ export default async function BlogPostPage({ params }: PageProps) {
                       <div>
                         <div className="flex items-center gap-2 text-[10px] text-muted-foreground uppercase tracking-wider mb-2">
                           <span>{otherPost.date}</span>
+                          <span>•</span>
+                          <span>{otherPost.readTime}</span>
                         </div>
-                        <h4 className="font-display text-base font-bold text-foreground group-hover:text-[#3ECF8E] transition-colors line-clamp-2">
+                        <h4 className="font-display text-sm font-semibold text-foreground group-hover:text-[#3ECF8E] transition-colors line-clamp-2 mb-2">
                           {otherPost.title}
                         </h4>
-                        <p className="text-xs text-muted-foreground font-body line-clamp-2 mt-2 leading-relaxed">
+                        <p className="text-xs text-muted-foreground font-normal line-clamp-2 leading-relaxed">
                           {otherPost.description}
                         </p>
                       </div>
-                      <div className="mt-4 pt-3 border-t border-border/40 flex items-center justify-between text-xs text-muted-foreground group-hover:text-[#3ECF8E] transition-colors font-medium">
+                      <div className="flex items-center gap-1 text-[11px] font-medium text-[#3ECF8E] mt-4 pt-3 border-t border-border/40">
                         <span>Read article</span>
-                        <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                        <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                       </div>
                     </Link>
                   ))}
                 </div>
               </section>
             )}
+
+            {/* Back to Blog Button */}
+            <div className="pt-5 border-t border-border/40">
+              <Link
+                href="/blog"
+                className="inline-flex items-center gap-2 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors group"
+              >
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                <span>Back to all articles</span>
+              </Link>
+            </div>
           </article>
 
-          {/* Right Column / Sticky Sidebar (hidden lg:block col-span-4 col-start-9) */}
-          <aside className="hidden lg:block col-span-4 col-start-9 space-y-8 pl-4 xl:pl-8 pt-58">
-            {/* Category / Tags badges */}
-            <div className="flex flex-wrap items-center gap-2">
-              {post.tags.map((tag, i) => (
-                <span
-                  key={i}
-                  className="text-[10px] font-code font-medium tracking-[0.06em] uppercase px-2 py-0.5 rounded-full border border-border/80 bg-muted/40 text-muted-foreground hover:border-[#3ECF8E]/60 hover:text-[#3ECF8E] transition-colors select-none"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <div className="sticky top-24 flex flex-col gap-8 max-h-[calc(100vh-7rem)] overflow-y-auto pr-1">
-              {/* Table of contents */}
-              {tocItems.length > 0 && <TableOfContents items={tocItems} />}
-
-              {/* Share & AI Links */}
-              <div className="pt-2">
-                <SupabaseShareBar title={post.title} compact={true} />
-              </div>
+          {/* Right Column / Sticky Table of Contents (col-span-12 lg:col-span-4) */}
+          <aside className="col-span-12 lg:col-span-4 hidden lg:block">
+            <div className="sticky top-24 pl-4 border-l border-border/50">
+              <TableOfContents items={tocItems} />
             </div>
           </aside>
         </div>
-
-        {/* Global Footer */}
-
       </main>
-      <div className=" border-border/60 max-w-[900px] mx-auto w-full  ">
+
+      {/* Global Footer */}
+      <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:pl-36">
         <Footer />
       </div>
     </div>
