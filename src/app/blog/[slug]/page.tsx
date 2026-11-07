@@ -34,18 +34,35 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params
   const post = blogPosts.find((p) => p.slug === slug)
   if (!post) return {}
+
+  let isoPublishDate: string | undefined = undefined
+  try {
+    const d = new Date(post.date)
+    if (!isNaN(d.getTime())) {
+      isoPublishDate = d.toISOString()
+    }
+  } catch {
+    // ignore
+  }
+
+  let isoModifiedDate = isoPublishDate
+  if (post.lastModified) {
+    try {
+      const d = new Date(post.lastModified)
+      if (!isNaN(d.getTime())) {
+        isoModifiedDate = d.toISOString()
+      }
+    } catch {
+      // ignore
+    }
+  }
+
+  const ogImageUrl = `https://ujjwalkatiyar.in/blog/${slug}/opengraph-image`
+
   return {
     title: `${post.title} — Ujjwal Katiyar`,
     description: post.description,
-    keywords: [
-      ...(post.tags || []),
-      ...(post.keywords || []),
-      "Ujjwal Katiyar",
-      "Software Developer",
-      "Blog",
-      "System Design",
-    ],
-    authors: [{ name: "Ujjwal Katiyar" }],
+    authors: [{ name: "Ujjwal Katiyar", url: "https://ujjwalkatiyar.in/about" }],
     alternates: {
       canonical: `https://ujjwalkatiyar.in/blog/${slug}`,
     },
@@ -53,13 +70,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: `${post.title} — Ujjwal Katiyar`,
       description: post.description,
       type: "article",
+      url: `https://ujjwalkatiyar.in/blog/${slug}`,
+      publishedTime: isoPublishDate,
+      modifiedTime: isoModifiedDate,
       authors: ["Ujjwal Katiyar"],
       images: [
         {
-          url: "/profile_pic.webp",
-          width: 500,
-          height: 500,
-          alt: "Ujjwal Katiyar",
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.title,
         },
       ],
     },
@@ -68,7 +88,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: `${post.title} — Ujjwal Katiyar`,
       description: post.description,
       creator: "@ujjwalkatiyar07",
-      images: ["/profile_pic.webp"],
+      images: [ogImageUrl],
     },
   }
 }
@@ -102,7 +122,13 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound()
   }
 
-  const otherPosts = blogPosts.filter((p) => p.slug !== slug).slice(0, 2)
+  const sameCategoryPosts = blogPosts.filter(
+    (p) => p.slug !== slug && p.category && post.category && p.category.toLowerCase() === post.category.toLowerCase()
+  )
+  const differentCategoryPosts = blogPosts.filter(
+    (p) => p.slug !== slug && (!post.category || !p.category || p.category.toLowerCase() !== post.category.toLowerCase())
+  )
+  const readNextPosts = [...sameCategoryPosts, ...differentCategoryPosts].slice(0, 3)
   const tocItems: TocItem[] = post.toc || []
 
   // Safe ISO Date parsing for schema markup
@@ -137,28 +163,28 @@ export default async function BlogPostPage({ params }: PageProps) {
     },
     headline: post.title,
     description: post.description,
-    image: ["https://ujjwalkatiyar.in/profile_pic.webp"],
+    image: [`https://ujjwalkatiyar.in/blog/${slug}/opengraph-image`],
     datePublished: isoPublishDate,
     dateModified: isoModifiedDate,
     author: {
       "@type": "Person",
       name: "Ujjwal Katiyar",
-      url: "https://ujjwalkatiyar.in",
+      url: "https://ujjwalkatiyar.in/about",
       sameAs: [
         "https://github.com/ujjwalkat07",
         "https://www.linkedin.com/in/ujjwalkatiyar07",
+        "https://x.com/ujjwalkatiyar07",
       ],
     },
     publisher: {
       "@type": "Person",
       name: "Ujjwal Katiyar",
-      url: "https://ujjwalkatiyar.in",
+      url: "https://ujjwalkatiyar.in/about",
       image: {
         "@type": "ImageObject",
         url: "https://ujjwalkatiyar.in/profile_pic.webp",
       },
     },
-    keywords: (post.tags || []).join(", "),
     articleSection: post.category || "Engineering",
     inLanguage: "en-US",
   }
@@ -243,8 +269,8 @@ export default async function BlogPostPage({ params }: PageProps) {
                   <ImpressionCounter slug={slug} />
                 </span>
               </div>
-              <div className="flex items-center gap-3 pt-2">
-                <div className="relative w-9 h-9 rounded-full overflow-hidden border border-border/80 shrink-0">
+              <Link href="/about" className="flex items-center gap-3 pt-2 group self-start">
+                <div className="relative w-9 h-9 rounded-full overflow-hidden border border-border/80 shrink-0 group-hover:border-foreground/40 transition-colors">
                   <Image
                     src="/profile_pic.webp"
                     alt="Ujjwal Katiyar"
@@ -254,14 +280,14 @@ export default async function BlogPostPage({ params }: PageProps) {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-display text-sm font-semibold text-foreground">
+                  <span className="font-display text-sm font-semibold text-foreground group-hover:text-[#3ECF8E] transition-colors">
                     Ujjwal Katiyar
                   </span>
                   <span className="text-xs text-muted-foreground font-body">
                     Software Developer
                   </span>
                 </div>
-              </div>
+              </Link>
             </header>
 
             {/* MDX Article Body */}
@@ -270,10 +296,10 @@ export default async function BlogPostPage({ params }: PageProps) {
             </div>
 
             {/* Horizontal Share Banner */}
-            <SupabaseShareBar title={post.title} />
+            <SupabaseShareBar title={post.title} slug={slug} />
 
             {/* Read Next Section */}
-            {otherPosts.length > 0 && (
+            {readNextPosts.length > 0 && (
               <section className="">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="font-display text-xl font-bold text-foreground">
@@ -287,8 +313,8 @@ export default async function BlogPostPage({ params }: PageProps) {
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  {otherPosts.map((otherPost) => (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                  {readNextPosts.map((otherPost) => (
                     <Link
                       key={otherPost.slug}
                       href={`/blog/${otherPost.slug}`}

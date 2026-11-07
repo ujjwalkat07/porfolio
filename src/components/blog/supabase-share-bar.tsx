@@ -5,6 +5,8 @@ import { Link2, Check } from "lucide-react"
 
 interface SupabaseShareBarProps {
   title: string
+  slug?: string
+  url?: string
   compact?: boolean
 }
 
@@ -40,17 +42,15 @@ function LinkedinIcon({ className }: { className?: string }) {
   )
 }
 
-const emptySubscribe = () => () => {}
-const getSnapshot = () => (typeof window !== "undefined" ? window.location.href : "")
-const getServerSnapshot = () => ""
+const SITE_URL = "https://ujjwalkatiyar.in"
 
-export function SupabaseShareBar({ title, compact = false }: SupabaseShareBarProps) {
+export function SupabaseShareBar({ title, slug, url, compact = false }: SupabaseShareBarProps) {
   const [copied, setCopied] = React.useState(false)
-  const url = React.useSyncExternalStore(emptySubscribe, getSnapshot, getServerSnapshot)
+  const finalUrl = url || (slug ? `${SITE_URL}/blog/${slug}` : SITE_URL)
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(url || window.location.href)
+      await navigator.clipboard.writeText(finalUrl)
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch (err) {
@@ -58,9 +58,9 @@ export function SupabaseShareBar({ title, compact = false }: SupabaseShareBarPro
     }
   }
 
-  const encodedUrl = encodeURIComponent(url)
+  const encodedUrl = encodeURIComponent(finalUrl)
   const encodedTitle = encodeURIComponent(title)
-  const encodedAiPrompt = encodeURIComponent(`Read from ${url} so I can ask questions about its contents`)
+  const encodedAiPrompt = encodeURIComponent(`Read from ${finalUrl} so I can ask questions about its contents`)
 
   if (compact) {
     return (

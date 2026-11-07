@@ -11,16 +11,6 @@ export const metadata: Metadata = {
   title: "Projects | Ujjwal Katiyar — Software Developer & Systems Architect",
   description:
     "Explore featured full-stack platforms, real-time engines, and distributed web applications engineered by Ujjwal Katiyar.",
-  keywords: [
-    "Ujjwal Katiyar projects",
-    "Full-stack projects",
-    "Next.js projects",
-    "Distributed systems",
-    "Cryptocurrency exchange",
-    "CRM Next.js Turborepo",
-    "TypeScript portfolio projects",
-    "Ujjwal Katiyar software developer",
-  ],
   alternates: {
     canonical: "https://ujjwalkatiyar.in/projects",
   },

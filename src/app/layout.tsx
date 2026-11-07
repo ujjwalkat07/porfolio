@@ -39,9 +39,9 @@ export const viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ujjwalkatiyar.in"),
-  title: "Ujjwal Katiyar — Software Developer and Systems Architect",
-  description: "Portfolio of Ujjwal Katiyar, a Software Developer building scalable real-time systems and responsive Next.js apps.",
-  keywords: ["Ujjwal Katiyar", "Software Developer", "Full Stack Developer", "System Architect", "Noida", "India", "Software Engineer", "Next.js", "Shadcn UI", "Kafka", "Redis", "ujjwal", "engineer", "backend developer"],
+  title: "Ujjwal Katiyar — Software Developer | Next.js, Kafka, Redis",
+  description:
+    "Software Developer building scalable real-time systems and AI observability platforms with Next.js, Kafka, Redis, and high-performance cloud architectures.",
   authors: [{ name: "Ujjwal Katiyar" }],
   alternates: {
     canonical: "https://ujjwalkatiyar.in",
@@ -61,26 +61,28 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Ujjwal Katiyar — Software Developer & Web Systems Architect",
-    description: "Portfolio of Ujjwal Katiyar, a Software Developer building scalable real-time systems and responsive Next.js apps.",
+    title: "Ujjwal Katiyar — Software Developer | Next.js, Kafka, Redis",
+    description:
+      "Software Developer building scalable real-time systems and AI observability platforms with Next.js, Kafka, Redis, and high-performance cloud architectures.",
     type: "website",
     locale: "en_US",
     siteName: "Ujjwal Katiyar",
     images: [
       {
-        url: "/profile_pic.webp",
-        width: 500,
-        height: 500,
-        alt: "Ujjwal Katiyar",
+        url: "/profile-card.png",
+        width: 1671,
+        height: 941,
+        alt: "Ujjwal Katiyar — Software Developer | AI, System Design & Engineering",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ujjwal Katiyar — Software Developer & Web Systems Architect",
-    description: "Portfolio of Ujjwal Katiyar, a Software Developer building scalable real-time systems and responsive Next.js apps.",
+    title: "Ujjwal Katiyar — Software Developer | Next.js, Kafka, Redis",
+    description:
+      "Software Developer building scalable real-time systems and AI observability platforms with Next.js, Kafka, Redis, and high-performance cloud architectures.",
     creator: "@ujjwalkatiyar07",
-    images: ["/profile_pic.webp"],
+    images: ["/profile-card.png"],
   },
 };
 
@@ -102,29 +104,6 @@ export default function RootLayout({
           type="application/rss+xml"
           title="Ujjwal Katiyar — Blog RSS Feed"
           href="https://ujjwalkatiyar.in/rss.xml"
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              "name": "Ujjwal Katiyar",
-              "image": "https://ujjwalkatiyar.in/profile_pic.webp",
-              "jobTitle": "Software Developer",
-              "url": "https://ujjwalkatiyar.in",
-              "sameAs": [
-                "https://github.com/ujjwalkat07",
-                "https://leetcode.com/u/ujjwalkat07",
-                "https://www.linkedin.com/in/ujjwalkatiyar07"
-              ],
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Noida",
-                "addressCountry": "India"
-              }
-            })
-          }}
         />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground transition-colors duration-300">

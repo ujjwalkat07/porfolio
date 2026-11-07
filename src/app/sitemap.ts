@@ -9,19 +9,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}`,
-      lastModified: new Date("2026-10-15"),
+      lastModified: new Date("2026-11-07"),
       changeFrequency: "weekly",
       priority: 1.0,
     },
     {
+      url: `${baseUrl}/about`,
+      lastModified: new Date("2026-11-07"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/projects`,
-      lastModified: new Date("2026-10-20"),
+      lastModified: new Date("2026-11-07"),
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/blog`,
-      lastModified: new Date("2026-10-15"),
+      lastModified: new Date("2026-11-07"),
       changeFrequency: "weekly",
       priority: 0.8,
     },

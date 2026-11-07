@@ -59,6 +59,15 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: "/blog/the-engineering-behind-asi-telemetery",
+        destination: "/blog/the-engineering-behind-asi-telemetry",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 const withMDX = createMDX({

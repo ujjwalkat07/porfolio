@@ -1,6 +1,6 @@
 [
   {
-    "slug": "the-engineering-behind-asi-telemetery",
+    "slug": "the-engineering-behind-asi-telemetry",
     "title": "The Engineering behind ASI Telemetry",
     "category": "Engineering",
     "description": "ASI:Telemetry is an Observability and monitoring platform for AI agents and ai applications.",
@@ -47,7 +47,7 @@
       "AI Development",
       "Agent Engineering"
     ],
-    "link": "https://ujjwalkatiyar.in/blog/the-engineering-behind-asi-telemetery",
+    "link": "https://ujjwalkatiyar.in/blog/the-engineering-behind-asi-telemetry",
     "toc": [
       {
         "id": "introduction",

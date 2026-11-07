@@ -3,9 +3,39 @@ import { BentoProfile } from "@/components/bento-profile"
 import { HomeBlog } from "@/components/home-blog"
 import { Footer } from "@/components/footer"
 
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Ujjwal Katiyar",
+  url: "https://ujjwalkatiyar.in",
+  image: "https://ujjwalkatiyar.in/profile_pic.webp",
+  jobTitle: "Software Developer",
+  sameAs: [
+    "https://github.com/ujjwalkat07",
+    "https://www.linkedin.com/in/ujjwalkatiyar07",
+    "https://x.com/ujjwalkatiyar07",
+  ],
+}
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Ujjwal Katiyar",
+  url: "https://ujjwalkatiyar.in",
+}
+
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-background font-sans transition-colors duration-300 antialiased selection:bg-emerald-500/20 selection:text-emerald-600 dark:selection:text-emerald-400">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+
       {/* Navigation */}
       <Navbar />
 
