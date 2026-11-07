@@ -1,4 +1,5 @@
 import * as React from "react"
+import Image from "next/image"
 import type { MDXComponents } from "mdx/types"
 import { CodeBlock } from "@/components/ui/code-block"
 import { Mermaid } from "@/components/Mermaid"
@@ -78,22 +79,30 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <td className="px-4 py-3 border-b border-border/40 text-neutral-700 dark:text-neutral-300" {...props}>{children}</td>
     ),
     tr: ({ children, ...props }) => <tr className="even:bg-muted/15" {...props}>{children}</tr>,
-    img: ({ src, alt, title, style, width, ...props }) => {
+    img: ({ src, alt, title, style, width }) => {
       const cleanSrc = (typeof src === "string" ? src : "").replace(/^(\.\.\/)*public\//, "/").replace(/^\/public\//, "")
       const widthVal = (alt?.match(/\|(?:width=)?(\d+(?:px|%|rem)?)/i)?.[1] || title?.match(/width[:=]\s*(\d+(?:px|%|rem)?)/i)?.[1] || width)?.toString()
       const maxWidth = widthVal ? (/^\d+$/.test(widthVal) ? `${widthVal}px` : widthVal) : "100%"
       const cleanAlt = (alt || "").replace(/\|(?:width=)?\d+(?:px|%|rem)?/i, "").trim()
 
+      if (!cleanAlt || cleanAlt.toLowerCase() === "alt text" || cleanAlt.toLowerCase().includes("placeholder")) {
+        console.warn(
+          `\x1b[33m[SEO ACCESSIBILITY WARNING]\x1b[0m MDX Image "${cleanSrc}" has missing or placeholder alt text ("${cleanAlt}"). Please provide a descriptive alt attribute for SEO and screen readers.`
+        )
+      }
+
       return (
-        /* eslint-disable-next-line @next/next/no-img-element */
-        <img
-          src={cleanSrc}
-          alt={cleanAlt}
-          title={title}
-          style={{ maxWidth, width: widthVal ? "100%" : undefined, ...style }}
-          className="h-auto rounded-xl border border-border/60 mx-auto block my-8 shadow-xs"
-          {...props}
-        />
+        <span className="block my-8 text-center" style={{ maxWidth, width: widthVal ? "100%" : undefined, ...style }}>
+          <Image
+            src={cleanSrc}
+            alt={cleanAlt || "Descriptive illustration of technical architecture"}
+            title={title}
+            width={1200}
+            height={675}
+            sizes="(max-width: 768px) 100vw, 800px"
+            className="h-auto w-full max-w-full rounded-xl border border-border/60 mx-auto block shadow-xs object-cover"
+          />
+        </span>
       )
     },
     pre: ({ children, ...props }) => {

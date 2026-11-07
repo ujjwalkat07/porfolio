@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Search, Rss } from "lucide-react"
 import { ImpressionCounter } from "@/components/impression-counter"
+import { formatDate } from "@/lib/format-date"
 import posts from "@/content/blog-posts.json"
 
 export function Blog() {
@@ -12,15 +13,18 @@ export function Blog() {
   const [searchQuery, setSearchQuery] = React.useState("")
   const [visibleCount, setVisibleCount] = React.useState(6)
 
-  // Extract unique categories dynamically from compiled posts
+  // Filter out draft posts for public blog index
+  const publishedPosts = React.useMemo(() => posts.filter((post) => !post.draft), [])
+
+  // Extract unique categories dynamically from published posts
   const categories = React.useMemo(() => {
-    const unique = Array.from(new Set(posts.map((post) => post.category)))
+    const unique = Array.from(new Set(publishedPosts.map((post) => post.category)))
     return ["All", ...unique]
-  }, [])
+  }, [publishedPosts])
 
   // Filter posts based on active category and search input
   const filteredPosts = React.useMemo(() => {
-    return posts.filter((post) => {
+    return publishedPosts.filter((post) => {
       const matchesCategory =
         activeCategory === "All" || post.category === activeCategory
       const matchesSearch =
@@ -29,21 +33,12 @@ export function Blog() {
         post.category.toLowerCase().includes(searchQuery.toLowerCase())
       return matchesCategory && matchesSearch
     })
-  }, [activeCategory, searchQuery])
+  }, [publishedPosts, activeCategory, searchQuery])
 
   // Compute displayed posts based on visible count
   const displayedPosts = React.useMemo(() => {
     return filteredPosts.slice(0, visibleCount)
   }, [filteredPosts, visibleCount])
-
-  // Formatting date helper to match "30 June" style
-  const formatDate = (dateStr: string) => {
-    const date = new Date(dateStr)
-    if (isNaN(date.getTime())) return dateStr
-    const day = date.getDate()
-    const month = date.toLocaleString("en-US", { month: "long" })
-    return `${day} ${month}`
-  }
 
   const showMoreButtonVisible = filteredPosts.length > visibleCount
 
@@ -51,9 +46,9 @@ export function Blog() {
     <section id="blog" className="border-border/40 transition-colors duration-300">
       {/* Section Header & Subtitle */}
       <div className="flex flex-col gap-2 mb-5">
-        <h2 className="text-4xl tracking-tight text-foreground sm:text-5xl">
+        <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
           Blog
-        </h2>
+        </h1>
       </div>
 
       {/* Control Bar: Filter pills + Search / Feed */}

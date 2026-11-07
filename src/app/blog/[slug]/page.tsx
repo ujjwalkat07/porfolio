@@ -7,6 +7,8 @@ import { Footer } from "@/components/footer"
 import { ImpressionCounter } from "@/components/impression-counter"
 import { TableOfContents, type TocItem } from "@/components/blog/table-of-contents"
 import { SupabaseShareBar } from "@/components/blog/supabase-share-bar"
+import { JsonLd } from "@/lib/json-ld"
+import { formatDate } from "@/lib/format-date"
 import posts from "@/content/blog-posts.json"
 import type { Metadata } from "next"
 
@@ -23,8 +25,8 @@ interface BlogPostItem {
   lastModified?: string
   readTime: string
   tags?: string[]
-  keywords?: string[]
   link?: string
+  draft?: boolean
   toc?: TocItem[]
 }
 
@@ -34,6 +36,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params
   const post = blogPosts.find((p) => p.slug === slug)
   if (!post) return {}
+
+  if (post.draft) {
+    return {
+      title: `${post.title} — Ujjwal Katiyar`,
+      description: post.description,
+      alternates: {
+        canonical: `https://ujjwalkatiyar.in/blog/${slug}`,
+      },
+      robots: {
+        index: false,
+        follow: false,
+      },
+    }
+  }
 
   let isoPublishDate: string | undefined = undefined
   try {
@@ -122,11 +138,12 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound()
   }
 
-  const sameCategoryPosts = blogPosts.filter(
-    (p) => p.slug !== slug && p.category && post.category && p.category.toLowerCase() === post.category.toLowerCase()
+  const publishedPosts = blogPosts.filter((p) => !p.draft && p.slug !== slug)
+  const sameCategoryPosts = publishedPosts.filter(
+    (p) => p.category && post.category && p.category.toLowerCase() === post.category.toLowerCase()
   )
-  const differentCategoryPosts = blogPosts.filter(
-    (p) => p.slug !== slug && (!post.category || !p.category || p.category.toLowerCase() !== post.category.toLowerCase())
+  const differentCategoryPosts = publishedPosts.filter(
+    (p) => !p.category || !post.category || p.category.toLowerCase() !== post.category.toLowerCase()
   )
   const readNextPosts = [...sameCategoryPosts, ...differentCategoryPosts].slice(0, 3)
   const tocItems: TocItem[] = post.toc || []
@@ -168,6 +185,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     dateModified: isoModifiedDate,
     author: {
       "@type": "Person",
+      "@id": "https://ujjwalkatiyar.in/#person",
       name: "Ujjwal Katiyar",
       url: "https://ujjwalkatiyar.in/about",
       sameAs: [
@@ -178,6 +196,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     },
     publisher: {
       "@type": "Person",
+      "@id": "https://ujjwalkatiyar.in/#person",
       name: "Ujjwal Katiyar",
       url: "https://ujjwalkatiyar.in/about",
       image: {
@@ -216,15 +235,13 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <div className="flex flex-col min-h-screen bg-background font-body transition-colors duration-300 antialiased selection:bg-[#3ECF8E]/20 selection:text-[#10b981] dark:selection:text-[#3ECF8E]">
-      {/* JSON-LD Schemas */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdArticle) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumbs) }}
-      />
+      {/* JSON-LD Schemas (excluded for draft posts) */}
+      {!post.draft && (
+        <>
+          <JsonLd data={jsonLdArticle} />
+          <JsonLd data={jsonLdBreadcrumbs} />
+        </>
+      )}
 
       {/* Global Navbar */}
       <Navbar />
@@ -258,7 +275,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               {/* Publication Meta details */}
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-muted-foreground">
                 <span className="inline-flex items-center">
-                  <span>{post.date}</span>
+                  <span>{formatDate(post.date)}</span>
                 </span>
                 <span className="text-muted-foreground/40 select-none">•</span>
                 <span className="inline-flex items-center">
@@ -322,7 +339,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                     >
                       <div>
                         <div className="flex items-center gap-2 text-[10px] text-muted-foreground uppercase tracking-wider mb-2">
-                          <span>{otherPost.date}</span>
+                          <span>{formatDate(otherPost.date)}</span>
                           <span>•</span>
                           <span>{otherPost.readTime}</span>
                         </div>
@@ -371,3 +388,4 @@ export default async function BlogPostPage({ params }: PageProps) {
     </div>
   )
 }
+

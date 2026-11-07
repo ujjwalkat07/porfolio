@@ -5,22 +5,15 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { ImpressionCounter } from "@/components/impression-counter"
+import { formatDate } from "@/lib/format-date"
 import posts from "@/content/blog-posts.json"
 
 export function HomeBlog() {
-  // Format date helper (e.g. "13 Jul 2026")
-  const formatDate = (dateStr: string) => {
-    const date = new Date(dateStr)
-    if (isNaN(date.getTime())) return dateStr
-    return date.toLocaleDateString("en-US", {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-    })
-  }
+  // Published posts only, excluding drafts
+  const publishedPosts = React.useMemo(() => posts.filter((p) => !p.draft), [])
 
-  // Display top 3 latest posts on the homepage
-  const recentPosts = posts.slice(0, 3)
+  // Display top 3 latest published posts on the homepage
+  const recentPosts = React.useMemo(() => publishedPosts.slice(0, 3), [publishedPosts])
 
   return (
     <section id="home-blog" aria-label="Recent Blog Posts" className="w-full transition-colors duration-300">
@@ -31,7 +24,7 @@ export function HomeBlog() {
             Blog
           </h2>
           <span className="text-xs px-2 py-0.5 rounded-full bg-muted text-muted-foreground font-medium">
-            {posts.length} articles
+            {recentPosts.length} articles
           </span>
         </div>
 

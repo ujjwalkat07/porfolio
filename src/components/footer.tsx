@@ -63,6 +63,7 @@ export function Footer() {
                 className="flex items-center justify-center w-10 h-10 text-muted-foreground hover:text-foreground hover:scale-110 active:scale-90 transition-all duration-200"
               >
                 <Icon className="h-4 w-4" />
+                <span className="sr-only">Visit Ujjwal Katiyar&apos;s {social.name} profile</span>
               </a>
             )
           })}

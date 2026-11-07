@@ -78,7 +78,19 @@ export function Mermaid({ chart, className }: MermaidProps) {
   }
 
   return (
-    <div className={`not-prose my-8 w-full flex flex-col items-center justify-center relative overflow-hidden rounded-xl sm:rounded-2xl border border-border/70 bg-card/60 p-4 sm:p-8 shadow-xs ${className || ""}`}>
+    <figure
+      role="img"
+      aria-label="Architecture flowchart diagram"
+      className={`not-prose my-8 w-full flex flex-col items-center justify-center relative overflow-hidden rounded-xl sm:rounded-2xl border border-border/70 bg-card/60 p-4 sm:p-8 shadow-xs ${className || ""}`}
+    >
+      <figcaption className="sr-only">
+        Architecture diagram workflow and data flow description
+      </figcaption>
+      <noscript>
+        <div className="w-full p-4 text-xs font-mono bg-muted/40 rounded-lg overflow-x-auto text-muted-foreground whitespace-pre">
+          {chart}
+        </div>
+      </noscript>
       {isLoading ? (
         <div className="flex items-center gap-2 text-xs text-muted-foreground animate-pulse py-8">
           <svg className="h-4 w-4 animate-spin text-[#3ECF8E]" fill="none" viewBox="0 0 24 24">
@@ -93,7 +105,7 @@ export function Mermaid({ chart, className }: MermaidProps) {
           dangerouslySetInnerHTML={{ __html: svg }}
         />
       )}
-    </div>
+    </figure>
   )
 }
 

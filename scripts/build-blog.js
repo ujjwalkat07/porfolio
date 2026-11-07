@@ -33,11 +33,27 @@ function parseFrontmatter(fileContent) {
           if (item.startsWith("'") && item.endsWith("'")) return item.slice(1, -1)
           return item
         })
+    } else if (value === "true") {
+      value = true
+    } else if (value === "false") {
+      value = false
     }
     data[key] = value
   })
 
   return { data, content }
+}
+
+function calculateReadingTime(content) {
+  // Strip code blocks, HTML/JSX tags, and import statements for accurate word count
+  const clean = content
+    .replace(/^import\s+.*$/gm, "")
+    .replace(/```[\s\S]*?```/g, "")
+    .replace(/<[^>]+>/g, "")
+    .trim()
+  const words = clean.split(/\s+/).filter(Boolean).length
+  const minutes = Math.max(1, Math.ceil(words / 200))
+  return `${minutes} min read`
 }
 
 function extractToc(markdown) {
@@ -47,6 +63,10 @@ function extractToc(markdown) {
   while ((match = headingRegex.exec(markdown)) !== null) {
     const level = match[1].length
     const rawText = match[2].trim()
+    
+    // Skip empty headings or headings that start with TODO
+    if (!rawText || /^todo/i.test(rawText)) continue
+
     const text = rawText
       .replace(/\*\*(.*?)\*\*/g, "$1")
       .replace(/\[(.*?)\]\(.*?\)/g, "$1")
@@ -74,7 +94,8 @@ function buildBlog() {
     const { data, content } = parseFrontmatter(fileContent)
 
     // Explicit slug from frontmatter: read data.slug directly; fallback to filename only if missing
-    const slug = data.slug ? data.slug.trim() : file.replace(/\.mdx?$/, "")
+    const slug = data.slug ? String(data.slug).trim() : file.replace(/\.mdx?$/, "")
+    const isDraft = Boolean(data.draft === true || data.draft === "true")
 
     posts.push({
       slug,
@@ -83,10 +104,10 @@ function buildBlog() {
       description: data.description || "",
       date: data.date || "",
       lastModified: data.lastModified || "",
-      readTime: data.readTime || "",
+      readTime: calculateReadingTime(content),
       tags: data.tags || [],
-      keywords: data.keywords || [],
       link: data.link || `https://ujjwalkatiyar.in/blog/${slug}`,
+      draft: isDraft,
       toc: extractToc(content),
     })
   })

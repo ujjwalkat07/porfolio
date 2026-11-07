@@ -3,51 +3,19 @@
     "slug": "the-engineering-behind-asi-telemetry",
     "title": "The Engineering behind ASI Telemetry",
     "category": "Engineering",
-    "description": "ASI:Telemetry is an Observability and monitoring platform for AI agents and ai applications.",
-    "date": "November 4, 2026",
-    "lastModified": "November 4, 2026",
-    "readTime": "5 min read",
+    "description": "An architectural deep dive into ASI:Telemetry, an observability and monitoring platform for AI agents and LLM applications built with FastAPI and ClickHouse.",
+    "date": "Nov 4, 2026",
+    "lastModified": "Nov 4, 2026",
+    "readTime": "2 min read",
     "tags": [
-      "Engineering"
-    ],
-    "keywords": [
-      "ASI:Telemetry",
-      "ASI",
-      "Telemetry",
+      "Engineering",
       "Observability",
-      "Monitoring",
       "AI Agents",
-      "AI Applications",
-      "Fetch.ai",
-      "uagents",
-      "LLM",
-      "Token Usage",
-      "Cost Monitoring",
-      "Agent Performance",
-      "Agent Communication",
-      "SDK",
-      "FastAPI",
       "ClickHouse",
-      "Python",
-      "Backend",
-      "Frontend",
-      "Dashboard",
-      "API",
-      "Microservices",
-      "Trace",
-      "Metric",
-      "Span",
-      "Latency",
-      "Performance",
-      "Usage Tracking",
-      "Cost Optimization",
-      "Efficiency",
-      "Development",
-      "Production",
-      "AI Development",
-      "Agent Engineering"
+      "FastAPI"
     ],
     "link": "https://ujjwalkatiyar.in/blog/the-engineering-behind-asi-telemetry",
+    "draft": false,
     "toc": [
       {
         "id": "introduction",
@@ -60,18 +28,13 @@
         "level": 2
       },
       {
-        "id": "how-sdk-collect-traces",
-        "text": "How SDK Collect traces ?",
+        "id": "how-the-sdk-collects-traces",
+        "text": "How the SDK collects traces",
         "level": 2
       },
       {
         "id": "ai-sdk-instruments",
         "text": "AI SDK Instruments",
-        "level": 3
-      },
-      {
-        "id": "agent-tracing",
-        "text": "Agent Tracing",
         "level": 3
       }
     ]
@@ -80,17 +43,15 @@
     "slug": "the-engineering-behind-zero-context",
     "title": "The Engineering behind Zero-Context",
     "category": "Engineering",
-    "description": "A memory infrastructure of ai applications & agents",
+    "description": "A memory infrastructure for AI applications and autonomous agents.",
     "date": "Oct 21, 2026",
     "lastModified": "Oct 21, 2026",
-    "readTime": "5 min read",
+    "readTime": "1 min read",
     "tags": [
       "Engineering"
     ],
-    "keywords": [
-      ""
-    ],
     "link": "https://ujjwalkatiyar.in/blog/the-engineering-behind-zero-context",
+    "draft": true,
     "toc": []
   },
   {
@@ -100,25 +61,15 @@
     "description": "Learn step-by-step strategies to migrate monolithic services to scalable microservices in real-world production without downtime or data loss.",
     "date": "Jul 13, 2026",
     "lastModified": "Jul 15, 2026",
-    "readTime": "5 min read",
+    "readTime": "3 min read",
     "tags": [
       "System Design",
       "System Architecture",
       "Engineering",
       "Monolith vs Microservices"
     ],
-    "keywords": [
-      "Software Architecture",
-      "Scaling Systems",
-      "Distributed Systems",
-      "Web Performance",
-      "API Gateway",
-      "Monolith",
-      "Microservices",
-      "Monolith vs Microservices",
-      "System Design basics"
-    ],
     "link": "https://ujjwalkatiyar.in/blog/how-to-migrate-a-service-from-monolith-to-microservices",
+    "draft": false,
     "toc": [
       {
         "id": "step-1-identify-the-service",
@@ -159,25 +110,15 @@
     "description": "A comparison between monolithic and microservices architecture, exploring key differences, scalability trade-offs, and system design use cases.",
     "date": "Jul 12, 2026",
     "lastModified": "Jul 15, 2026",
-    "readTime": "5 min read",
+    "readTime": "3 min read",
     "tags": [
       "System Design",
       "System Architecture",
       "Engineering",
       "Monolith vs Microservices"
     ],
-    "keywords": [
-      "Software Architecture",
-      "Scaling Systems",
-      "Distributed Systems",
-      "Web Performance",
-      "API Gateway",
-      "Monolith",
-      "Microservices",
-      "Monolith vs Microservices",
-      "System Design basics"
-    ],
     "link": "https://ujjwalkatiyar.in/blog/monolith-vs-microservices",
+    "draft": false,
     "toc": [
       {
         "id": "what-is-a-monolith",

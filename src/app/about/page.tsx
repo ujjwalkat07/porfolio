@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowUpRight, Code2, BookOpen, Layers } from "lucide-react"
 import { Github, Linkedin } from "@/components/icons"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import { JsonLd } from "@/lib/json-ld"
 
 export const metadata: Metadata = {
   title: "About | Ujjwal Katiyar — Software Developer",
@@ -21,10 +22,10 @@ export const metadata: Metadata = {
     type: "profile",
     images: [
       {
-        url: "/profile-card.png",
-        width: 1671,
-        height: 941,
-        alt: "About Ujjwal Katiyar",
+        url: "https://ujjwalkatiyar.in/profile-card.png",
+        width: 1200,
+        height: 675,
+        alt: "About Ujjwal Katiyar — Software Developer & Systems Architect",
       },
     ],
   },
@@ -34,7 +35,38 @@ export const metadata: Metadata = {
     description:
       "Learn about Ujjwal Katiyar, a Software Developer building scalable real-time systems, distributed backend infrastructure, and AI observability platforms.",
     creator: "@ujjwalkatiyar07",
-    images: ["/profile-card.png"],
+    images: ["https://ujjwalkatiyar.in/profile-card.png"],
+  },
+}
+
+const profilePageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  mainEntity: {
+    "@type": "Person",
+    "@id": "https://ujjwalkatiyar.in/#person",
+    name: "Ujjwal Katiyar",
+    url: "https://ujjwalkatiyar.in",
+    image: "https://ujjwalkatiyar.in/profile_pic.webp",
+    jobTitle: "Software Developer & Systems Architect",
+    description:
+      "Software Developer building scalable real-time systems, distributed backend infrastructure, and AI observability platforms.",
+    sameAs: [
+      "https://github.com/ujjwalkat07",
+      "https://www.linkedin.com/in/ujjwalkatiyar07",
+      "https://x.com/ujjwalkatiyar07",
+    ],
+    knowsAbout: [
+      "Next.js",
+      "TypeScript",
+      "FastAPI",
+      "Apache Kafka",
+      "Redis",
+      "ClickHouse",
+      "PostgreSQL",
+      "Distributed Systems",
+      "AI Observability",
+    ],
   },
 }
 
@@ -49,6 +81,7 @@ const techStack = {
 export default function AboutPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background font-sans transition-colors duration-300 antialiased selection:bg-emerald-500/20 selection:text-emerald-600 dark:selection:text-emerald-400">
+      <JsonLd data={profilePageSchema} />
       <Navbar />
 
       <main className="flex-1 w-full max-w-[960px] mx-auto px-4 sm:px-6 md:px-10 flex flex-col pt-12 sm:pt-16 pb-16 gap-10">

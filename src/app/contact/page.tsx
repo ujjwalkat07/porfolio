@@ -5,12 +5,54 @@ import { Linkedin, Github, Twitter } from "@/components/icons"
 import { ContactForm } from "@/components/contact-form"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import { JsonLd } from "@/lib/json-ld"
 
 export const metadata: Metadata = {
   title: "Contact | Ujjwal Katiyar — Software Developer",
-  description: "Get in touch with Ujjwal Katiyar. Send a message, find contact details, or connect on LinkedIn and GitHub.",
+  description:
+    "Get in touch with Ujjwal Katiyar for engineering opportunities, technical consulting in distributed systems, or collaborations on AI projects.",
   alternates: {
     canonical: "https://ujjwalkatiyar.in/contact",
+  },
+  openGraph: {
+    title: "Contact | Ujjwal Katiyar — Software Developer",
+    description:
+      "Get in touch with Ujjwal Katiyar for engineering opportunities, technical consulting in distributed systems, or collaborations on AI projects.",
+    url: "https://ujjwalkatiyar.in/contact",
+    type: "website",
+    siteName: "Ujjwal Katiyar",
+    images: [
+      {
+        url: "https://ujjwalkatiyar.in/profile-card.png",
+        width: 1200,
+        height: 675,
+        alt: "Contact Ujjwal Katiyar — Software Developer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact | Ujjwal Katiyar — Software Developer",
+    description:
+      "Get in touch with Ujjwal Katiyar for engineering opportunities, technical consulting in distributed systems, or collaborations on AI projects.",
+    creator: "@ujjwalkatiyar07",
+    images: ["https://ujjwalkatiyar.in/profile-card.png"],
+  },
+}
+
+const contactPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contact Ujjwal Katiyar",
+  description:
+    "Get in touch with Ujjwal Katiyar for engineering opportunities, technical consulting in distributed systems, or collaborations on AI projects.",
+  url: "https://ujjwalkatiyar.in/contact",
+  mainEntity: {
+    "@type": "Person",
+    "@id": "https://ujjwalkatiyar.in/#person",
+    name: "Ujjwal Katiyar",
+    email: "contact@ujjwalkatiyar.in",
+    url: "https://ujjwalkatiyar.in",
   },
 }
 
@@ -33,6 +75,7 @@ export default function ContactPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background font-sans transition-colors duration-300 antialiased selection:bg-emerald-500/20 selection:text-emerald-600 dark:selection:text-emerald-400">
+      <JsonLd data={contactPageSchema} />
       <Navbar />
 
       <main className="flex-1 w-full max-w-[960px] mx-auto px-4 sm:px-6 md:px-10 flex flex-col pt-12 sm:pt-16 pb-16 gap-10">

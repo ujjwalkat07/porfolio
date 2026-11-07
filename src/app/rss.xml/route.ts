@@ -3,7 +3,9 @@ import posts from "@/content/blog-posts.json"
 export async function GET() {
   const baseUrl = "https://ujjwalkatiyar.in"
 
-  const itemsXml = posts
+  const publishedPosts = posts.filter((post) => !post.draft)
+
+  const itemsXml = publishedPosts
     .map((post) => {
       const postUrl = `${baseUrl}/blog/${post.slug}`
       const pubDate = new Date(post.date).toUTCString()

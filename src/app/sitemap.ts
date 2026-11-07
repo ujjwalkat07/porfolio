@@ -1,11 +1,11 @@
 import { MetadataRoute } from "next"
 import posts from "@/content/blog-posts.json"
+import { projects } from "@/data/projects"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://ujjwalkatiyar.in"
 
-  // Base routes with realistic change frequencies and balanced priorities
-  // Excludes /rss.xml which is an XML feed, not an indexable HTML page
+  // Base static routes with realistic change frequencies and balanced priorities
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}`,
@@ -33,7 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: new Date("2026-10-15"),
+      lastModified: new Date("2026-11-07"),
       changeFrequency: "monthly",
       priority: 0.5,
     },
@@ -51,8 +51,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  // Dynamic blog post routes mapped from the generated blog index
-  const blogRoutes: MetadataRoute.Sitemap = posts.map((post) => {
+  // Dynamic project routes
+  const projectRoutes: MetadataRoute.Sitemap = projects.map((project) => ({
+    url: `${baseUrl}/projects/${project.slug}`,
+    lastModified: new Date("2026-11-07"),
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }))
+
+  // Dynamic blog post routes (strictly excluding drafts)
+  const publishedPosts = posts.filter((post) => !post.draft)
+  const blogRoutes: MetadataRoute.Sitemap = publishedPosts.map((post) => {
     let lastMod = new Date("2026-10-15")
     if (post.lastModified || post.date) {
       const parsed = new Date(post.lastModified || post.date)
@@ -69,5 +78,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   })
 
-  return [...staticRoutes, ...blogRoutes]
+  return [...staticRoutes, ...projectRoutes, ...blogRoutes]
 }

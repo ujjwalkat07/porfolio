@@ -1,42 +1,43 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { ArrowLeft, ArrowRight } from "lucide-react"
+import { Github } from "@/components/icons"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { Projects } from "@/components/projects"
 import { projects } from "@/data/projects"
-import { Github } from "@/components/icons"
+import { JsonLd } from "@/lib/json-ld"
 
 export const metadata: Metadata = {
   title: "Projects | Ujjwal Katiyar — Software Developer & Systems Architect",
   description:
-    "Explore featured full-stack platforms, real-time engines, and distributed web applications engineered by Ujjwal Katiyar.",
+    "Explore featured full-stack platforms, real-time trading engines, and distributed backend architectures engineered by Ujjwal Katiyar.",
   alternates: {
     canonical: "https://ujjwalkatiyar.in/projects",
   },
   openGraph: {
     title: "Projects | Ujjwal Katiyar — Software Developer & Systems Architect",
     description:
-      "Explore featured full-stack platforms, real-time engines, and distributed web applications engineered by Ujjwal Katiyar.",
+      "Explore featured full-stack platforms, real-time trading engines, and distributed backend architectures engineered by Ujjwal Katiyar.",
     url: "https://ujjwalkatiyar.in/projects",
     type: "website",
     siteName: "Ujjwal Katiyar",
     images: [
       {
-        url: "https://ujjwalkatiyar.in/crypto.webp",
+        url: "https://ujjwalkatiyar.in/profile-card.png",
         width: 1200,
-        height: 630,
-        alt: "Ujjwal Katiyar Featured Projects",
+        height: 675,
+        alt: "Projects | Ujjwal Katiyar — Software Developer & Systems Architect",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Projects | Ujjwal Katiyar — Software Developer",
+    title: "Projects | Ujjwal Katiyar — Software Developer & Systems Architect",
     description:
-      "Explore featured full-stack platforms, real-time engines, and distributed web applications engineered by Ujjwal Katiyar.",
+      "Explore featured full-stack platforms, real-time trading engines, and distributed backend architectures engineered by Ujjwal Katiyar.",
     creator: "@ujjwalkatiyar07",
-    images: ["https://ujjwalkatiyar.in/crypto.webp"],
+    images: ["https://ujjwalkatiyar.in/profile-card.png"],
   },
 }
 
@@ -53,11 +54,13 @@ export default function ProjectsPage() {
       position: idx + 1,
       name: project.title,
       description: project.description,
-      url: project.demo,
+      url: `https://ujjwalkatiyar.in/projects/${project.slug}`,
+      sameAs: project.demo,
       applicationCategory: "WebApplication",
       operatingSystem: "Web",
       author: {
         "@type": "Person",
+        "@id": "https://ujjwalkatiyar.in/#person",
         name: "Ujjwal Katiyar",
         url: "https://ujjwalkatiyar.in",
       },
@@ -66,10 +69,7 @@ export default function ProjectsPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background font-sans transition-colors duration-300 antialiased selection:bg-emerald-500/20 selection:text-emerald-600 dark:selection:text-emerald-400">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
 
       {/* Navigation */}
       <Navbar />

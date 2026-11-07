@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { Github } from "@/components/icons"
 import { projects, ProjectItem } from "@/data/projects"
@@ -76,51 +77,62 @@ export function Projects({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
         {filteredProjects.map((project, i) => (
           <div
-            key={project.title}
+            key={project.slug}
             className="bg-card border border-border rounded-2xl md:rounded-3xl p-5 md:p-6 flex flex-col justify-between group hover:border-foreground/25 transition-all duration-300 shadow-sm hover:shadow-md"
           >
             <div>
               {/* Top Title inside card */}
               <div className="flex items-center justify-between">
-                <h3 className="text-lg md:text-xl font-bold text-foreground tracking-tight select-none">
-                  {project.title}
-                </h3>
+                <Link
+                  href={`/projects/${project.slug}`}
+                  className="hover:text-emerald-500 transition-colors"
+                >
+                  <h3 className="text-lg md:text-xl font-bold text-foreground tracking-tight select-none">
+                    {project.title}
+                  </h3>
+                </Link>
                 <div className="flex justify-end gap-2">
                   {project.github && (
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={`View GitHub repository for ${project.title}`}
+                      aria-label={`${project.title} source on GitHub`}
                       className="w-9 h-9 rounded-full bg-muted/60 border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-200"
                     >
                       <Github className="w-4 h-4" />
+                      <span className="sr-only">{project.title} source on GitHub</span>
                     </a>
                   )}
-
                   <a
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`Visit live demo for ${project.title}`}
+                    aria-label={`${project.title} live demonstration`}
                     className="w-9 h-9 rounded-full bg-muted/60 border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-200"
                   >
                     <ArrowUpRight className="w-4 h-4" />
+                    <span className="sr-only">{project.title} live demonstration</span>
                   </a>
                 </div>
               </div>
 
               {/* Preview Image Container */}
-              <div className="relative w-full h-[200px] rounded-lg overflow-hidden border border-border bg-muted/40 mt-5">
+              <Link
+                href={`/projects/${project.slug}`}
+                tabIndex={-1}
+                aria-hidden="true"
+                className="block relative w-full h-[200px] rounded-lg overflow-hidden border border-border bg-muted/40 mt-5"
+              >
                 <Image
                   src={project.image}
-                  alt={`Preview screenshot of ${project.title}`}
+                  alt={`Architecture and preview screenshot of ${project.title}`}
                   height={500}
                   width={500}
                   className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
                   priority={i < 2}
                 />
-              </div>
+              </Link>
             </div>
 
             {/* Bottom Details & Links */}
