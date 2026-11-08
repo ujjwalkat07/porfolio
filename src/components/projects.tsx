@@ -38,9 +38,8 @@ export function Projects({
   return (
     <section
       id="projects"
-      className={`py-5 transition-colors duration-300 ${
-        showBorder ? "border-b border-border/40" : ""
-      } ${className}`}
+      className={`py-5 transition-colors duration-300 ${showBorder ? "border-b border-border/40" : ""
+        } ${className}`}
     >
       {/* Section Header */}
       {showHeader && (
@@ -60,11 +59,10 @@ export function Projects({
               <button
                 key={tag}
                 onClick={() => setSelectedTag(tag)}
-                className={`text-xs px-3.5 py-1.5 rounded-full font-medium transition-all duration-200 cursor-pointer ${
-                  isActive
-                    ? "bg-foreground text-background shadow-xs"
-                    : "bg-muted/60 hover:bg-muted text-muted-foreground hover:text-foreground border border-border/60"
-                }`}
+                className={`text-xs px-3.5 py-1.5 rounded-full font-medium transition-all duration-200 cursor-pointer ${isActive
+                  ? "bg-foreground text-background shadow-xs"
+                  : "bg-muted/60 hover:bg-muted text-muted-foreground hover:text-foreground border border-border/60"
+                  }`}
               >
                 {tag}
               </button>
@@ -83,14 +81,11 @@ export function Projects({
             <div>
               {/* Top Title inside card */}
               <div className="flex items-center justify-between">
-                <Link
-                  href={`/projects/${project.slug}`}
-                  className="hover:text-emerald-500 transition-colors"
-                >
-                  <h3 className="text-lg md:text-xl font-bold text-foreground tracking-tight select-none">
-                    {project.title}
-                  </h3>
-                </Link>
+
+                <h3 className="text-lg md:text-xl font-bold text-foreground tracking-tight select-none">
+                  {project.title}
+                </h3>
+
                 <div className="flex justify-end gap-2">
                   {project.github && (
                     <a
@@ -118,21 +113,16 @@ export function Projects({
               </div>
 
               {/* Preview Image Container */}
-              <Link
-                href={`/projects/${project.slug}`}
-                tabIndex={-1}
-                aria-hidden="true"
-                className="block relative w-full h-[200px] rounded-lg overflow-hidden border border-border bg-muted/40 mt-5"
-              >
-                <Image
-                  src={project.image}
-                  alt={`Architecture and preview screenshot of ${project.title}`}
-                  height={500}
-                  width={500}
-                  className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
-                  priority={i < 2}
-                />
-              </Link>
+
+              <Image
+                src={project.image}
+                alt={`Architecture and preview screenshot of ${project.title}`}
+                height={500}
+                width={500}
+                className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                priority={i < 2}
+              />
+
             </div>
 
             {/* Bottom Details & Links */}
