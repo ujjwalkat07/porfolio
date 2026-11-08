@@ -26,10 +26,8 @@ export interface ProjectProps {
 export function Project({
   image,
   title,
-  description,
   github,
   livedemo,
-  stack = [],
   priority = false,
   className = "",
 }: ProjectProps) {

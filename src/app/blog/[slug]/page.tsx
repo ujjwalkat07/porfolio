@@ -1,11 +1,12 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft, ArrowUpRight } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { ImpressionCounter } from "@/components/impression-counter"
 import { TableOfContents, type TocItem } from "@/components/blog/table-of-contents"
+import { UnderstandWithAi } from "@/components/blog/understand-with-ai"
 import { SupabaseShareBar } from "@/components/blog/supabase-share-bar"
 import { JsonLd } from "@/lib/json-ld"
 import { formatDate } from "@/lib/format-date"
@@ -32,6 +33,12 @@ interface BlogPostItem {
 
 const blogPosts = posts as BlogPostItem[]
 
+function toIso(value?: string): string | undefined {
+  if (!value) return undefined
+  const d = new Date(value)
+  return isNaN(d.getTime()) ? undefined : d.toISOString()
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
   const post = blogPosts.find((p) => p.slug === slug)
@@ -51,28 +58,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
   }
 
-  let isoPublishDate: string | undefined = undefined
-  try {
-    const d = new Date(post.date)
-    if (!isNaN(d.getTime())) {
-      isoPublishDate = d.toISOString()
-    }
-  } catch {
-    // ignore
-  }
-
-  let isoModifiedDate = isoPublishDate
-  if (post.lastModified) {
-    try {
-      const d = new Date(post.lastModified)
-      if (!isNaN(d.getTime())) {
-        isoModifiedDate = d.toISOString()
-      }
-    } catch {
-      // ignore
-    }
-  }
-
+  const isoPublishDate = toIso(post.date)
+  const isoModifiedDate = toIso(post.lastModified) ?? isoPublishDate
   const ogImageUrl = `https://ujjwalkatiyar.in/blog/${slug}/opengraph-image`
 
   return {
@@ -148,28 +135,8 @@ export default async function BlogPostPage({ params }: PageProps) {
   const readNextPosts = [...sameCategoryPosts, ...differentCategoryPosts].slice(0, 3)
   const tocItems: TocItem[] = post.toc || []
 
-  // Safe ISO Date parsing for schema markup
-  let isoPublishDate = new Date().toISOString()
-  try {
-    const d = new Date(post.date)
-    if (!isNaN(d.getTime())) {
-      isoPublishDate = d.toISOString()
-    }
-  } catch {
-    // ignore
-  }
-
-  let isoModifiedDate = isoPublishDate
-  if (post.lastModified) {
-    try {
-      const d = new Date(post.lastModified)
-      if (!isNaN(d.getTime())) {
-        isoModifiedDate = d.toISOString()
-      }
-    } catch {
-      // ignore
-    }
-  }
+  const isoPublishDate = toIso(post.date) ?? new Date().toISOString()
+  const isoModifiedDate = toIso(post.lastModified) ?? isoPublishDate
 
   const jsonLdArticle = {
     "@context": "https://schema.org",
@@ -246,47 +213,41 @@ export default async function BlogPostPage({ params }: PageProps) {
       {/* Global Navbar */}
       <Navbar />
 
-      {/* Main Container - 12-Column Responsive Layout */}
-      <main className="flex-1 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:pl-36 pt-8 sm:pt-12 pb-5">
-        {/* Breadcrumbs & Back Link */}
-        <div className="flex items-center gap-5 mb-5 sm:mb-5 text-xs text-muted-foreground font-body">
-          <div className="flex items-center gap-1.5 text-xs text-muted-foreground/80">
-            <Link href="/blog" className="hover:text-foreground transition-colors">
-              Blog
-            </Link>
-            <span className="text-muted-foreground/40">/</span>
-            <span className="capitalize text-foreground font-medium">
-              {post.category || "Engineering"}
-            </span>
-          </div>
-        </div>
+      {/* Main Container */}
+      <main className="flex-1 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:pl-36 pt-8 sm:pt-12 pb-10">
+        {/* Breadcrumbs */}
+        <nav
+          aria-label="Breadcrumb"
+          className="flex items-center gap-1.5 mb-6 text-xs text-muted-foreground/80 font-body"
+        >
+          <Link href="/blog" className="hover:text-foreground transition-colors">
+            Blog
+          </Link>
+          <span className="text-muted-foreground/40">/</span>
+          <span className="capitalize text-foreground font-medium">
+            {post.category || "Engineering"}
+          </span>
+        </nav>
 
-        {/* 12-Column Grid Layout */}
-        <div className="grid grid-cols-12 gap-y-10 lg:gap-x-12">
-          {/* Main Article Column (col-span-12 lg:col-span-8) */}
-          <article className="col-span-12 lg:col-span-8 flex flex-col min-w-0">
-            {/* Header Section */}
-            <header className="flex flex-col gap-5 pb-3 border-border/60">
-              {/* Title */}
-              <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.2rem] font-semibold text-foreground text-pretty break-words">
+        {/* 12-Column Grid: row 1 = header, row 2 = body (8) + sticky TOC (4) */}
+        <div className="grid grid-cols-12 gap-y-8 lg:gap-x-12">
+          {/* Header: row 1, only spans the article column */}
+          <header className="col-span-12 lg:col-span-8 lg:col-start-1 lg:row-start-1 flex flex-col gap-5 min-w-0">
+              <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.2rem] leading-tight font-semibold text-foreground text-pretty break-words">
                 {post.title}
               </h1>
 
-              {/* Publication Meta details */}
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-muted-foreground">
-                <span className="inline-flex items-center">
-                  <span>{formatDate(post.date)}</span>
-                </span>
+                <span>{formatDate(post.date)}</span>
                 <span className="text-muted-foreground/40 select-none">•</span>
-                <span className="inline-flex items-center">
-                  <span>{post.readTime}</span>
-                </span>
+                <span>{post.readTime}</span>
                 <span className="text-muted-foreground/40 select-none">•</span>
                 <span className="inline-flex items-center gap-1.5">
                   <ImpressionCounter slug={slug} />
                 </span>
               </div>
-              <Link href="/about" className="flex items-center gap-3 pt-2 group self-start">
+
+              <Link href="/about" className="flex items-center gap-3 group self-start">
                 <div className="relative w-9 h-9 rounded-full overflow-hidden border border-border/80 shrink-0 group-hover:border-foreground/40 transition-colors">
                   <Image
                     src="/profile_pic.webp"
@@ -305,23 +266,30 @@ export default async function BlogPostPage({ params }: PageProps) {
                   </span>
                 </div>
               </Link>
-            </header>
+          </header>
 
+          {/* Row 2: article body; the TOC sidebar starts on this same row */}
+          <article className="col-span-12 lg:col-span-8 lg:col-start-1 lg:row-start-2 flex flex-col min-w-0">
             {/* MDX Article Body */}
             <div className="text-neutral-800 dark:text-neutral-300 font-body text-[15px] sm:text-[16px] leading-[1.8] break-words [overflow-wrap:anywhere]">
-              <PostContent/>
+              <PostContent />
             </div>
 
-            {/* Horizontal Share Banner */}
-            <SupabaseShareBar title={post.title} slug={slug} />
+            {/* "Understand with AI" – mobile/tablet only (sidebar hosts it on desktop) */}
+            <div className="lg:hidden mt-8">
+              <UnderstandWithAi title={post.title} slug={slug} className="border-t-0 pt-0" />
+            </div>
 
-            {/* Read Next Section */}
+            {/* Share Banner */}
+            <div className="mt-8">
+              <SupabaseShareBar title={post.title} slug={slug} />
+            </div>
+
+            {/* Read Next */}
             {readNextPosts.length > 0 && (
-              <section className="">
+              <section className="mt-12 pt-8 border-t border-border/60">
                 <div className="flex items-center justify-between mb-6">
-                  <h3 className="font-display text-xl font-bold text-foreground">
-                    Read Next
-                  </h3>
+                  <h3 className="font-display text-xl font-bold text-foreground">Read Next</h3>
                   <Link
                     href="/blog"
                     className="inline-flex items-center gap-1 text-xs text-[#3ECF8E] hover:underline font-medium"
@@ -359,23 +327,13 @@ export default async function BlogPostPage({ params }: PageProps) {
                 </div>
               </section>
             )}
-
-            {/* Back to Blog Button */}
-            <div className="pt-5 border-t border-border/40">
-              <Link
-                href="/blog"
-                className="inline-flex items-center gap-2 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors group"
-              >
-                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                <span>Back to all articles</span>
-              </Link>
-            </div>
           </article>
 
-          {/* Right Column / Sticky Table of Contents (col-span-12 lg:col-span-4) */}
-          <aside className="col-span-12 lg:col-span-4 hidden lg:block">
-            <div className="sticky top-24 pl-4 border-l border-border/50">
+          {/* Right Column: sticky TOC, starts level with the top of the article body (the hero image) */}
+          <aside className="hidden lg:block lg:col-span-4 lg:col-start-9 lg:row-start-2">
+            <div className="sticky top-24 pl-4 border-l border-border/50 space-y-6">
               <TableOfContents items={tocItems} />
+              <UnderstandWithAi title={post.title} slug={slug} />
             </div>
           </aside>
         </div>
@@ -388,4 +346,3 @@ export default async function BlogPostPage({ params }: PageProps) {
     </div>
   )
 }
-
