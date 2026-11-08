@@ -1,6 +1,5 @@
 import { MetadataRoute } from "next"
 import posts from "@/content/blog-posts.json"
-import { projects } from "@/data/projects"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://ujjwalkatiyar.in"

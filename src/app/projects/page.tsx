@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowLeft, ArrowRight } from "lucide-react"
+import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react"
 import { Github } from "@/components/icons"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
@@ -54,8 +54,7 @@ export default function ProjectsPage() {
       position: idx + 1,
       name: project.title,
       description: project.description,
-      url: `https://ujjwalkatiyar.in/projects/${project.slug}`,
-      sameAs: project.demo,
+      url: project.demo,
       applicationCategory: "WebApplication",
       operatingSystem: "Web",
       author: {
@@ -68,71 +67,41 @@ export default function ProjectsPage() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-background font-sans transition-colors duration-300 antialiased selection:bg-emerald-500/20 selection:text-emerald-600 dark:selection:text-emerald-400">
+    <div className="relative min-h-screen bg-background font-sans transition-colors duration-300 antialiased selection:bg-emerald-500/20 selection:text-emerald-600 dark:selection:text-emerald-400">
       <JsonLd data={jsonLd} />
+
+      {/* Resend-inspired Top Radial Ambient Glow */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-16 left-1/2 -translate-x-1/2 w-[720px] max-w-full h-[360px] bg-[radial-gradient(ellipse_at_top,_rgba(255,255,255,0.08),_transparent_70%)]"
+      />
 
       {/* Navigation */}
       <Navbar />
 
       {/* Main Page Layout Wrapper */}
-      <main className="flex-1 w-full max-w-[960px] mx-auto px-4 sm:px-6 md:px-10 flex flex-col pt-12 sm:pt-16 pb-16 gap-8">
+      <main className="flex-1 w-full max-w-[1100px] mx-auto px-4 sm:px-6 md:px-8 flex flex-col pt-10 sm:pt-14 gap-10">
         {/* Back Link */}
         <Link
           id="projects-back-link"
           href="/"
-          className="self-start inline-flex items-center gap-2 text-xs font-normal text-muted-foreground px-4 py-2.5 border border-border/50 rounded-lg bg-card/50 hover:bg-muted hover:text-foreground hover:border-foreground/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-xs"
+          className="self-start inline-flex items-center gap-2 text-xs font-mono text-muted-foreground px-3.5 py-2 border border-border/60 rounded-lg bg-card/40 hover:bg-muted hover:text-foreground hover:border-foreground/30 transition-all duration-200"
         >
           <ArrowLeft className="h-3.5 w-3.5" />
           <span>Back to Home</span>
         </Link>
 
-        {/* Header */}
+        {/* Header Block (Resend Inspired) */}
         <div className="flex flex-col gap-3">
-          <div className="inline-flex items-center gap-2 text-xs font-medium text-indigo-500 bg-indigo-500/10 px-3 py-1 rounded-full w-fit">
-            Portfolio Showcase
-          </div>
-          <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
-            Featured Projects
+          
+          <h1 className="bg-gradient-to-b from-white to-zinc-500 bg-clip-text text-transparent text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-foreground">
+           Engineering Projects
           </h1>
-          <p className="text-sm md:text-base font-light text-muted-foreground leading-relaxed max-w-2xl">
-            A curated collection of full-stack platforms, real-time trading architectures, and distributed systems I&apos;ve designed and engineered.
-          </p>
         </div>
 
         {/* Projects Section */}
         <Projects showHeader={false} showBorder={false} showFilter={true} />
 
-        {/* Bottom CTA Card */}
-        <div className="mt-4 p-6 sm:p-8 rounded-2xl md:rounded-3xl border border-border bg-card/50 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
-          <div className="flex flex-col gap-1 text-center sm:text-left">
-            <h3 className="text-base sm:text-lg font-bold text-foreground">
-              Want to see more code or collaborate?
-            </h3>
-            <p className="text-xs sm:text-sm text-muted-foreground">
-              Explore open-source repositories on GitHub or reach out directly to discuss new opportunities.
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
-            <a
-              id="projects-cta-github"
-              href="https://github.com/ujjwalkat07"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-medium rounded-xl border border-border bg-card hover:bg-muted text-foreground transition-all duration-200 shadow-xs"
-            >
-              <Github className="w-3.5 h-3.5" />
-              <span>GitHub Profile</span>
-            </a>
-            <Link
-              id="projects-cta-contact"
-              href="/contact"
-              className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-medium rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 shadow-xs"
-            >
-              <span>Get in touch</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-        </div>
 
         {/* Footer */}
         <Footer />
