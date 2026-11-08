@@ -51,14 +51,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  // Dynamic project routes
-  const projectRoutes: MetadataRoute.Sitemap = projects.map((project) => ({
-    url: `${baseUrl}/projects/${project.slug}`,
-    lastModified: new Date("2026-11-07"),
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }))
-
   // Dynamic blog post routes (strictly excluding drafts)
   const publishedPosts = posts.filter((post) => !post.draft)
   const blogRoutes: MetadataRoute.Sitemap = publishedPosts.map((post) => {
@@ -78,5 +70,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   })
 
-  return [...staticRoutes, ...projectRoutes, ...blogRoutes]
+  return [...staticRoutes, ...blogRoutes]
 }
