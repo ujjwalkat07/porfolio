@@ -68,13 +68,7 @@ export default function ProjectsPage() {
   return (
     <div className="relative min-h-screen bg-background font-sans transition-colors duration-300 antialiased selection:bg-emerald-500/20 selection:text-emerald-600 dark:selection:text-emerald-400">
       <JsonLd data={jsonLd} />
-
-      {/* Resend-inspired Top Radial Ambient Glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-16 left-1/2 -translate-x-1/2 w-[720px] max-w-full h-[360px] bg-[radial-gradient(ellipse_at_top,_rgba(255,255,255,0.08),_transparent_70%)]"
-      />
-
+     
       {/* Navigation */}
       <Navbar />
 
@@ -93,14 +87,13 @@ export default function ProjectsPage() {
         {/* Header Block (Resend Inspired) */}
         <div className="flex flex-col gap-3">
           
-          <h1 className="bg-gradient-to-b from-white to-zinc-500 bg-clip-text text-transparent text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-foreground">
+          <h1 className="bg-gradient-to-b from-zinc-900 to-zinc-500 dark:from-white dark:to-zinc-500 bg-clip-text text-transparent text-3xl sm:text-4xl md:text-4xl font-semibold tracking-[-0.03em]">
            Engineering Projects
           </h1>
         </div>
 
         {/* Projects Section */}
         <Projects showHeader={false} showBorder={false} showFilter={true} />
-
 
         {/* Footer */}
         <Footer />

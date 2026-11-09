@@ -11,8 +11,8 @@ export function BentoProfile() {
     <section className="w-full pt-10 pb-5">
       {/* Top row: Avatar + Name + Role */}
       <div className="flex flex-col sm:flex-row gap-5 items-start sm:items-center mb-5">
-        <div className="flex flex-col gap-1">
-          <h1 className="bg-gradient-to-b from-white to-zinc-500 bg-clip-text text-transparent text-4xl sm:text-5xl font-semibold tracking-tight text-foreground">
+        <div className="flex flex-col">
+          <h1 className="bg-gradient-to-b from-zinc-900 to-zinc-500 dark:from-white dark:to-zinc-500 bg-clip-text text-transparent text-3xl sm:text-4xl md:text-4xl font-semibold">
             Ujjwal Katiyar
           </h1>
           <p className="text-sm md:text-base font-medium text-muted-foreground">
