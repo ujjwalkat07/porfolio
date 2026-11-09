@@ -73,7 +73,7 @@ export default function ProjectsPage() {
       <Navbar />
 
       {/* Main Page Layout Wrapper */}
-      <main className="flex-1 w-full max-w-[1100px] mx-auto px-4 sm:px-6 md:px-8 flex flex-col pt-10 sm:pt-14 gap-10">
+      <main className="flex-1 w-full max-w-[1100px] mx-auto px-4 sm:px-6 md:px-8 flex flex-col pt-5 sm:pt-10 gap-10">
         {/* Back Link */}
         <Link
           id="projects-back-link"

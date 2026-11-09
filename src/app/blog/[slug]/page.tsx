@@ -287,7 +287,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
             {/* Read Next */}
             {readNextPosts.length > 0 && (
-              <section className="mt-12 pt-8 border-t border-border/60">
+              <section className="">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="font-display text-xl font-bold text-foreground">Read Next</h3>
                   <Link

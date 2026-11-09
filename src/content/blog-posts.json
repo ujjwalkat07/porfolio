@@ -55,8 +55,8 @@
     "toc": []
   },
   {
-    "slug": "how-to-migrate-a-service-from-monolith-to-microservices",
-    "title": "How to migrate a service from monolith to microservices",
+    "slug": "monolith-to-microservices-migration",
+    "title": "Monolith to Microservices Migration: Step-by-Step Guide",
     "category": "System Design",
     "description": "Learn step-by-step strategies to migrate monolithic services to scalable microservices in real-world production without downtime or data loss.",
     "date": "Jul 13, 2026",
@@ -68,7 +68,7 @@
       "Engineering",
       "Monolith vs Microservices"
     ],
-    "link": "https://ujjwalkatiyar.in/blog/how-to-migrate-a-service-from-monolith-to-microservices",
+    "link": "https://ujjwalkatiyar.in/blog/monolith-to-microservices-migration",
     "draft": false,
     "toc": [
       {
