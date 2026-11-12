@@ -4,6 +4,8 @@ import remarkGfm from "remark-gfm";
 import remarkFrontmatter from "remark-frontmatter";
 
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
+  compress: true,
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   trailingSlash: false,
   images: {

@@ -104,7 +104,7 @@
     ]
   },
   {
-    "slug": "monolith-vs-microservices",
+    "slug": "monolith-vs-microservices-architecture",
     "title": "Monolith vs Microservices - A brief introduction",
     "category": "System Design",
     "description": "A comparison between monolithic and microservices architecture, exploring key differences, scalability trade-offs, and system design use cases.",
@@ -117,7 +117,7 @@
       "Engineering",
       "Monolith vs Microservices"
     ],
-    "link": "https://ujjwalkatiyar.in/blog/monolith-vs-microservices",
+    "link": "https://ujjwalkatiyar.in/blog/monolith-vs-microservices-architecture",
     "draft": false,
     "toc": [
       {

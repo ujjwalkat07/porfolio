@@ -45,12 +45,17 @@ export const metadata: Metadata = {
   authors: [{ name: "Ujjwal Katiyar", url: "https://ujjwalkatiyar.in/about" }],
   alternates: {
     canonical: "https://ujjwalkatiyar.in",
-    languages: {
-      "en-US": "https://ujjwalkatiyar.in",
-    },
     types: {
       "application/rss+xml": "https://ujjwalkatiyar.in/rss.xml",
     },
+  },
+  icons: {
+    icon: [
+      { url: "/icon.png", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
   robots: {
     index: true,

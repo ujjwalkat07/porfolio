@@ -100,10 +100,9 @@ export function Blog() {
         <div className="flex flex-col gap-10 mb-5">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1050px]">
             {displayedPosts.map((post) => (
-              <Link
+              <article
                 key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="group flex flex-col justify-between p-5 sm:p-6 md:p-8 rounded-md border border-border/50 bg-card shadow-sm hover:shadow-md transition-all duration-300 min-h-[300px] sm:min-h-[340px] hover:bg-muted/40 dark:hover:bg-neutral-900/40"
+                className="group relative flex flex-col justify-between p-5 sm:p-6 md:p-8 rounded-md border border-border/50 bg-card shadow-sm hover:shadow-md transition-all duration-300 min-h-[300px] sm:min-h-[340px] hover:bg-muted/40 dark:hover:bg-neutral-900/40"
               >
                 <div>
                   {/* Meta Category & Date */}
@@ -115,7 +114,13 @@ export function Blog() {
 
                   {/* Article Title */}
                   <h3 className="text-xl font-bold tracking-tight text-foreground dark:group-hover:text-[lab(74 -53.94 24.51)] transition-colors duration-200 mt-4 line-clamp-3 leading-snug">
-                    {post.title}
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="hover:underline focus:outline-hidden"
+                    >
+                      <span className="absolute inset-0" aria-hidden="true" />
+                      {post.title}
+                    </Link>
                   </h3>
                 </div>
 
@@ -126,7 +131,7 @@ export function Blog() {
                   </p>
 
                   {/* Author signature section */}
-                  <div className="flex items-center justify-between mt-6 pt-4 border-t border-border/30">
+                  <div className="flex items-center justify-between mt-6 pt-4 border-t border-border/30 relative z-10 pointer-events-none">
                     <div className="flex items-center gap-2">
                       <div className="relative h-5.5 w-5.5 rounded-full overflow-hidden border border-border/60">
                         <Image
@@ -146,8 +151,7 @@ export function Blog() {
                     </p>
                   </div>
                 </div>
-              </Link>
-
+              </article>
             ))}
           </div>
 

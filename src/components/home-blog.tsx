@@ -40,9 +40,8 @@ export function HomeBlog() {
       {/* Horizontal Blog Post Rows with Separator Lines */}
       <div className="divide-y divide-border/40">
         {recentPosts.map((post) => (
-          <Link
+          <article
             key={post.slug}
-            href={`/blog/${post.slug}`}
             className="group relative flex flex-col sm:flex-row sm:items-center justify-between py-5 px-3 sm:px-4 rounded-xl hover:bg-muted/40 transition-all duration-200 gap-4"
           >
             {/* Post Content Details */}
@@ -59,8 +58,14 @@ export function HomeBlog() {
                 )}
               </div>
 
-              <h3 className="text-base sm:text-lg font-semibold tracking-tight text-foreground group-hover:text-primary hover:underline transition-colors duration-200 line-clamp-2">
-                {post.title}
+              <h3 className="text-base sm:text-lg font-semibold tracking-tight text-foreground group-hover:text-primary transition-colors duration-200 line-clamp-2">
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="hover:underline focus:outline-hidden"
+                >
+                  <span className="absolute inset-0" aria-hidden="true" />
+                  {post.title}
+                </Link>
               </h3>
 
               <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2 leading-relaxed font-normal">
@@ -69,7 +74,7 @@ export function HomeBlog() {
             </div>
 
             {/* Post Meta & Image Logo */}
-            <div className="flex items-center justify-between sm:justify-end gap-3.5 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-border/20">
+            <div className="flex items-center justify-between sm:justify-end gap-3.5 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-border/20 relative z-10 pointer-events-none">
               <div className="text-xs text-muted-foreground">
                 <ImpressionCounter slug={post.slug} readOnly />
               </div>
@@ -84,7 +89,7 @@ export function HomeBlog() {
                 />
               </div>
             </div>
-          </Link>
+          </article>
         ))}
       </div>
 
@@ -94,7 +99,7 @@ export function HomeBlog() {
           href="/blog"
           className="inline-flex h-9 items-center justify-center rounded-full border border-border bg-card px-6 text-xs font-medium text-foreground hover:bg-muted active:scale-[0.98] transition-all duration-200 shadow-xs gap-1.5"
         >
-          <span>View all posts</span>
+          <span>Explore all articles</span>
           <ArrowRight className="h-3.5 w-3.5" />
         </Link>
       </div>

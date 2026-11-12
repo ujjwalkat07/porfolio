@@ -300,10 +300,9 @@ export default async function BlogPostPage({ params }: PageProps) {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                   {readNextPosts.map((otherPost) => (
-                    <Link
+                    <div
                       key={otherPost.slug}
-                      href={`/blog/${otherPost.slug}`}
-                      className="group flex flex-col justify-between p-5 rounded-xl border border-border/60 bg-card/30 hover:bg-card/70 hover:border-[#3ECF8E]/40 transition-all duration-200"
+                      className="group relative flex flex-col justify-between p-5 rounded-xl border border-border/60 bg-card/30 hover:bg-card/70 hover:border-[#3ECF8E]/40 transition-all duration-200"
                     >
                       <div>
                         <div className="flex items-center gap-2 text-[10px] text-muted-foreground uppercase tracking-wider mb-2">
@@ -312,17 +311,26 @@ export default async function BlogPostPage({ params }: PageProps) {
                           <span>{otherPost.readTime}</span>
                         </div>
                         <h4 className="font-display text-sm font-semibold text-foreground group-hover:text-[#3ECF8E] transition-colors line-clamp-2 mb-2">
-                          {otherPost.title}
+                          <Link
+                            href={`/blog/${otherPost.slug}`}
+                            className="focus:outline-hidden"
+                          >
+                            <span className="absolute inset-0" aria-hidden="true" />
+                            {otherPost.title}
+                          </Link>
                         </h4>
                         <p className="text-xs text-muted-foreground font-normal line-clamp-2 leading-relaxed">
                           {otherPost.description}
                         </p>
                       </div>
-                      <div className="flex items-center gap-1 text-[11px] font-medium text-[#3ECF8E] mt-4 pt-3 border-t border-border/40">
-                        <span>Read article</span>
+                      <div
+                        aria-hidden="true"
+                        className="flex items-center gap-1 text-[11px] font-medium text-[#3ECF8E] mt-4 pt-3 border-t border-border/40 pointer-events-none"
+                      >
+                        <span>Read full article</span>
                         <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                       </div>
-                    </Link>
+                    </div>
                   ))}
                 </div>
               </section>
