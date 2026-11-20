@@ -70,7 +70,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       canonical: `https://ujjwalkatiyar.in/blog/${slug}`,
     },
     openGraph: {
-      title: `${post.title} — Ujjwal Katiyar`,
+      title: `${post.title}`,
       description: post.description,
       type: "article",
       url: `https://ujjwalkatiyar.in/blog/${slug}`,
@@ -88,14 +88,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: "summary_large_image",
-      title: `${post.title} — Ujjwal Katiyar`,
+      site: "@ujjwalkatiyar07",
+      title: `${post.title}`,
       description: post.description,
       creator: "@ujjwalkatiyar07",
       images: [ogImageUrl],
     },
   }
 }
-
+  
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({
     slug: post.slug,

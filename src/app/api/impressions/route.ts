@@ -74,7 +74,14 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Failed to fetch" }, { status: 500 })
     }
 
-    return NextResponse.json({ count: data?.view_count ?? 0 })
+    return NextResponse.json(
+      { count: data?.view_count ?? 0 },
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=120, stale-while-revalidate=600",
+        },
+      }
+    )
   } catch {
     //("Impression GET error:", e)
     return NextResponse.json({ error: "Internal error" }, { status: 500 })

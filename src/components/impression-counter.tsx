@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react"
 import { Eye } from "lucide-react"
 
+// In-memory cache across client renders to prevent redundant network requests
+const impressionsCache = new Map<string, number>()
+
 interface ImpressionCounterProps {
   slug: string
   /** If true, only reads the count (GET) without incrementing (for listing cards) */
@@ -10,9 +13,18 @@ interface ImpressionCounterProps {
 }
 
 export function ImpressionCounter({ slug, readOnly = false }: ImpressionCounterProps) {
-  const [count, setCount] = useState<number | null>(null)
+  const [count, setCount] = useState<number | null>(() => {
+    return impressionsCache.has(slug) ? (impressionsCache.get(slug) ?? null) : null
+  })
 
   useEffect(() => {
+    if (readOnly && impressionsCache.has(slug)) {
+      setCount(impressionsCache.get(slug) ?? null)
+      return
+    }
+
+    let active = true
+
     async function fetchCount() {
       try {
         let res: Response
@@ -29,14 +41,21 @@ export function ImpressionCounter({ slug, readOnly = false }: ImpressionCounterP
 
         if (res.ok) {
           const data = await res.json()
-          setCount(data.count)
+          if (active && typeof data.count === "number") {
+            impressionsCache.set(slug, data.count)
+            setCount(data.count)
+          }
         }
       } catch {
-        //("Failed to fetch impression:", err)
+        // Ignore network error silently
       }
     }
 
     fetchCount()
+
+    return () => {
+      active = false
+    }
   }, [slug, readOnly])
 
   return (

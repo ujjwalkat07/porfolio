@@ -41,7 +41,7 @@ export function Mermaid({ chart, className }: MermaidProps) {
           startOnLoad: false,
           securityLevel: "strict",
           theme,
-          fontFamily: "var(--font-inter), system-ui, sans-serif",
+          fontFamily: "var(--font-geist-sans), system-ui, sans-serif",
         })
 
         const cleanCode = chart.trim()

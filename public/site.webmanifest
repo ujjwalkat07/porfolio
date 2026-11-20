@@ -1,0 +1,23 @@
+{
+  "name": "Ujjwal Katiyar — Software Developer & Systems Architect",
+  "short_name": "Ujjwal Katiyar",
+  "description": "Software Developer building scalable real-time systems and AI observability platforms.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030712",
+  "theme_color": "#030712",
+  "icons": [
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
+
