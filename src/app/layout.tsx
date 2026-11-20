@@ -23,7 +23,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ujjwalkatiyar.in"),
-  title: "Ujjwal Katiyar — Software Developer & Systems Architect",
+  title: "Ujjwal Katiyar",
   description:
     "Software Developer building scalable real-time systems and AI observability platforms with Next.js, Kafka, Redis, and high-performance cloud architectures.",
   authors: [{ name: "Ujjwal Katiyar", url: "https://ujjwalkatiyar.in/about" }],
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Ujjwal Katiyar — Software Developer & Systems Architect",
+    title: "Ujjwal Katiyar",
     description:
       "Software Developer building scalable real-time systems and AI observability platforms with Next.js, Kafka, Redis, and high-performance cloud architectures.",
     type: "website",
