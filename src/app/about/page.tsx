@@ -15,9 +15,9 @@ export const metadata: Metadata = {
     canonical: "https://ujjwalkatiyar.in/about",
   },
   openGraph: {
-    title: "About | Ujjwal Katiyar — Software Developer",
+    title: "About | Ujjwal Katiyar",
     description:
-      "Learn about Ujjwal Katiyar, a Software Developer building scalable real-time systems, distributed backend infrastructure, and AI observability platforms.",
+      "A Software Developer building scalable real-time systems, distributed backend infrastructure, and AI observability platforms.",
     url: "https://ujjwalkatiyar.in/about",
     type: "profile",
     images: [
@@ -31,9 +31,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "About | Ujjwal Katiyar — Software Developer",
+    title: "About | Ujjwal Katiyar",
     description:
-      "Learn about Ujjwal Katiyar, a Software Developer building scalable real-time systems, distributed backend infrastructure, and AI observability platforms.",
+      "A Software Developer building scalable real-time systems, distributed backend infrastructure, and AI observability platforms.",
     creator: "@ujjwalkatiyar07",
     images: ["https://ujjwalkatiyar.in/profile-card.png"],
   },
