@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://ujjwalkatiyar.in"),
   title: "Ujjwal Katiyar",
   description:
-    "Software Developer building scalable real-time systems and AI observability platforms with Next.js, Kafka, Redis, and high-performance cloud architectures.",
+    "I am a software developer designing system architectures, optimizing APIs, and building AI applications and agents. See my projects and blogs.",
   authors: [{ name: "Ujjwal Katiyar", url: "https://ujjwalkatiyar.in/about" }],
   manifest: "/site.webmanifest",
   alternates: {
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ujjwal Katiyar",
     description:
-      "Software Developer building scalable real-time systems and AI observability platforms with Next.js, Kafka, Redis, and high-performance cloud architectures.",
+      "I am a software developer designing system architectures, optimizing APIs, and building AI applications and agents. See my projects and blogs.",
     type: "website",
     locale: "en_US",
     siteName: "Ujjwal Katiyar",
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
         secureUrl: "https://ujjwalkatiyar.in/profile-card.png",
         width: 1200,
         height: 630,
-        alt: "Ujjwal Katiyar — Software Developer & Systems Architect",
+        alt: "Ujjwal Katiyar",
         type: "image/png",
       },
     ],
@@ -79,9 +79,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@ujjwalkatiyar07",
     creator: "@ujjwalkatiyar07",
-    title: "Ujjwal Katiyar — Software Developer & Systems Architect",
+    title: "Ujjwal Katiyar",
     description:
-      "Software Developer building scalable real-time systems and AI observability platforms with Next.js, Kafka, Redis, and high-performance cloud architectures.",
+      "I am a software developer designing system architectures, optimizing APIs, and building AI applications and agents. See my projects and blogs.",
     images: ["https://ujjwalkatiyar.in/profile-card.png"],
   },
 };

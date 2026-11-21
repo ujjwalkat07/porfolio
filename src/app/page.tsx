@@ -13,7 +13,7 @@ const personSchema = {
   image: "https://ujjwalkatiyar.in/profile_pic.webp",
   jobTitle: "Software Developer",
   description:
-    "Software Developer building scalable real-time systems, distributed backend infrastructure, and AI observability platforms.",
+    "I am a software developer designing system architectures, optimizing APIs, and building AI applications and agents.",
   sameAs: [
     "https://github.com/ujjwalkat07",
     "https://www.linkedin.com/in/ujjwalkatiyar07",
@@ -42,7 +42,7 @@ const websiteSchema = {
   name: "Ujjwal Katiyar",
   url: "https://ujjwalkatiyar.in",
   description:
-    "Personal portfolio and engineering blog of Ujjwal Katiyar, Software Developer and Systems Architect.",
+    "I am a software developer designing system architectures, optimizing APIs, and building AI applications and agents. See my projects and blogs.",
   author: {
     "@id": "https://ujjwalkatiyar.in/#person",
   },
