@@ -23,7 +23,7 @@ export function BentoProfile() {
 
       {/* About paragraph - concise 2-3 sentences with link to /about */}
       <p className="text-sm md:text-base text-muted-foreground max-w-3xl mb-6 leading-relaxed">
-        I build software, real-time systems, and scalable backend infrastructure with Next.js, TypeScript, Kafka, and ClickHouse. Currently, I am engineering <a href="https://asi-telemetry.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-emerald-500 underline hover:no-underline transition-colors duration-200">ASI:Telemetry</a> to provide observability, token tracking, and latency monitoring for AI applications and autonomous agents. Learn more <Link href="/about" className="text-emerald-500 underline hover:no-underline transition-colors duration-200">about my background</Link> or explore my <Link href="/projects" className="text-emerald-500 underline hover:no-underline transition-colors duration-200">featured projects</Link>.
+        I am a software developer building software and scalable backends. Most of my work is hands-on designing system architectures, optimizing APIs, and building AI applications and autonomous agents. see my engineering <Link href="/projects" className="text-primary hover:underline transition-colors cursor-pointer text-black dark:text-emerald-500">projects</Link> and <Link href="/blogs" className="text-primary hover:underline transition-colors cursor-pointer text-black dark:text-emerald-500">blogs</Link> {" "}-&gt;
       </p>
 
       {/* Social links — inline with accessible labels */}
