@@ -60,10 +60,10 @@ Now, let's understand how the **ASI:Telemetry** SDK collects traces and sends th
 
 ```mermaid
 flowchart TB
-    A["ASI:Telemetry SDK"]
+    A["<p style='font-size: 15px;font-weight:600;width:180px'>ASI:Telemetry SDK</p>"]
 
     B["Instrumentation"]
-    C["Agents/LLM Tracing"]
+    C["<p style='font-size: 15px;font-weight:600;width:180px'>Agents/LLM Tracing</p>"]
     D["Tool Monitoring"]
 
     A --> B
@@ -97,6 +97,43 @@ observe.instrument_gemini(client)  # This will automatically monitor the AI agen
 ```
 Here, we use a monkey-patching technique to instrument LLM API calls and collect telemetry data. As seen in the code example above, when we initialize **observe.instrument_gemini(client)**, it receives a reference to the Gemini client and intercepts API calls. Whenever the LLM is called, it captures relevant data and sends it to the Python backend.
 
-{/* TODO: Add Agent Tracing section once multi-agent communication instrumentation is implemented */}
+
+### Agents/LLM Tracing
+Here, tracing works for both single-agent and multi-agent systems. As we know, in multi-agent systems, an LLM may make multiple tool calls and function calls to complete a single task or multiple tasks. Manually tracing each individual tool call can be frustrating and time-consuming.
+
+To solve this problem, we automate the entire tracing process through the integration of the **ASI:Telemetry** SDK.
+
+Let's take an example to understand this more clearly.
+
+```mermaid
+flowchart TB
+    A["<p style='font-size: 15px;font-weight:600;width:150px'>Multi-Agent System</p>"]
+
+    B["Agent 1<br/><p style='font-size: 10px;'>Running on PORT:8000</p>"]
+    C["Agent 2<br/><p style='font-size: 10px;'>Running on PORT:8001</p>"]
+    D["Agent 3<br/><p style='font-size: 10px;'>Running on PORT:8002</p>"]
+
+    A --> B
+    A --> C
+    A --> D
+
+    classDef sdk fill:#050000,stroke:#06b6d4,color:#fff,stroke-width:2px,rx:10px,width:180px
+    classDef feature fill:#172554,stroke:#3b82f6,color:#fff,stroke-width:1px,rx:10px;
+
+    class A sdk
+    class B,C,D feature
+```
+
+**Example:**
+
+Let's suppose Agent1 is the starting point of a multi-agent communication workflow. Agent1 contains multiple tools (e.g., database calls, API calls, etc.) to complete its assigned task. Once completed, it passes the result to Agent2, which processes the result to complete its own task. Finally, the result is passed to Agent3 to complete the final task.
+
+In this scenario, multiple agents collaborate to accomplish a single task.
+
+The **ASI:Telemetry SDK** helps to automatically collect all the traces from all agents and send them to the backend. It correlates all these traces and represents the entire workflow as a **single multi-agent communication trace**, while also maintaining **individual traces for each agent and its tool/function calls**.
+
+This is how we provides both a high-level view of the complete multi-agent workflow and detailed visibility into individual operations.
+
+
 
 

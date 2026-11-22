@@ -41,7 +41,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     CodeBlock,
     h2: createHeading("h2", "text-xl sm:text-2xl mt-12 mb-4", "text-base"),
     h3: createHeading("h3", "text-lg sm:text-xl font-semibold mt-8 mb-3", "text-sm"),
-    p: ({ children, ...props }) => <p className="mb-6 leading-[1.8]" {...props}>{children}</p>,
+    p: ({ children, ...props }) => <p className="mb-3 leading-[1.7]" {...props}>{children}</p>,
     strong: ({ children, ...props }) => <strong className="font-semibold text-foreground" {...props}>{children}</strong>,
     a: ({ href, children, ...props }) => {
       const isInternal = href?.startsWith("/") || href?.startsWith("#")
@@ -57,8 +57,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         </a>
       )
     },
-    ul: ({ children, ...props }) => <ul className="list-disc pl-5 sm:pl-6 mb-6 space-y-2" {...props}>{children}</ul>,
-    ol: ({ children, ...props }) => <ol className="list-decimal pl-5 sm:pl-6 mb-6 space-y-2" {...props}>{children}</ol>,
+    ul: ({ children, ...props }) => <ul className="list-disc pl-5 sm:pl-6 mb-4 space-y-1.5" {...props}>{children}</ul>,
+    ol: ({ children, ...props }) => <ol className="list-decimal pl-5 sm:pl-6 mb-4 space-y-1.5" {...props}>{children}</ol>,
     li: ({ children, ...props }) => <li className="leading-[1.75]" {...props}>{children}</li>,
     blockquote: ({ children, ...props }) => (
       <blockquote className="border-l-2 border-[#3ECF8E] pl-4.5 italic text-muted-foreground my-7" {...props}>

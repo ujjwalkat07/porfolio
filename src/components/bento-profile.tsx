@@ -23,7 +23,7 @@ export function BentoProfile() {
 
       {/* About paragraph - concise 2-3 sentences with link to /about */}
       <p className="text-sm md:text-base text-muted-foreground max-w-3xl mb-6 leading-relaxed">
-        I am a software developer building software and scalable backends. Most of my work is hands-on designing system architectures, optimizing APIs, and building AI applications and autonomous agents. see my engineering <Link href="/projects" className="text-primary hover:underline transition-colors cursor-pointer text-black dark:text-emerald-500">projects</Link> and <Link href="/blogs" className="text-primary hover:underline transition-colors cursor-pointer text-black dark:text-emerald-500">blogs</Link> {" "}-&gt;
+        I am a software developer building software and scalable backends. Most of my work is hands-on designing system architectures, optimizing APIs, and building AI applications and autonomous agents. see my engineering <Link href="/projects" className=" hover:underline transition-colors cursor-pointer text-emerald-600 dark:text-emerald-500 underline font-semibold">Projects</Link> and <Link href="/blogs" className="text-emerald-600 hover:underline transition-colors cursor-pointer dark:text-emerald-500 underline font-semibold">Blogs</Link> {" "}-&gt;
       </p>
 
       {/* Social links — inline with accessible labels */}

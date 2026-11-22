@@ -6,7 +6,7 @@
     "description": "An architectural deep dive into ASI:Telemetry, an observability and monitoring platform for AI agents and LLM applications built with FastAPI and ClickHouse.",
     "date": "Nov 4, 2026",
     "lastModified": "Nov 4, 2026",
-    "readTime": "2 min read",
+    "readTime": "3 min read",
     "tags": [
       "Engineering",
       "Observability",
@@ -35,6 +35,11 @@
       {
         "id": "ai-sdk-instruments",
         "text": "AI SDK Instruments",
+        "level": 3
+      },
+      {
+        "id": "agents-llm-tracing",
+        "text": "Agents/LLM Tracing",
         "level": 3
       }
     ]

@@ -8,16 +8,16 @@ import { Footer } from "@/components/footer"
 import { JsonLd } from "@/lib/json-ld"
 
 export const metadata: Metadata = {
-  title: "About | Ujjwal Katiyar — Software Developer",
+  title: "About",
   description:
-    "Learn about Ujjwal Katiyar, a Software Developer building scalable real-time systems, distributed backend infrastructure, and AI observability platforms.",
+    "I am a software developer designing system architectures, optimizing APIs, and building AI applications and agents. See my projects and blogs.",
   alternates: {
     canonical: "https://ujjwalkatiyar.in/about",
   },
   openGraph: {
     title: "About | Ujjwal Katiyar",
     description:
-      "A Software Developer building scalable real-time systems, distributed backend infrastructure, and AI observability platforms.",
+      "I am a software developer designing system architectures, optimizing APIs, and building AI applications and agents. See my projects and blogs.",
     url: "https://ujjwalkatiyar.in/about",
     type: "profile",
     images: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
         url: "https://ujjwalkatiyar.in/profile-card.png",
         width: 1200,
         height: 675,
-        alt: "About Ujjwal Katiyar — Software Developer & Systems Architect",
+        alt: "About",
       },
     ],
   },
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About | Ujjwal Katiyar",
     description:
-      "A Software Developer building scalable real-time systems, distributed backend infrastructure, and AI observability platforms.",
+      "I am a software developer designing system architectures, optimizing APIs, and building AI applications and agents. See my projects and blogs.",
     creator: "@ujjwalkatiyar07",
     images: ["https://ujjwalkatiyar.in/profile-card.png"],
   },
@@ -50,7 +50,7 @@ const profilePageSchema = {
     image: "https://ujjwalkatiyar.in/profile_pic.webp",
     jobTitle: "Software Developer & Systems Architect",
     description:
-      "Software Developer building scalable real-time systems, distributed backend infrastructure, and AI observability platforms.",
+      "I am a software developer designing system architectures, optimizing APIs, and building AI applications and agents.",
     sameAs: [
       "https://github.com/ujjwalkat07",
       "https://www.linkedin.com/in/ujjwalkatiyar07",
@@ -66,6 +66,9 @@ const profilePageSchema = {
       "PostgreSQL",
       "Distributed Systems",
       "AI Observability",
+      "System Design",
+      "AI",
+      "Python"
     ],
   },
 }
