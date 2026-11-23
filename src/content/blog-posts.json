@@ -6,7 +6,7 @@
     "description": "Why LLMs forget everything, why building memory yourself is a pain, and how Zero Context fixes it with two function calls.",
     "date": "Nov 23, 2026",
     "lastModified": "Nov 23, 2026",
-    "readTime": "5 min read",
+    "readTime": "6 min read",
     "tags": [
       "Engineering",
       "AI Agents",
@@ -50,6 +50,31 @@
         "id": "what-the-code-looks-like",
         "text": "What the code looks like",
         "level": 2
+      },
+      {
+        "id": "inside-the-sdk-how-it-s-designed",
+        "text": "Inside the SDK: How it's designed",
+        "level": 2
+      },
+      {
+        "id": "1-add-ingesting-new-memories",
+        "text": "1. add() — Ingesting new memories",
+        "level": 3
+      },
+      {
+        "id": "2-search-finding-what-s-relevant",
+        "text": "2. search() — Finding what's relevant",
+        "level": 3
+      },
+      {
+        "id": "3-update-correcting-or-refreshing-facts",
+        "text": "3. update() — Correcting or refreshing facts",
+        "level": 3
+      },
+      {
+        "id": "4-delete-privacy-and-cleanups",
+        "text": "4. delete() — Privacy and cleanups",
+        "level": 3
       },
       {
         "id": "where-it-fits",

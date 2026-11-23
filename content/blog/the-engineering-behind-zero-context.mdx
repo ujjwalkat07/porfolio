@@ -183,6 +183,92 @@ print(reply)
 
 ---
 
+## Inside the SDK: How it's designed
+
+The SDK acts as the bridge between your AI app and the Zero Context memory engine. Instead of forcing you to write complex database queries and vector calculations, it packages memory management into four clean operations:
+
+```mermaid
+%%{init: {"flowchart": {"nodeSpacing": 28, "rankSpacing": 36, "curve": "basis", "padding": 16}}}%%
+flowchart TD
+    App["Your AI Application"]:::coordinator
+    SDK["Zero Context SDK Client"]:::agent
+
+    subgraph Operations ["Core SDK Methods"]
+        direction LR
+        Add["<b>add()</b><br/><span style='font-size:10px;'>Save facts & chat</span>"]:::agent
+        Search["<b>search()</b><br/><span style='font-size:10px;'>Semantic lookup</span>"]:::agent
+        Update["<b>update()</b><br/><span style='font-size:10px;'>Modify memories</span>"]:::agent
+        Delete["<b>delete()</b><br/><span style='font-size:10px;'>Remove & purge</span>"]:::agent
+    end
+
+    Backend[("Zero Context Engine")]:::coordinator
+
+    App --> SDK
+    SDK --> Add
+    SDK --> Search
+    SDK --> Update
+    SDK --> Delete
+
+    Add -->|"Async background ingestion"| Backend
+    Search -->|"Fast sub-50ms lookup"| Backend
+    Update -->|"Patch existing record"| Backend
+    Delete -->|"Instant vector & DB purge"| Backend
+
+    classDef coordinator fill:#022c22,stroke:#10b981,stroke-width:2px,color:#ecfdf5,rx:12px;
+    classDef agent fill:#09090b,stroke:#27272a,stroke-width:1.5px,color:#f4f4f5,rx:10px;
+```
+
+### 1. `add()` — Ingesting new memories
+Whenever your agent finishes an interaction, you call `add()`. It sends the messages to Zero Context in the background so your user doesn't wait:
+
+```python
+# Saves the conversation and extracts key facts in the background
+memory.memories.add(
+    messages=[
+        {"role": "user", "content": "I prefer dark mode in VS Code and write mostly Go."},
+        {"role": "assistant", "content": "Got it! I will remember your preference for Go and dark mode."}
+    ],
+    user_id="user_123"
+)
+```
+
+### 2. `search()` — Finding what's relevant
+When a new question comes in, `search()` finds the few facts that matter most. It uses semantic similarity, meaning it understands the context even if exact keywords don't match:
+
+```python
+# Finds facts related to the user's current question
+relevant_facts = memory.memories.search(
+    query="What theme and language should we configure for the editor?",
+    user_id="user_123",
+    limit=3
+)
+# Returns: ["User prefers dark mode in VS Code", "User writes mostly Go"]
+```
+
+### 3. `update()` — Correcting or refreshing facts
+People change their tools, roles, and preferences. If an existing fact needs to be edited directly without re-analyzing an entire chat log, `update()` lets you patch it:
+
+```python
+# Update an existing memory when a user's preference changes
+memory.memories.update(
+    memory_id="mem_abc987",
+    text="User switched from Go to Rust for backend development."
+)
+```
+
+### 4. `delete()` — Privacy and cleanups
+Users have a right to be forgotten under privacy regulations like GDPR. `delete()` immediately purges specific memories or a user's entire history from both the text database and vector index:
+
+```python
+# Delete a single outdated memory
+memory.memories.delete(memory_id="mem_abc987")
+
+# Or delete everything stored for a specific user
+memory.memories.delete_all(user_id="user_123")
+```
+
+---
+
 ## Where it fits
 
 | What | Does it remember you? | Who uses it |
