@@ -1,5 +1,74 @@
 [
   {
+    "slug": "the-engineering-behind-zero-context",
+    "title": "The Engineering Behind Zero Context",
+    "category": "Engineering",
+    "description": "Why LLMs forget everything, why building memory yourself is a pain, and how Zero Context fixes it with two function calls.",
+    "date": "Nov 23, 2026",
+    "lastModified": "Nov 23, 2026",
+    "readTime": "5 min read",
+    "tags": [
+      "Engineering",
+      "AI Agents",
+      "Architecture",
+      "Beginner Friendly"
+    ],
+    "link": "https://ujjwalkatiyar.in/blog/the-engineering-behind-zero-context",
+    "draft": false,
+    "toc": [
+      {
+        "id": "why-i-built-this",
+        "text": "Why I built this",
+        "level": 2
+      },
+      {
+        "id": "why-llms-can-t-remember-anything",
+        "text": "Why LLMs can't remember anything",
+        "level": 2
+      },
+      {
+        "id": "the-old-way-is-slow",
+        "text": "The old way is slow",
+        "level": 2
+      },
+      {
+        "id": "how-it-works",
+        "text": "How it works",
+        "level": 2
+      },
+      {
+        "id": "reading",
+        "text": "Reading",
+        "level": 3
+      },
+      {
+        "id": "writing",
+        "text": "Writing",
+        "level": 3
+      },
+      {
+        "id": "what-the-code-looks-like",
+        "text": "What the code looks like",
+        "level": 2
+      },
+      {
+        "id": "where-it-fits",
+        "text": "Where it fits",
+        "level": 2
+      },
+      {
+        "id": "the-hard-parts",
+        "text": "The hard parts",
+        "level": 2
+      },
+      {
+        "id": "final-thoughts",
+        "text": "Final thoughts",
+        "level": 2
+      }
+    ]
+  },
+  {
     "slug": "the-engineering-behind-asi-telemetry",
     "title": "The Engineering behind ASI Telemetry",
     "category": "Engineering",
@@ -43,21 +112,6 @@
         "level": 3
       }
     ]
-  },
-  {
-    "slug": "the-engineering-behind-zero-context",
-    "title": "The Engineering behind Zero-Context",
-    "category": "Engineering",
-    "description": "A memory infrastructure for AI applications and autonomous agents.",
-    "date": "Oct 21, 2026",
-    "lastModified": "Oct 21, 2026",
-    "readTime": "1 min read",
-    "tags": [
-      "Engineering"
-    ],
-    "link": "https://ujjwalkatiyar.in/blog/the-engineering-behind-zero-context",
-    "draft": true,
-    "toc": []
   },
   {
     "slug": "monolith-to-microservices-migration",
